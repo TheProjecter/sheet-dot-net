@@ -39,6 +39,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Notes\Attachment.cs" />
+    <Compile Include="Notes\Label.cs" />
+    <Compile Include="Notes\Metainfo.cs" />
+    <Compile Include="Notes\Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
