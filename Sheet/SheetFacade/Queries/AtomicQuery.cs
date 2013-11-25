@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sheet.Facade.Queries
 {
-    interface AtomicQuery : NoteQuery
+    public interface AtomicQuery : NoteQuery
     {
         string Expression { get; }
     }

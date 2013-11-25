@@ -40,7 +40,7 @@ namespace Sheet.DAL
             throw new NotImplementedException();
         }
 
-        public Facade.Notes.Note RefreshNote(Facade.Notes.Note note)
+        public Facade.Notes.Note LoadNote(Facade.Notes.Note note)
         {
             throw new NotImplementedException();
         }

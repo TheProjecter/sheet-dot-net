@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sheet.Facade.Queries
+namespace SheetBLL.Queries
 {
-    public interface OrQuery : BinaryQuery
+    class TitleQuery
     {
     }
 }
