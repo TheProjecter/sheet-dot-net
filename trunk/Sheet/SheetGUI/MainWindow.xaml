@@ -51,49 +51,33 @@
         <TabControl Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Style="{x:Null}">
             <TabItem x:Name="tab" Style="{x:Null}">
                 <TabItem.Header>
-                    <t:WatermarkTextBox Grid.Row="0" FontSize="18" BorderThickness="0" Watermark="Title"
+                    <t:WatermarkTextBox Grid.Row="0" FontSize="18" BorderThickness="0" Watermark="Set title..."
                                         IsEnabled="{Binding IsSelected, ElementName=tab}" Background="#00000000" CaretBrush="Black"/>
                 </TabItem.Header>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="100"/>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,0,2">
                         <Border.BorderBrush>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                         </Border.BorderBrush>
-                        <RichTextBox SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0">
+                        <t:RichTextBox SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0">
+                            <t:RichTextBoxFormatBarManager.FormatBar>
+                                <t:RichTextBoxFormatBar/>
+                            </t:RichTextBoxFormatBarManager.FormatBar>
                             <FlowDocument Language="hu-hu"/>
-                        </RichTextBox>
+                        </t:RichTextBox>
                     </Border>
-                    <Border Grid.Row="1" BorderThickness="1" CornerRadius="5">
+                    <Border Grid.Row="1" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,0,2">
                         <Border.BorderBrush>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                         </Border.BorderBrush>
-                        <StackPanel Orientation="Horizontal"/>
+                        <t:WatermarkTextBox Grid.Row="1" BorderThickness="0" Watermark="Add labels..."/>
                     </Border>
-                </Grid>
-            </TabItem>
-            <TabItem x:Name="tab1" Style="{x:Null}">
-                <TabItem.Header>
-                    <t:WatermarkTextBox Grid.Row="0" FontSize="18" BorderThickness="0" Watermark="Title" Background="#00000000"
-                                        IsEnabled="{Binding IsSelected, ElementName=tab1}" CaretBrush="Black"/>
-                </TabItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="100"/>
-                    </Grid.RowDefinitions>
-                    <!--Border Grid.Row="0" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,0,2">
-                        <Border.BorderBrush>
-                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
-                        </Border.BorderBrush-->
-                        <RichTextBox SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0">
-                            <FlowDocument Language="hu-hu"/>
-                        </RichTextBox>
-                    <!--/Border-->
-                    <Border Grid.Row="1" BorderThickness="1" CornerRadius="5">
+                    <Border Grid.Row="2" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,0,2">
                         <Border.BorderBrush>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                         </Border.BorderBrush>
