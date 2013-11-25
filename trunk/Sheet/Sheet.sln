@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SheetBLL", "SheetBLL\SheetB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SheetFacade", "SheetFacade\SheetFacade.csproj", "{199D2031-7E60-4C4D-B997-EA84398EA8E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManagementConsole", "DataManagementConsole\DataManagementConsole.csproj", "{77673D2F-C527-45AE-8A71-5F31DCFECE25}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -35,6 +37,10 @@ Global
 		{199D2031-7E60-4C4D-B997-EA84398EA8E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{199D2031-7E60-4C4D-B997-EA84398EA8E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{199D2031-7E60-4C4D-B997-EA84398EA8E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77673D2F-C527-45AE-8A71-5F31DCFECE25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77673D2F-C527-45AE-8A71-5F31DCFECE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77673D2F-C527-45AE-8A71-5F31DCFECE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77673D2F-C527-45AE-8A71-5F31DCFECE25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

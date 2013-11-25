@@ -16,5 +16,11 @@ namespace Sheet.DAL.Entities
         public virtual IList<Label> Labels { get; set; }
         public virtual Author Author { get; set; }
         public string Text { get; set; }
+
+
+        IList<Facade.Notes.Label> Facade.Notes.Note.Labels
+        {
+            get { return (IList<Facade.Notes.Label>)Labels; }
+        }
     }
 }
