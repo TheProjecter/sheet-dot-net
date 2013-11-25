@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sheet.Facade.Queries
 {
-    public interface NoteQuery
+    interface AndQuery
     {
-        void Accept(QueryVisitor visitor);
     }
 }
