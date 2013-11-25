@@ -10,12 +10,13 @@ namespace Sheet.DAL.Entities
     {
         public int ID { get; set; }
         public string Title { get; set; }
+        public string Text { get; set; }
         public DateTime DateOfCreation { get; set; }
         public DateTime LastModified { get; set; }
         public virtual ICollection<Attachment> Attachments { get; set; }
         public virtual IList<Label> Labels { get; set; }
         public virtual Author Author { get; set; }
-        public string Text { get; set; }
+        
 
 
         IList<Facade.Notes.Label> Facade.Notes.Note.Labels
