@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sheet.Facade.Queries
 {
-    interface LabelQuery : AtomicQuery
+    interface BinaryQuery : NoteQuery
     {
+        NoteQuery Left { get; }
+        NoteQuery Right { get; }
     }
 }

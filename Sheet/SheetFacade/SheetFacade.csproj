@@ -47,6 +47,8 @@
     <Compile Include="Notes\Note.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\AndQuery.cs" />
+    <Compile Include="Queries\AtomicQuery.cs" />
+    <Compile Include="Queries\BinaryQuery.cs" />
     <Compile Include="Queries\ContentQuery.cs" />
     <Compile Include="Queries\LabelQuery.cs" />
     <Compile Include="Queries\NoteQuery.cs" />
