@@ -16,10 +16,12 @@ namespace Sheet.Facade.Services
         Metainfo CreateMetainfo();
 
         bool SaveNote(Note note);
-
         bool DeleteNote(Note note);
 
+        ICollection<Label> GetLabels();
+
         Note LoadNote(Note note);
+        ICollection<Note> QueryNotes(string expression);
         ICollection<Note> QueryNotes(Label label);
         ICollection<Note> QueryNotes(NoteQuery query);
     }

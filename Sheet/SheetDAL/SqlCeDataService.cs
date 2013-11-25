@@ -40,7 +40,17 @@ namespace Sheet.DAL
             throw new NotImplementedException();
         }
 
+        public ICollection<Facade.Notes.Label> GetLabels()
+        {
+            throw new NotImplementedException();
+        }
+
         public Facade.Notes.Note LoadNote(Facade.Notes.Note note)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICollection<Facade.Notes.Note> QueryNotes(string expression)
         {
             throw new NotImplementedException();
         }

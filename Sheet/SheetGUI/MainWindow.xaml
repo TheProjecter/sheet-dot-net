@@ -1,6 +1,7 @@
 ﻿<Window x:Class="SheetGUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:s="clr-namespace:UIControls;assembly=UIControls"
         Title="MainWindow" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -30,14 +31,16 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Grid Grid.Column="0" Grid.Row="1">
+        <s:SearchTextBox Grid.Column="0" Grid.Row="1" SearchEventTimeDelay="00:00:02.00"
+                HorizontalAlignment="Stretch" />
+        <!--Grid Grid.Column="0" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" HorizontalAlignment="Stretch"/>
             <Button Grid.Column="1"  Content="Keresés" HorizontalAlignment="Right"/>
-        </Grid>
+        </Grid-->
         <TreeView Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" />
         <GridSplitter HorizontalAlignment="Right" 
                   VerticalAlignment="Stretch" 

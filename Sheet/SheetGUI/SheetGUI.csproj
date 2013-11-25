@@ -117,6 +117,12 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\UIControls_35\UIControls\UIControls.csproj">
+      <Project>{a3082956-9ee4-4b35-9b4e-b07d0c4c8b56}</Project>
+      <Name>UIControls</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
