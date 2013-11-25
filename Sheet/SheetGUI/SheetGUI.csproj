@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Images\Logos\logo196.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MahApps.Metro, Version=0.11.0.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -43,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.0.11.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -122,6 +126,34 @@
       <Project>{a3082956-9ee4-4b35-9b4e-b07d0c4c8b56}</Project>
       <Name>UIControls</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Logos\logo16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Logos\logo24.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Logos\logo32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Logos\logo48.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Logos\logo64.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\Logos\logo96.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Logos\logo128.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Logos\logo196.ico" />
+    <Resource Include="Resources\Images\Logos\logo255.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
