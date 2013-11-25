@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sheet.BLL.Queries
 {
-    class TitleQuery : Sheet.Facade.Queries.TitleQuery
+    class ContentQuery : Sheet.Facade.Queries.ContentQuery
     {
         public string Expression
         {

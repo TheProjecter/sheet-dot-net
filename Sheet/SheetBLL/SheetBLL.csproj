@@ -7,7 +7,7 @@
     <ProjectGuid>{F9C84E28-9E8B-4E1D-B92D-80A27B1450B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SheetBLL</RootNamespace>
+    <RootNamespace>Sheet.BLL</RootNamespace>
     <AssemblyName>SheetBLL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -42,7 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\AndQuery.cs" />
+    <Compile Include="Queries\ContentQuery.cs" />
+    <Compile Include="Queries\LabelQuery.cs" />
+    <Compile Include="Queries\OrQuery.cs" />
     <Compile Include="Queries\TitleQuery.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SheetFacade\SheetFacade.csproj">
+      <Project>{199d2031-7e60-4c4d-b997-ea84398ea8e8}</Project>
+      <Name>SheetFacade</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
