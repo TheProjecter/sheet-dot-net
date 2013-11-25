@@ -10,11 +10,11 @@ namespace Sheet.DAL
 {
     class SheetContext : DbContext
     {
-        public DbSet<Attachment> Attachments { get; set; }
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Label> Lables { get; set; }
-        public DbSet<Metainfo> Metadata { get; set; }
-        public DbSet<Note> Notes { get; set; }
+        internal DbSet<Attachment> Attachments { get; set; }
+        internal DbSet<Author> Authors { get; set; }
+        internal DbSet<Label> Lables { get; set; }
+        internal DbSet<Metainfo> Metadata { get; set; }
+        internal DbSet<Note> Notes { get; set; }
 
         public SheetContext(string connStr) : base(connStr)
         {

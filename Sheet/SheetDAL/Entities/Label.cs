@@ -10,5 +10,14 @@ namespace Sheet.DAL.Entities
         public int ID { get; set; }
         public string Text { get; set; }
         public virtual ICollection<Note> Notes { get; set; }
+
+
+        ICollection<Facade.Notes.Note> Facade.Notes.Label.Notes 
+        {
+            get
+            {
+                return (ICollection<Facade.Notes.Note>)Notes;
+            }
+        }
     }
 }

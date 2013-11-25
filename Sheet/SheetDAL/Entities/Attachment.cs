@@ -12,5 +12,11 @@ namespace Sheet.DAL.Entities
         public string Path { get; set; }
         public string MimeType { get; set; }
         public virtual ICollection<Metainfo> Metadata { get; set; }
+
+
+        ICollection<Facade.Notes.Metainfo> Facade.Notes.Attachment.Metadata
+        {
+            get { return (ICollection<Facade.Notes.Metainfo>)Metadata; }
+        }
     }
 }
