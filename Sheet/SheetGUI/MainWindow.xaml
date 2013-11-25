@@ -21,7 +21,7 @@
                     <DockPanel HorizontalAlignment="Stretch"/>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Header="_File">
+            <MenuItem Header="_File" HorizontalAlignment="Left">
                 <MenuItem Header="_New note"/>
                 <MenuItem Header="_Delete note"/>
                 <Separator />
