@@ -19,7 +19,7 @@ namespace Sheet.Facade.Services
 
         bool DeleteNote(Note note);
 
-        Note RefreshNote(Note note);
+        Note LoadNote(Note note);
         ICollection<Note> QueryNotes(Label label);
         ICollection<Note> QueryNotes(NoteQuery query);
     }
