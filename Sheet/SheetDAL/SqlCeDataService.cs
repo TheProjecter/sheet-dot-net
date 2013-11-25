@@ -49,9 +49,7 @@ namespace Sheet.DAL
         {
             using (SheetContext ctx = new SheetContext())
             {
-                ICollection<Facade.Notes.Note> result = new List<Facade.Notes.Note>();
-                result = (ICollection<Facade.Notes.Note>)ctx.Notes;
-                return result;
+                return ctx.Notes.ToArray<Facade.Notes.Note>();
             }
         }
 
