@@ -23,5 +23,10 @@ namespace SheetGUI
         {
             InitializeComponent();
         }
+
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
