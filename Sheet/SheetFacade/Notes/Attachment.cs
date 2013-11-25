@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SheetFacade.Notes
+namespace Sheet.Facade.Notes
 {
-    interface Attachment
+    public interface Attachment
     {
         string Name { get; set; }
         string Path { get; set; }
         string MimeType { get; set; }
-        IEnumerable<Metainfo> Metadata { get; }
+        ICollection<Metainfo> Metadata { get; }
     }
 }
