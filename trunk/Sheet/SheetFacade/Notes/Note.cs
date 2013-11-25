@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SheetFacade.Notes
+namespace Sheet.Facade.Notes
 {
-    interface Note
+    public interface Note
     {
         string Title { get; set; }
+        string Text { get; set; }
         DateTime DateOfCreation { get; set; }
         DateTime LastModified { get; set; }
         IList<Label> Labels { get; }

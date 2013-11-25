@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SheetFacade.Notes
+namespace Sheet.Facade.Notes
 {
-    interface Metainfo
+    public interface Metainfo
     {
         string Key { get; set; }
         string Value { get; set; }
