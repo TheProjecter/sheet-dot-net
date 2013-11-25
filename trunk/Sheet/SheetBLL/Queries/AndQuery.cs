@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace Sheet.BLL.Queries
 {
-    class TitleQuery : Sheet.Facade.Queries.TitleQuery
+    class AndQuery : Sheet.Facade.Queries.AndQuery
     {
-        public string Expression
+        public Facade.Queries.NoteQuery Left
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public Facade.Queries.NoteQuery Right
         {
             get { throw new NotImplementedException(); }
         }
