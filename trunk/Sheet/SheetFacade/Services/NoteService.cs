@@ -9,6 +9,6 @@ namespace Sheet.Facade.Services
 {
     public interface NoteService
     {
-        IDictionary<Label, ICollection<Note>> NoteOverview { get; }
+        
     }
 }
