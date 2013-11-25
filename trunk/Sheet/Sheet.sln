@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SheetFacade", "SheetFacade\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManagementConsole", "DataManagementConsole\DataManagementConsole.csproj", "{77673D2F-C527-45AE-8A71-5F31DCFECE25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIControls", "..\UIControls_35\UIControls\UIControls.csproj", "{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIControls", "UIControls\UIControls.csproj", "{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
