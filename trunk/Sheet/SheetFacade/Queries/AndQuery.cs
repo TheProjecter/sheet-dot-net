@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sheet.Facade.Queries
 {
-    interface AndQuery : BinaryQuery
+    public interface AndQuery : BinaryQuery
     {
     }
 }

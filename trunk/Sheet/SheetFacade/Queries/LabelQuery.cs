@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sheet.Facade.Queries
 {
-    interface LabelQuery : AtomicQuery
+    public interface LabelQuery : AtomicQuery
     {
     }
 }
