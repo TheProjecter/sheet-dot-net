@@ -93,7 +93,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="100"/>
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,0,2">
+                    <Border Grid.Row="0" BorderThickness="1" CornerRadius="5" Padding="2,4" Margin="0,0,0,2">
                         <Border.BorderBrush>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                         </Border.BorderBrush>
@@ -124,7 +124,15 @@
                         <Border.BorderBrush>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                         </Border.BorderBrush>
-                        <StackPanel Orientation="Horizontal"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Canvas HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                                <Rectangle Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="6" Canvas.Left="6" Stroke="#FF919191" RadiusX="5" RadiusY="5" StrokeDashArray="7 7"/>
+                                <Line X1="46" Y1="26" X2="46" Y2="46" StrokeThickness="3" Stroke="#FF919191"/>
+                                <Line X1="36" Y1="36" X2="56" Y2="36" StrokeThickness="3" Stroke="#FF919191"/>
+                                <TextBlock Text="Add" Canvas.Left="6" Canvas.Top="50" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
+                                <TextBlock Text="attachment..." Canvas.Left="6" Canvas.Top="63" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
+                            </Canvas>
+                        </StackPanel>
                     </Border>
                 </Grid>
             </TabItem>
