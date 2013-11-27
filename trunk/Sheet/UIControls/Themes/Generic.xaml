@@ -12,9 +12,9 @@
     <GradientStop Color="#FFE3E9EF" Offset="1" />
   </LinearGradientBrush>
   <LinearGradientBrush x:Key="SearchTextBox_BorderMouseOver" StartPoint="0,0" EndPoint="0,1">
-    <GradientStop Color="#FF5C97C1" Offset="0.05" />
-    <GradientStop Color="#FFB9D7EB" Offset="0.07" />
-    <GradientStop Color="#FFC7E2F1" Offset="1" />
+    <GradientStop Color="#FF65C15C" Offset="0.05" />
+    <GradientStop Color="#FFB9EBBE" Offset="0.07" />
+    <GradientStop Color="#FFC7F1C7" Offset="1" />
   </LinearGradientBrush>
   <SolidColorBrush x:Key="SearchTextBox_SearchIconBorder" Color="White" />
   <SolidColorBrush x:Key="SearchTextBox_SearchIconBackground" Color="White" />
@@ -23,20 +23,20 @@
     <GradientStop Color="#FFE5F4FC" Offset="1" />
   </LinearGradientBrush>
   <LinearGradientBrush x:Key="SearchTextBox_SearchIconBackground_MouseOver" StartPoint="0,0" EndPoint="0,1" >
-    <GradientStop Color="#FFE7F5FD" Offset="0" />
-    <GradientStop Color="#FFD2EDFC" Offset="0.5" />
-    <GradientStop Color="#FFB6E3FD" Offset="0.51" />
-    <GradientStop Color="#FF9DD5F3" Offset="1" />
+    <GradientStop Color="#FFE9FDE7" Offset="0" />
+    <GradientStop Color="#FFD2FCD2" Offset="0.5" />
+    <GradientStop Color="#FFB6FDBC" Offset="0.51" />
+    <GradientStop Color="#FF9DF3A9" Offset="1" />
   </LinearGradientBrush>
   <LinearGradientBrush x:Key="SearchTextBox_SearchIconBorder_MouseDown" StartPoint="0,0" EndPoint="0,1" >
     <GradientStop Color="#FFFFFFFF" Offset="0" />
     <GradientStop Color="#FFE5F4FC" Offset="1" />
   </LinearGradientBrush>
   <LinearGradientBrush x:Key="SearchTextBox_SearchIconBackground_MouseDown" StartPoint="0,0" EndPoint="0,1" >
-    <GradientStop Color="#FFE7F5FD" Offset="0" />
-    <GradientStop Color="#FFD2EDFC" Offset="0.5" />
-    <GradientStop Color="#FFB6E3FD" Offset="0.51" />
-    <GradientStop Color="#FF9DD5F3" Offset="1" />
+    <GradientStop Color="#FFE8FDE7" Offset="0" />
+    <GradientStop Color="#FFD2FCD2" Offset="0.5" />
+    <GradientStop Color="#FFBCFDB6" Offset="0.51" />
+    <GradientStop Color="#FFA1F39D" Offset="1" />
   </LinearGradientBrush>
   <SolidColorBrush x:Key="SearchTextBox_LabelTextColor" Color="Gray" />
 
