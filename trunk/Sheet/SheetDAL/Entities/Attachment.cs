@@ -11,7 +11,19 @@ namespace Sheet.DAL.Entities
         public string Name { get; set; }
         public string Path { get; set; }
         public string MimeType { get; set; }
-        public virtual ICollection<Metainfo> Metadata { get; set; }
+
+        private ICollection<Metainfo> _metadata;
+        public virtual ICollection<Metainfo> Metadata
+        {
+            get
+            {
+                return _metadata ?? (_metadata = new List<Metainfo>());
+            }
+            set
+            {
+                _metadata = value;
+            }
+        }
 
 
         ICollection<Facade.Notes.Metainfo> Facade.Notes.Attachment.Metadata

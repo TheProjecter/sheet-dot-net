@@ -12,55 +12,179 @@ namespace Sheet.DAL
     {
         public Facade.Notes.Note CreateNote()
         {
-            throw new NotImplementedException();
+            return new Note();
+            //using (SheetContext ctx = new SheetContext())
+            //{
+            //    try
+            //    {
+            //        Facade.Notes.Note note = new Note();
+            //        ctx.Notes.Add((Note)note);
+            //        ctx.SaveChanges();
+            //        return note;
+            //    }
+            //    catch (InvalidOperationException)
+            //    {
+            //        return null;
+            //    }
+            //}
         }
 
         public Facade.Notes.Attachment CreateAttachment()
         {
-            throw new NotImplementedException();
+            return new Attachment();
+            //using (SheetContext ctx = new SheetContext())
+            //{
+            //    try
+            //    {
+            //        Facade.Notes.Attachment attachment = new Attachment();
+            //        ctx.Attachments.Add((Attachment)attachment);
+            //        ctx.SaveChanges();
+            //        return attachment;
+            //    }
+            //    catch (InvalidOperationException)
+            //    {
+            //        return null;
+            //    }
+            //}
         }
 
         public Facade.Notes.Label CreateLabel()
         {
             return new Label();
+            //using (SheetContext ctx = new SheetContext())
+            //{
+            //    try
+            //    {
+            //        Facade.Notes.Label label = new Label();
+            //        ctx.Labels.Add((Label)label);
+            //        ctx.SaveChanges();
+            //        return label;
+            //    }
+            //    catch (InvalidOperationException)
+            //    {
+            //        return null;
+            //    }
+            //}
         }
 
         public Facade.Notes.Metainfo CreateMetainfo()
         {
-            throw new NotImplementedException();
+            return new Metainfo();
+            //using (SheetContext ctx = new SheetContext())
+            //{
+            //    try
+            //    {
+            //        Facade.Notes.Metainfo metainfo = new Metainfo();
+            //        ctx.Metadata.Add((Metainfo)metainfo);
+            //        ctx.SaveChanges();
+            //        return metainfo;
+            //    }
+            //    catch (InvalidOperationException)
+            //    {
+            //        return null;
+            //    }
+            //}
+            
         }
 
         public bool SaveNote(Facade.Notes.Note note)
         {
-            throw new NotImplementedException();
+            using (SheetContext ctx = new SheetContext())
+            {
+                try
+                {
+                    Note dbNote = (Note)note;
+                    ctx.Notes.Add(dbNote);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (InvalidOperationException)
+                {
+                    return false;
+                }
+            }
         }
 
         public bool DeleteNote(Facade.Notes.Note note)
         {
-            throw new NotImplementedException();
+            using (SheetContext ctx = new SheetContext())
+            {
+                try
+                {
+                    ctx.Notes.Remove((Note)note);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (InvalidOperationException)
+                {
+                    return false;
+                }
+            }
         }
 
         public ICollection<Facade.Notes.Label> GetLabels()
         {
-            throw new NotImplementedException();
+            using (SheetContext ctx = new SheetContext())
+            {
+                try
+                {
+                    return ctx.Labels.ToArray();
+                }
+                catch (ArgumentNullException)
+                {
+                    return null;
+                }
+            }
         }
 
         public Facade.Notes.Note LoadNote(Facade.Notes.Note note)
         {
-            throw new NotImplementedException();
+            using (SheetContext ctx = new SheetContext())
+            {
+                try
+                {
+                    return ctx.Notes.Find(note.ID);
+                }
+                catch (ArgumentNullException)
+                {
+                    return null;
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
+            }
         }
 
         public ICollection<Facade.Notes.Note> QueryNotes(string expression)
         {
-            throw new NotImplementedException();
+            using (SheetContext ctx = new SheetContext())
+            {
+                try
+                {
+                    return ctx.Notes.Include("Labels").Where(n => n.Text.Contains(expression)).ToArray();
+                }
+                catch (ArgumentNullException)
+                {
+                    return null;
+                }
+            }
         }
 
         public ICollection<Facade.Notes.Note> QueryNotes(Facade.Notes.Label label)
         {
             using (SheetContext ctx = new SheetContext())
             {
-                return ctx.Notes.ToArray<Facade.Notes.Note>();
+                try
+                {
+                    return ctx.Notes.ToList().Where(n => n.Labels.Contains((Label)label)).ToArray<Facade.Notes.Note>();
+                }
+                catch (ArgumentNullException)
+                {
+                    return null;
+                }
             }
+
         }
 
         public ICollection<Facade.Notes.Note> QueryNotes(Facade.Queries.NoteQuery query)

@@ -12,7 +12,7 @@ namespace Sheet.DAL
     {
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Author> Authors { get; set; }
-        public DbSet<Label> Lables { get; set; }
+        public DbSet<Label> Labels { get; set; }
         public DbSet<Metainfo> Metadata { get; set; }
         public DbSet<Note> Notes { get; set; }
 
@@ -24,6 +24,13 @@ namespace Sheet.DAL
         public SheetContext() : base()
         {
 
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            base.Configuration.LazyLoadingEnabled = false;
+            //modelBuilder.Entity<Note>().HasMany(note => note.Labels).WithMany(label => label.Notes);
         }
     }
 }
