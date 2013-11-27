@@ -1,39 +1,35 @@
-﻿using Sheet.Facade.Services;
+﻿using Sheet.BLL;
+using Sheet.Facade.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sheet.BLL
+namespace Sheet.GUI
 {
-    public class LocalNoteService : NoteService
+    public class BusinessLogicDispatcher : NoteService
     {
-        private static DataService dal = new DataAccessDispatcher();
+        NoteService service;
 
-        public static DataService Dal
+        public BusinessLogicDispatcher()
         {
-            get { return dal; }
-        }
-
-        public LocalNoteService()
-        {
-
+            service = new LocalNoteService();
         }
 
         public ICollection<Facade.Notes.Label> GetLabels()
         {
-            return Dal.GetLabels();
+            return service.GetLabels();
         }
 
         public ICollection<Facade.Notes.Note> GetNotesByLabel(Facade.Notes.Label label)
         {
-            throw new NotImplementedException();
+            return service.GetNotesByLabel(label);
         }
 
         public Facade.Notes.Note LoadNote(Facade.Notes.Note note)
         {
-            throw new NotImplementedException();
+            return service.LoadNote(note);
         }
     }
 }

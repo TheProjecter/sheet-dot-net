@@ -1,4 +1,8 @@
 using GalaSoft.MvvmLight;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Sheet.GUI;
+using Sheet.Facade.Services;
 
 namespace Sheet.GUI.ViewModel
 {
@@ -16,19 +20,33 @@ namespace Sheet.GUI.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private ObservableCollection<LabelViewModel> labels;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            if (IsInDesignMode)
+            {
+                // Code runs in Blend --> create design time data.
+            }
+            else
+            {
+            }
+        }
+
+        public ObservableCollection<LabelViewModel> Labels
+        {
+            get { return labels; }
+        }
+
+        public void LoadLabels()
+        {
+            foreach (var label in App.Bll.GetLabels())
+            {
+                labels.Add(new LabelViewModel(label));
+            }
         }
     }
 }
