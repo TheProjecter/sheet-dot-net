@@ -41,10 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Notes\Attachment.cs" />
-    <Compile Include="Notes\Label.cs" />
-    <Compile Include="Notes\Metainfo.cs" />
-    <Compile Include="Notes\Note.cs" />
+    <Compile Include="Notes\IAttachment.cs" />
+    <Compile Include="Notes\IEntity.cs" />
+    <Compile Include="Notes\ILabel.cs" />
+    <Compile Include="Notes\IMetainfo.cs" />
+    <Compile Include="Notes\INote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\AndQuery.cs" />
     <Compile Include="Queries\AtomicQuery.cs" />

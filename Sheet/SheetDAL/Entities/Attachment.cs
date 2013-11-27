@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sheet.DAL.Entities
 {
-    class Attachment : Sheet.Facade.Notes.Attachment
+    class Attachment : Sheet.Facade.Notes.IAttachment
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -26,9 +26,9 @@ namespace Sheet.DAL.Entities
         }
 
 
-        ICollection<Facade.Notes.Metainfo> Facade.Notes.Attachment.Metadata
+        ICollection<Facade.Notes.IMetainfo> Facade.Notes.IAttachment.Metadata
         {
-            get { return (ICollection<Facade.Notes.Metainfo>)Metadata; }
+            get { return (ICollection<Facade.Notes.IMetainfo>)Metadata; }
         }
     }
 }

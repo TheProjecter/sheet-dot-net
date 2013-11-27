@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Sheet.DAL.Entities
 {
-    class Metainfo : Sheet.Facade.Notes.Metainfo
+    class Metainfo : Sheet.Facade.Notes.IMetainfo
     {
-        [Key]
+        public int ID { get; set; }
         public string Key { get; set; }
         public string Value { get; set; }
     }

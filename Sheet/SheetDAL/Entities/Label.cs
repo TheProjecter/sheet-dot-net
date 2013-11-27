@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sheet.DAL.Entities
 {
-    class Label : Sheet.Facade.Notes.Label
+    class Label : Sheet.Facade.Notes.ILabel
     {
         public int ID { get; set; }
         public string Text { get; set; }
@@ -23,11 +23,11 @@ namespace Sheet.DAL.Entities
         }
 
 
-        ICollection<Facade.Notes.Note> Facade.Notes.Label.Notes 
+        ICollection<Facade.Notes.INote> Facade.Notes.ILabel.Notes 
         {
             get
             {
-                return Notes.ToList<Facade.Notes.Note>();
+                return Notes.ToList<Facade.Notes.INote>();
             }
         }
     }

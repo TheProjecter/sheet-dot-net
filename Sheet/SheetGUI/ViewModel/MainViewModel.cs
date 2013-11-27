@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Sheet.GUI;
 using Sheet.Facade.Services;
+using System.Collections.Generic;
 
 namespace Sheet.GUI.ViewModel
 {
@@ -20,6 +21,11 @@ namespace Sheet.GUI.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private IDictionary<int, LabelViewModel> labelViewModels = new Dictionary<int, LabelViewModel>();
+        private IDictionary<int, NoteViewModel> noteViewModels = new Dictionary<int, NoteViewModel>();
+        //private IDictionary<int, AttachmentViewModel> attachmentViewModels = new Dictionary<int, AttachmentViewModel>();
+        //private IDictionary<int, MetainfoViewModel> metainfoViewModels = new Dictionary<int, MetainfoViewModel>();
+
         private ObservableCollection<LabelViewModel> labels;
 
         /// <summary>
@@ -46,7 +52,9 @@ namespace Sheet.GUI.ViewModel
         {
             foreach (var label in App.Bll.GetLabels())
             {
-                labels.Add(new LabelViewModel(label));
+                var labelViewModel = new LabelViewModel(label);
+                labels.Add(labelViewModel);
+                labelViewModels.Add(label.ID, labelViewModel);
             }
         }
     }

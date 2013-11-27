@@ -24,27 +24,27 @@ namespace Sheet.DAL
             // appdata folder is set
         }
 
-        public Facade.Notes.Note CreateNote()
+        public Facade.Notes.INote CreateNote()
         {
             return new Note();
         }
 
-        public Facade.Notes.Attachment CreateAttachment()
+        public Facade.Notes.IAttachment CreateAttachment()
         {
             return new Attachment();
         }
 
-        public Facade.Notes.Label CreateLabel()
+        public Facade.Notes.ILabel CreateLabel()
         {
             return new Label();
         }
 
-        public Facade.Notes.Metainfo CreateMetainfo()
+        public Facade.Notes.IMetainfo CreateMetainfo()
         {
             return new Metainfo();
         }
 
-        public bool SaveNote(Facade.Notes.Note note)
+        public bool SaveNote(Facade.Notes.INote note)
         {
             using (SheetContext ctx = new SheetContext())
             {
@@ -61,7 +61,7 @@ namespace Sheet.DAL
             }
         }
 
-        public bool DeleteNote(Facade.Notes.Note note)
+        public bool DeleteNote(Facade.Notes.INote note)
         {
             using (SheetContext ctx = new SheetContext())
             {
@@ -78,7 +78,7 @@ namespace Sheet.DAL
             }
         }
 
-        public ICollection<Facade.Notes.Label> GetLabels()
+        public ICollection<Facade.Notes.ILabel> GetLabels()
         {
             using (SheetContext ctx = new SheetContext())
             {
@@ -93,13 +93,13 @@ namespace Sheet.DAL
             }
         }
 
-        public Facade.Notes.Note LoadNote(Facade.Notes.Note note)
+        public Facade.Notes.INote LoadNote(Facade.Notes.INote note)
         {
             using (SheetContext ctx = new SheetContext())
             {
                 try
                 {
-                    return ctx.Notes.Include("Labels").Include("Attachments").ToList<Facade.Notes.Note>().Single(n => n.ID == note.ID);
+                    return ctx.Notes.Include("Labels").Include("Attachments").ToList<Facade.Notes.INote>().Single(n => n.ID == note.ID);
                 }
                 catch (ArgumentNullException)
                 {
@@ -112,7 +112,7 @@ namespace Sheet.DAL
             }
         }
 
-        public ICollection<Facade.Notes.Note> QueryNotes(string expression)
+        public ICollection<Facade.Notes.INote> QueryNotes(string expression)
         {
             using (SheetContext ctx = new SheetContext())
             {
@@ -127,13 +127,13 @@ namespace Sheet.DAL
             }
         }
 
-        public ICollection<Facade.Notes.Note> QueryNotes(Facade.Notes.Label label)
+        public ICollection<Facade.Notes.INote> QueryNotes(Facade.Notes.ILabel label)
         {
             using (SheetContext ctx = new SheetContext())
             {
                 try
                 {
-                    return ctx.Notes.ToList().Where(n => n.Labels.Contains((Label)label)).ToArray<Facade.Notes.Note>();
+                    return ctx.Notes.ToList().Where(n => n.Labels.Contains((Label)label)).ToArray<Facade.Notes.INote>();
                 }
                 catch (ArgumentNullException)
                 {
@@ -143,7 +143,7 @@ namespace Sheet.DAL
 
         }
 
-        public ICollection<Facade.Notes.Note> QueryNotes(Facade.Queries.NoteQuery query)
+        public ICollection<Facade.Notes.INote> QueryNotes(Facade.Queries.NoteQuery query)
         {
             throw new NotImplementedException();
         }

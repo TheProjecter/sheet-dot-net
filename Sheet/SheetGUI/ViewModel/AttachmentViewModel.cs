@@ -10,9 +10,9 @@ namespace Sheet.GUI.ViewModel
 {
     public class AttachmentViewModel : ViewModelBase
     {
-        private Attachment model;
+        private IAttachment model;
 
-        public AttachmentViewModel(Attachment model)
+        public AttachmentViewModel(IAttachment model)
         {
             this.model = model;
         }

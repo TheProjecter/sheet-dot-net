@@ -10,9 +10,9 @@ namespace Sheet.GUI.ViewModel
 {
     public class LabelViewModel : ViewModelBase
     {
-        private Label model;
+        private ILabel model;
 
-        public LabelViewModel(Label model)
+        public LabelViewModel(ILabel model)
         {
             if (model == null)
                 throw new ArgumentNullException("model");

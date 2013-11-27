@@ -21,17 +21,17 @@ namespace Sheet.BLL
 
         }
 
-        public ICollection<Facade.Notes.Label> GetLabels()
+        public ICollection<Facade.Notes.ILabel> GetLabels()
         {
             return Dal.GetLabels();
         }
 
-        public ICollection<Facade.Notes.Note> GetNotesByLabel(Facade.Notes.Label label)
+        public ICollection<Facade.Notes.INote> GetNotesByLabel(Facade.Notes.ILabel label)
         {
             throw new NotImplementedException();
         }
 
-        public Facade.Notes.Note LoadNote(Facade.Notes.Note note)
+        public Facade.Notes.INote LoadNote(Facade.Notes.INote note)
         {
             throw new NotImplementedException();
         }

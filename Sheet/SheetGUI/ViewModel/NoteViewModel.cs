@@ -10,9 +10,9 @@ namespace Sheet.GUI.ViewModel
 {
     public class NoteViewModel : ViewModelBase
     {
-        private Note model;
+        private INote model;
 
-        public NoteViewModel(Note model)
+        public NoteViewModel(INote model)
         {
             this.model = model;
         }
