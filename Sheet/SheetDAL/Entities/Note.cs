@@ -49,10 +49,35 @@ namespace Sheet.DAL.Entities
             get { return Labels.ToList<Facade.Notes.Label>(); }
         }
 
+        ICollection<Facade.Notes.Attachment> Facade.Notes.Note.Attachments
+        {
+            get { return Attachments.ToList<Facade.Notes.Attachment>(); }
+        }
 
         public void AddLabel(Facade.Notes.Label label)
         {
-            Labels.Add((Label)label);
+            if (!Labels.Contains((Label)label))
+            {
+                Labels.Add((Label)label);
+            }
+        }
+
+        public bool RemoveLabel(Facade.Notes.Label label)
+        {
+            return Labels.Remove((Label)label);
+        }
+
+        public void AddAttachment(Facade.Notes.Attachment attachment)
+        {
+            if (!Attachments.Contains((Attachment)attachment))
+            {
+                Attachments.Add((Attachment)attachment);
+            }
+        }
+
+        public bool RemoveAttachment(Facade.Notes.Attachment attachment)
+        {
+            return Attachments.Remove((Attachment)attachment);
         }
     }
 }

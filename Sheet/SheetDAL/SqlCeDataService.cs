@@ -13,78 +13,21 @@ namespace Sheet.DAL
         public Facade.Notes.Note CreateNote()
         {
             return new Note();
-            //using (SheetContext ctx = new SheetContext())
-            //{
-            //    try
-            //    {
-            //        Facade.Notes.Note note = new Note();
-            //        ctx.Notes.Add((Note)note);
-            //        ctx.SaveChanges();
-            //        return note;
-            //    }
-            //    catch (InvalidOperationException)
-            //    {
-            //        return null;
-            //    }
-            //}
         }
 
         public Facade.Notes.Attachment CreateAttachment()
         {
             return new Attachment();
-            //using (SheetContext ctx = new SheetContext())
-            //{
-            //    try
-            //    {
-            //        Facade.Notes.Attachment attachment = new Attachment();
-            //        ctx.Attachments.Add((Attachment)attachment);
-            //        ctx.SaveChanges();
-            //        return attachment;
-            //    }
-            //    catch (InvalidOperationException)
-            //    {
-            //        return null;
-            //    }
-            //}
         }
 
         public Facade.Notes.Label CreateLabel()
         {
             return new Label();
-            //using (SheetContext ctx = new SheetContext())
-            //{
-            //    try
-            //    {
-            //        Facade.Notes.Label label = new Label();
-            //        ctx.Labels.Add((Label)label);
-            //        ctx.SaveChanges();
-            //        return label;
-            //    }
-            //    catch (InvalidOperationException)
-            //    {
-            //        return null;
-            //    }
-            //}
         }
 
         public Facade.Notes.Metainfo CreateMetainfo()
         {
             return new Metainfo();
-            //using (SheetContext ctx = new SheetContext())
-            //{
-            //    try
-            //    {
-            //        Facade.Notes.Metainfo metainfo = new Metainfo();
-            //        ctx.Metadata.Add((Metainfo)metainfo);
-            //        ctx.SaveChanges();
-            //        return metainfo;
-            //    }
-            //    catch (InvalidOperationException)
-            //    {
-            //        return null;
-            //    }
-            //}
-            
         }
 
         public bool SaveNote(Facade.Notes.Note note)
@@ -93,8 +36,7 @@ namespace Sheet.DAL
             {
                 try
                 {
-                    Note dbNote = (Note)note;
-                    ctx.Notes.Add(dbNote);
+                    ctx.Notes.Add((Note)note);
                     ctx.SaveChanges();
                     return true;
                 }
@@ -143,7 +85,7 @@ namespace Sheet.DAL
             {
                 try
                 {
-                    return ctx.Notes.Find(note.ID);
+                    return ctx.Notes.Include("Labels").Include("Attachments").ToList<Facade.Notes.Note>().Single(n => n.ID == note.ID);
                 }
                 catch (ArgumentNullException)
                 {
