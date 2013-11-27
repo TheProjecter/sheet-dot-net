@@ -91,7 +91,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusinessLogicDispatcher.cs" />
+    <Compile Include="ViewModel\AttachmentViewModel.cs" />
+    <Compile Include="ViewModel\LabelViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MetainfoViewModel.cs" />
+    <Compile Include="ViewModel\NoteViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +140,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Commands\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +169,14 @@
     <Resource Include="Resources\Images\Logos\logo255.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SheetBLL\SheetBLL.csproj">
+      <Project>{f9c84e28-9e8b-4e1d-b92d-80a27b1450b1}</Project>
+      <Name>SheetBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SheetFacade\SheetFacade.csproj">
+      <Project>{199d2031-7e60-4c4d-b997-ea84398ea8e8}</Project>
+      <Name>SheetFacade</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UIControls\UIControls.csproj">
       <Project>{a3082956-9ee4-4b35-9b4e-b07d0c4c8b56}</Project>
       <Name>UIControls</Name>

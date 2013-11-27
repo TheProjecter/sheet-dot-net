@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using Sheet.GUI.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,22 @@ namespace SheetGUI
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        private MainViewModel viewModel = new MainViewModel();
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
 
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            viewModel.LoadLabels();
         }
     }
 }

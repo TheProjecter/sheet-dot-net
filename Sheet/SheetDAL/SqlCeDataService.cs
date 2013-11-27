@@ -5,11 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Sheet.Facade.Services;
 using Sheet.DAL.Entities;
+using System.IO;
 
 namespace Sheet.DAL
 {
     public class SqlCeDataService : DataService
     {
+        public SqlCeDataService()
+        {
+            // setting appdata folder
+            string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string applicationFolder = Path.Combine(appDataFolder, "Sheet");
+            if (!Directory.Exists(applicationFolder))
+            {
+                Directory.CreateDirectory(applicationFolder);
+            }
+            AppDomain.CurrentDomain.SetData("DataDirectory", applicationFolder);
+            // appdata folder is set
+        }
+
         public Facade.Notes.Note CreateNote()
         {
             return new Note();
