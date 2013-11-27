@@ -33,6 +33,7 @@ namespace Sheet.GUI.ViewModel
             }
             else
             {
+                labels = new ObservableCollection<LabelViewModel>();
             }
         }
 

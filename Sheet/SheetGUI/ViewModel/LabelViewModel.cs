@@ -14,7 +14,7 @@ namespace Sheet.GUI.ViewModel
 
         public LabelViewModel(Label model)
         {
-            if (this.model == null)
+            if (model == null)
                 throw new ArgumentNullException("model");
             this.model = model;
         }
