@@ -13,7 +13,11 @@ namespace Sheet.Facade.Notes
         DateTime DateOfCreation { get; set; }
         DateTime LastModified { get; set; }
         ICollection<Label> Labels { get; }
+        ICollection<Attachment> Attachments { get; }
 
         void AddLabel(Label label);
+        bool RemoveLabel(Label label);
+        void AddAttachment(Attachment attachment);
+        bool RemoveAttachment(Attachment attachment);
     }
 }
