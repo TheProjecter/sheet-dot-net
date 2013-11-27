@@ -27,17 +27,47 @@ namespace DataManagementConsole
             // appdata folder is set
 
             DataService dataservice = new SqlCeDataService();
-            ICollection<Note> notes = dataservice.QueryNotes(dataservice.CreateLabel());
+            //ICollection<Note> notes = dataservice.QueryNotes(dataservice.CreateLabel());
+            createDatabase(dataservice);
+
+            ICollection<Note> notes = dataservice.QueryNotes("evő");
             if (notes == null)
             {
                 Console.WriteLine("null");
             }
             else
             {
-                Console.WriteLine("not null");
+                foreach (var note in notes)
+                {
+                    Console.WriteLine("{0}. {1} - {2}", note.ID, note.DateOfCreation, note.Title);
+                    Console.WriteLine("{0}",note.Text);
+                    foreach (var label in note.Labels)
+	                {
+                        Console.WriteLine("{0}", label.Text);
+	                }
+                }
+                Console.WriteLine(@"˘\_°-°_/˘");
             }
 
             Console.ReadLine();
+        }
+
+        public static bool createDatabase(DataService sheet)
+        {
+            Note note = sheet.CreateNote();
+            Label label = sheet.CreateLabel();
+            label.Text = "zsírlézer";
+
+            note.Title = "Rövid, lényegretörő cím!";
+            note.AddLabel(label);
+            note.Text = "almakombájn evő szörnyeteg";
+            note.DateOfCreation = DateTime.Now;
+            note.LastModified = DateTime.Now;
+
+
+            sheet.SaveNote(note);
+
+            return true;
         }
     }
 }

@@ -10,6 +10,18 @@ namespace Sheet.DAL.Entities
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<Note> Notes { get; set; }
+
+        private ICollection<Note> _notes;
+        public virtual ICollection<Note> Notes
+        {
+            get
+            {
+                return _notes ?? (_notes = new List<Note>());
+            }
+            set
+            {
+                _notes = value;
+            }
+        }
     }
 }
