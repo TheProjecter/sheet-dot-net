@@ -128,7 +128,7 @@ namespace Sheet.DAL
             {
                 try
                 {
-                    return ctx.Labels.ToArray();
+                    return ctx.Labels.Include("Notes").ToArray();
                 }
                 catch (ArgumentNullException)
                 {
