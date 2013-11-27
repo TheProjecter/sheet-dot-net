@@ -10,19 +10,19 @@ namespace Sheet.Facade.Services
 {
     public interface DataService
     {
-        Note CreateNote();
-        Attachment CreateAttachment();
-        Label CreateLabel();
-        Metainfo CreateMetainfo();
+        INote CreateNote();
+        IAttachment CreateAttachment();
+        ILabel CreateLabel();
+        IMetainfo CreateMetainfo();
 
-        bool SaveNote(Note note);
-        bool DeleteNote(Note note);
+        bool SaveNote(INote note);
+        bool DeleteNote(INote note);
 
-        ICollection<Label> GetLabels();
+        ICollection<ILabel> GetLabels();
 
-        Note LoadNote(Note note);
-        ICollection<Note> QueryNotes(string expression);
-        ICollection<Note> QueryNotes(Label label);
-        ICollection<Note> QueryNotes(NoteQuery query);
+        INote LoadNote(INote note);
+        ICollection<INote> QueryNotes(string expression);
+        ICollection<INote> QueryNotes(ILabel label);
+        ICollection<INote> QueryNotes(NoteQuery query);
     }
 }

@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Sheet.Facade.Notes
 {
-    public interface Attachment
+    public interface IAttachment : IEntity
     {
         string Name { get; set; }
         string Path { get; set; }
         string MimeType { get; set; }
-        ICollection<Metainfo> Metadata { get; }
+        ICollection<IMetainfo> Metadata { get; }
     }
 }

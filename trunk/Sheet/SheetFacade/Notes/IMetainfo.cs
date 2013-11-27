@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Sheet.Facade.Notes
 {
-    public interface Label
+    public interface IMetainfo : IEntity
     {
-        string Text { get; set; }
-        ICollection<Note> Notes { get; }
+        string Key { get; set; }
+        string Value { get; set; }
     }
 }

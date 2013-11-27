@@ -17,17 +17,17 @@ namespace Sheet.GUI
             service = new LocalNoteService();
         }
 
-        public ICollection<Facade.Notes.Label> GetLabels()
+        public ICollection<Facade.Notes.ILabel> GetLabels()
         {
             return service.GetLabels();
         }
 
-        public ICollection<Facade.Notes.Note> GetNotesByLabel(Facade.Notes.Label label)
+        public ICollection<Facade.Notes.INote> GetNotesByLabel(Facade.Notes.ILabel label)
         {
             return service.GetNotesByLabel(label);
         }
 
-        public Facade.Notes.Note LoadNote(Facade.Notes.Note note)
+        public Facade.Notes.INote LoadNote(Facade.Notes.INote note)
         {
             return service.LoadNote(note);
         }

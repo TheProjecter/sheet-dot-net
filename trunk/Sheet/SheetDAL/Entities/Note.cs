@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sheet.DAL.Entities
 {
-    class Note : Sheet.Facade.Notes.Note
+    class Note : Sheet.Facade.Notes.INote
     {
         public int ID { get; set; }
         public string Title { get; set; }
@@ -44,17 +44,17 @@ namespace Sheet.DAL.Entities
         
 
 
-        ICollection<Facade.Notes.Label> Facade.Notes.Note.Labels
+        ICollection<Facade.Notes.ILabel> Facade.Notes.INote.Labels
         {
-            get { return Labels.ToList<Facade.Notes.Label>(); }
+            get { return Labels.ToList<Facade.Notes.ILabel>(); }
         }
 
-        ICollection<Facade.Notes.Attachment> Facade.Notes.Note.Attachments
+        ICollection<Facade.Notes.IAttachment> Facade.Notes.INote.Attachments
         {
-            get { return Attachments.ToList<Facade.Notes.Attachment>(); }
+            get { return Attachments.ToList<Facade.Notes.IAttachment>(); }
         }
 
-        public void AddLabel(Facade.Notes.Label label)
+        public void AddLabel(Facade.Notes.ILabel label)
         {
             if (!Labels.Contains((Label)label))
             {
@@ -62,12 +62,12 @@ namespace Sheet.DAL.Entities
             }
         }
 
-        public bool RemoveLabel(Facade.Notes.Label label)
+        public bool RemoveLabel(Facade.Notes.ILabel label)
         {
             return Labels.Remove((Label)label);
         }
 
-        public void AddAttachment(Facade.Notes.Attachment attachment)
+        public void AddAttachment(Facade.Notes.IAttachment attachment)
         {
             if (!Attachments.Contains((Attachment)attachment))
             {
@@ -75,7 +75,7 @@ namespace Sheet.DAL.Entities
             }
         }
 
-        public bool RemoveAttachment(Facade.Notes.Attachment attachment)
+        public bool RemoveAttachment(Facade.Notes.IAttachment attachment)
         {
             return Attachments.Remove((Attachment)attachment);
         }

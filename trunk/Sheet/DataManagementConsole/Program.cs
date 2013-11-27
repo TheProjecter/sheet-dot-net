@@ -30,7 +30,7 @@ namespace DataManagementConsole
             //ICollection<Note> notes = dataservice.QueryNotes(dataservice.CreateLabel());
             createDatabase(dataservice);
 
-            ICollection<Note> notes = dataservice.QueryNotes("evő");
+            ICollection<INote> notes = dataservice.QueryNotes("evő");
             if (notes == null)
             {
                 Console.WriteLine("null");
@@ -54,8 +54,8 @@ namespace DataManagementConsole
 
         public static bool createDatabase(DataService sheet)
         {
-            Note note = sheet.CreateNote();
-            Label label = sheet.CreateLabel();
+            INote note = sheet.CreateNote();
+            ILabel label = sheet.CreateLabel();
             label.Text = "zsírlézer";
 
             note.Title = "Rövid, lényegretörő cím!";

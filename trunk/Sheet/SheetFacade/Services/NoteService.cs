@@ -9,8 +9,8 @@ namespace Sheet.Facade.Services
 {
     public interface NoteService
     {
-        ICollection<Label> GetLabels();
-        ICollection<Note> GetNotesByLabel(Label label);
-        Note LoadNote(Note note);
+        ICollection<ILabel> GetLabels();
+        ICollection<INote> GetNotesByLabel(ILabel label);
+        INote LoadNote(INote note);
     }
 }

@@ -9,9 +9,9 @@ namespace Sheet.GUI.ViewModel
 {
     public class MetainfoViewModel
     {
-        private Metainfo model;
+        private IMetainfo model;
 
-        public MetainfoViewModel(Metainfo model)
+        public MetainfoViewModel(IMetainfo model)
         {
             this.model = model;
         }

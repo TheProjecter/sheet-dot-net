@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Sheet.Facade.Notes
 {
-    public interface Metainfo
+    public interface IEntity
     {
-        string Key { get; set; }
-        string Value { get; set; }
+        int ID { get; }
     }
 }

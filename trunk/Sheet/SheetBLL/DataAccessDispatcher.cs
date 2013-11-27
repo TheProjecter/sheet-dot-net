@@ -17,57 +17,57 @@ namespace Sheet.BLL
             service = new SqlCeDataService();
         }
 
-        public Facade.Notes.Note CreateNote()
+        public Facade.Notes.INote CreateNote()
         {
             throw new NotImplementedException();
         }
 
-        public Facade.Notes.Attachment CreateAttachment()
+        public Facade.Notes.IAttachment CreateAttachment()
         {
             throw new NotImplementedException();
         }
 
-        public Facade.Notes.Label CreateLabel()
+        public Facade.Notes.ILabel CreateLabel()
         {
             throw new NotImplementedException();
         }
 
-        public Facade.Notes.Metainfo CreateMetainfo()
+        public Facade.Notes.IMetainfo CreateMetainfo()
         {
             throw new NotImplementedException();
         }
 
-        public bool SaveNote(Facade.Notes.Note note)
+        public bool SaveNote(Facade.Notes.INote note)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteNote(Facade.Notes.Note note)
+        public bool DeleteNote(Facade.Notes.INote note)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<Facade.Notes.Label> GetLabels()
+        public ICollection<Facade.Notes.ILabel> GetLabels()
         {
             return service.GetLabels();
         }
 
-        public Facade.Notes.Note LoadNote(Facade.Notes.Note note)
+        public Facade.Notes.INote LoadNote(Facade.Notes.INote note)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<Facade.Notes.Note> QueryNotes(string expression)
+        public ICollection<Facade.Notes.INote> QueryNotes(string expression)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<Facade.Notes.Note> QueryNotes(Facade.Notes.Label label)
+        public ICollection<Facade.Notes.INote> QueryNotes(Facade.Notes.ILabel label)
         {
             throw new NotImplementedException();
         }
 
-        public ICollection<Facade.Notes.Note> QueryNotes(Facade.Queries.NoteQuery query)
+        public ICollection<Facade.Notes.INote> QueryNotes(Facade.Queries.NoteQuery query)
         {
             throw new NotImplementedException();
         }
