@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Input;
 
 namespace Sheet.GUI.Commands
@@ -12,9 +12,18 @@ namespace Sheet.GUI.Commands
     {
         private MainViewModel main;
 
+        private bool doubleClick = false;
+        private Timer timer = new Timer(500);
+
         public OpenNoteCommand(MainViewModel main)
         {
             this.main = main;
+            timer.Elapsed += timer_Elapsed;
+        }
+
+        void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            doubleClick = false;
         }
 
         public bool CanExecute(object parameter)
@@ -26,13 +35,21 @@ namespace Sheet.GUI.Commands
 
         public void Execute(object parameter)
         {
-            NoteViewModel noteVM = parameter as NoteViewModel;
-            if (noteVM == null)
-                return;
-            if (!main.OpenNotes.Contains(noteVM))
-                main.OpenNotes.Add(noteVM);
+            if (doubleClick)
+            {
+                doubleClick = false;
+                NoteViewModel noteVM = parameter as NoteViewModel;
+                if (noteVM == null)
+                    return;
+                if (!main.OpenNotes.Contains(noteVM))
+                    main.OpenNotes.Add(noteVM);
 
-            main.SelectedNote = noteVM;
+                main.SelectedNote = noteVM;
+            }
+            else
+            {
+                doubleClick = true;
+            }
         }
     }
 }
