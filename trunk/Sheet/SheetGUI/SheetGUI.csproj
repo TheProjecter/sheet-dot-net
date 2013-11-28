@@ -109,6 +109,7 @@
     <Compile Include="BusinessLogicDispatcher.cs" />
     <Compile Include="Commands\OpenNoteCommand.cs" />
     <Compile Include="RichTextBoxHelper.cs" />
+    <Compile Include="TabTemplateSelector.cs" />
     <Compile Include="ViewModel\AttachmentViewModel.cs" />
     <Compile Include="ViewModel\LabelViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
