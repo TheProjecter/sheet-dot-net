@@ -4,6 +4,9 @@ using System.Windows.Input;
 using Sheet.GUI;
 using Sheet.Facade.Services;
 using System.Collections.Generic;
+using Sheet.GUI.Commands;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace Sheet.GUI.ViewModel
 {
@@ -27,6 +30,9 @@ namespace Sheet.GUI.ViewModel
         //private IDictionary<int, MetainfoViewModel> metainfoViewModels = new Dictionary<int, MetainfoViewModel>();
 
         private ObservableCollection<LabelViewModel> labels;
+        private ObservableCollection<NoteViewModel> openNotes;
+
+        private OpenNoteCommand openNote;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -39,23 +45,55 @@ namespace Sheet.GUI.ViewModel
             }
             else
             {
-                labels = new ObservableCollection<LabelViewModel>();
+                openNote = new OpenNoteCommand(this);
             }
         }
 
         public ObservableCollection<LabelViewModel> Labels
         {
-            get { return labels; }
+            get 
+            {
+                if (labels == null)
+                {
+                    labels = new ObservableCollection<LabelViewModel>();
+                }
+                return labels;
+            }
+        }
+
+        public ObservableCollection<NoteViewModel> OpenNotes
+        {
+            get
+            {
+                if (openNotes == null)
+                {
+                    openNotes = new ObservableCollection<NoteViewModel>();
+                    var itemsView = (IEditableCollectionView)CollectionViewSource.GetDefaultView(openNotes);
+                    itemsView.NewItemPlaceholderPosition = NewItemPlaceholderPosition.AtEnd;
+                }
+                return openNotes;
+            }
         }
 
         public void LoadLabels()
         {
             foreach (var label in App.Bll.GetLabels())
             {
-                var labelViewModel = new LabelViewModel(label);
+                var labelViewModel = new LabelViewModel(label, noteViewModels);
                 labels.Add(labelViewModel);
                 labelViewModels.Add(label.ID, labelViewModel);
             }
+        }
+
+        public ICommand OpenNote
+        {
+            get { return openNote; }
+        }
+
+        public NoteViewModel SelectedNote
+        {
+            get;
+            set;
         }
     }
 }

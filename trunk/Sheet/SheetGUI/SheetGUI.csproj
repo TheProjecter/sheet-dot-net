@@ -107,6 +107,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BusinessLogicDispatcher.cs" />
+    <Compile Include="Commands\OpenNoteCommand.cs" />
+    <Compile Include="RichTextBoxHelper.cs" />
     <Compile Include="ViewModel\AttachmentViewModel.cs" />
     <Compile Include="ViewModel\LabelViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -155,7 +157,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +197,16 @@
       <Project>{a3082956-9ee4-4b35-9b4e-b07d0c4c8b56}</Project>
       <Name>UIControls</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\label.ico" />
+    <Resource Include="Resources\Images\Icons\settings.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\note.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\note.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
