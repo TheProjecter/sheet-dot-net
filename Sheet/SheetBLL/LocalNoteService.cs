@@ -33,7 +33,7 @@ namespace Sheet.BLL
 
         public Facade.Notes.INote LoadNote(Facade.Notes.INote note)
         {
-            throw new NotImplementedException();
+            return Dal.LoadNote(note);
         }
     }
 }
