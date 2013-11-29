@@ -108,6 +108,7 @@
     </ApplicationDefinition>
     <Compile Include="BusinessLogicDispatcher.cs" />
     <Compile Include="Commands\CloseNoteCommand.cs" />
+    <Compile Include="Commands\DeleteNoteCommand.cs" />
     <Compile Include="Commands\GlobalCommand.cs" />
     <Compile Include="Commands\OpenNoteCommand.cs" />
     <Compile Include="Converters\IntVisibilityConverter.cs" />

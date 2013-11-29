@@ -16,5 +16,17 @@ namespace Sheet.GUI.ViewModel
         {
             this.model = model;
         }
+
+        public IAttachment Model
+        {
+            set
+            {
+                if (this.model == value)
+                    return;
+
+                this.model = value;
+                base.RaisePropertyChanged("");
+            }
+        }
     }
 }

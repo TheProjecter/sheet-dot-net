@@ -38,6 +38,7 @@ namespace Sheet.GUI.ViewModel
         private OpenNoteCommand openNote;
         private NewNoteCommand newNote;
         private CloseNoteCommand closeNote;
+        private DeleteNoteCommand deleteNote;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -53,6 +54,7 @@ namespace Sheet.GUI.ViewModel
                 openNote = new OpenNoteCommand(this);
                 newNote = new NewNoteCommand(this);
                 closeNote = new CloseNoteCommand(this);
+                deleteNote = new DeleteNoteCommand(this);
 
                 OpenNotes.CollectionChanged += openNotes_CollectionChanged;
             }
@@ -107,6 +109,11 @@ namespace Sheet.GUI.ViewModel
         public ICommand CloseNote
         {
             get { return closeNote; }
+        }
+
+        public ICommand DeleteNote
+        {
+            get { return deleteNote; }
         }
 
         public NoteViewModel SelectedNote

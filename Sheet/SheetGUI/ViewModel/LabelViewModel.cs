@@ -59,5 +59,17 @@ namespace Sheet.GUI.ViewModel
         {
             get { return notes; }
         }
+
+        public ILabel Model
+        {
+            set
+            {
+                if (this.model == value)
+                    return;
+
+                this.model = value;
+                base.RaisePropertyChanged("");
+            }
+        }
     }
 }
