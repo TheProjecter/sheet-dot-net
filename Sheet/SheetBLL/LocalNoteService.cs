@@ -66,5 +66,11 @@ namespace Sheet.BLL
         {
             throw new NotImplementedException();
         }
+
+
+        public Facade.Notes.INote NewNote()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

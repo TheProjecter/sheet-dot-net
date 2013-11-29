@@ -28,7 +28,8 @@ namespace Sheet.GUI
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("We are sorry to admit that you have found a bug. We most probaby already know about that, but hey, time is money.", "Sheet happens", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show("We are sorry to admit that you have found a bug. We most probaby already know about it, but hey, time is money.", "Sheet happens.", MessageBoxButton.OK, MessageBoxImage.Error);
+            this.Shutdown();
         }
     }
 }
