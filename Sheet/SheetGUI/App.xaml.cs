@@ -17,5 +17,18 @@ namespace Sheet.GUI
         {
             get { return App.Current.Resources["Bll"] as INoteService; }
         }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+#if !DEBUG
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+#endif
+        }
+
+        void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show("We are sorry to admit that you have found a bug. We most probaby already know about that, but hey, time is money.", "Sheet happens", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 }
