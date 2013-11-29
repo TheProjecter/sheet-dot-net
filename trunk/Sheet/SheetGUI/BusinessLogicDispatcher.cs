@@ -35,38 +35,38 @@ namespace Sheet.GUI
 
         public ICollection<Facade.Notes.INote> SearchNote(string expression)
         {
-            throw new NotImplementedException();
+            return service.SearchNote(expression);
         }
 
         public Facade.Notes.INote UpdateLabels(Facade.Notes.INote note, IEnumerable<string> labels)
         {
-            throw new NotImplementedException();
+            return service.UpdateLabels(note, labels);
         }
 
         public Facade.Notes.INote AddAttachment(Facade.Notes.INote note, System.IO.Stream attachment)
         {
-            throw new NotImplementedException();
+            return service.AddAttachment(note, attachment);
         }
 
-        public Facade.Notes.INote SaveNote(Facade.Notes.INote note)
+        public void SaveNote(Facade.Notes.INote note)
         {
-            throw new NotImplementedException();
+            service.SaveNote(note);
         }
 
         public void DeleteNote(Facade.Notes.INote note)
         {
-            throw new NotImplementedException();
+            service.DeleteNote(note);
         }
 
         public Facade.Notes.INote DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
         {
-            throw new NotImplementedException();
+            return service.DeleteAttachment(note, attachment);
         }
 
 
         public Facade.Notes.INote NewNote()
         {
-            throw new NotImplementedException();
+            return service.NewNote();
         }
     }
 }

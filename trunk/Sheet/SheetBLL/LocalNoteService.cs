@@ -1,4 +1,5 @@
-﻿using Sheet.Facade.Services;
+﻿using Sheet.Facade.Notes;
+using Sheet.Facade.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,38 +40,60 @@ namespace Sheet.BLL
 
         public ICollection<Facade.Notes.INote> SearchNote(string expression)
         {
-            throw new NotImplementedException();
+            return Dal.QueryNotes(expression);
         }
 
         public Facade.Notes.INote UpdateLabels(Facade.Notes.INote note, IEnumerable<string> labels)
         {
-            throw new NotImplementedException();
+            int count = 0;
+            foreach (var label in labels)
+            {
+                ++count;
+                Dal.GetLabel(note, label);
+            }
+            if (count == 0)
+            {
+                //TODO: use resources instead!
+                Dal.GetLabel(note, "No label");
+            }
+            return Dal.LoadNote(note);
         }
 
-        public Facade.Notes.INote AddAttachment(Facade.Notes.INote note, System.IO.Stream attachment)
+        public Facade.Notes.INote AddAttachment(Facade.Notes.INote note, System.IO.Stream data)
+        {
+            IAttachment attachment = Dal.CreateAttachment(note, data);
+            ExtractMetadata(attachment, data);
+            return Dal.LoadNote(note);
+        }
+
+        private void ExtractMetadata(IAttachment attachment, System.IO.Stream data)
         {
             throw new NotImplementedException();
         }
 
-        public Facade.Notes.INote SaveNote(Facade.Notes.INote note)
+        public void SaveNote(Facade.Notes.INote note)
         {
-            throw new NotImplementedException();
+            Dal.SaveNote(note);
         }
 
         public void DeleteNote(Facade.Notes.INote note)
         {
-            throw new NotImplementedException();
+            Dal.DeleteNote(note);
         }
 
         public Facade.Notes.INote DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
         {
-            throw new NotImplementedException();
+            Dal.DeleteAttachment(note, attachment);
+            return Dal.LoadNote(note);
         }
 
 
         public Facade.Notes.INote NewNote()
         {
-            throw new NotImplementedException();
+            INote newNote = Dal.CreateNote();
+            //TODO: use resources instead!
+            Dal.GetLabel(newNote, "No label");
+            return Dal.LoadNote(newNote);
         }
     }
 }
