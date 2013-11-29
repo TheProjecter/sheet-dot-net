@@ -32,7 +32,11 @@ namespace Sheet.GUI.ViewModel
         private ObservableCollection<LabelViewModel> labels;
         private ObservableCollection<NoteViewModel> openNotes;
 
+        private NoteViewModel selectedNote;
+
         private OpenNoteCommand openNote;
+        private NewNoteCommand newNote;
+        private CloseNoteCommand closeNote;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -46,6 +50,8 @@ namespace Sheet.GUI.ViewModel
             else
             {
                 openNote = new OpenNoteCommand(this);
+                newNote = new NewNoteCommand(this);
+                closeNote = new CloseNoteCommand(this);
             }
         }
 
@@ -68,8 +74,8 @@ namespace Sheet.GUI.ViewModel
                 if (openNotes == null)
                 {
                     openNotes = new ObservableCollection<NoteViewModel>();
-                    var itemsView = (IEditableCollectionView)CollectionViewSource.GetDefaultView(openNotes);
-                    itemsView.NewItemPlaceholderPosition = NewItemPlaceholderPosition.AtEnd;
+                    //var itemsView = (IEditableCollectionView)CollectionViewSource.GetDefaultView(openNotes);
+                    //itemsView.NewItemPlaceholderPosition = NewItemPlaceholderPosition.AtEnd;
                 }
                 return openNotes;
             }
@@ -90,10 +96,28 @@ namespace Sheet.GUI.ViewModel
             get { return openNote; }
         }
 
+        public ICommand NewNote
+        {
+            get { return newNote; }
+        }
+
+        public ICommand CloseNote
+        {
+            get { return closeNote; }
+        }
+
         public NoteViewModel SelectedNote
         {
-            get;
-            set;
+            get { return selectedNote; }
+            set
+            {
+                if (value == selectedNote)
+                    return;
+
+                this.selectedNote = value;
+
+                base.RaisePropertyChanged("SelectedNote");
+            }
         }
     }
 }

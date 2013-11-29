@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:s="clr-namespace:UIControls;assembly=UIControls"
         xmlns:t="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:tab="clr-namespace:Wpf.Controls;assembly=Wpf.TabControl"
         xmlns:m="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:vm="clr-namespace:Sheet.GUI.ViewModel"
         xmlns:local="clr-namespace:Sheet.GUI"
@@ -21,12 +22,12 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <DataTemplate x:Key="newTabButtonContentTemplate">
+            <!--<DataTemplate x:Key="newTabButtonContentTemplate">
                 <Grid/>
             </DataTemplate>
 
             <DataTemplate x:Key="newTabButtonHeaderTemplate">
-                <Button Content="+" Command="{Binding ElementName=parentUserControl, Path=DataContext.NewCommand}"/>
+                <Button Content="+" Command="{Binding NewNote, ElementName=mainWindow}"/>
             </DataTemplate>
 
             <DataTemplate x:Key="itemContentTemplate">
@@ -41,7 +42,7 @@
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                         </Border.BorderBrush>
                         <ScrollViewer>
-                            <t:RichTextBox SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0" AcceptsTab="True" >
+                            <t:RichTextBox local:RichTextBoxHelper.DocumentXaml="{Binding Text}" SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0" AcceptsTab="True" >
                                 <t:RichTextBox.Resources>
                                     <Style TargetType="{x:Type Paragraph}">
                                         <Setter Property="Margin" Value="0,0,0,5"/>
@@ -59,7 +60,7 @@
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                         </Border.BorderBrush>
                         <StackPanel Orientation="Horizontal">
-                            <!--Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/-->
+                            <Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/>
                             <t:WatermarkTextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,1" BorderThickness="0" Watermark="Add labels..."/>
                         </StackPanel>
                     </Border>
@@ -81,7 +82,7 @@
             </DataTemplate>
 
             <DataTemplate x:Key="itemHeaderTemplate">
-                <t:WatermarkTextBox Grid.Row="0" FontSize="18" BorderThickness="0" Watermark="Set title..." Text="{Binding Title}"
+                <t:WatermarkTextBox BorderThickness="0" FontSize="18" Watermark="Set title..." Text="{Binding Title}"
                                             IsEnabled="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Background="#00000000" CaretBrush="Black"/>
             </DataTemplate>
 
@@ -91,7 +92,7 @@
 
             <local:TabTemplateSelector x:Key="contentTemplateSelector"
                             NewButtonTemplate="{StaticResource newTabButtonContentTemplate}"
-                            ItemTemplate="{StaticResource itemContentTemplate}"/>
+                            ItemTemplate="{StaticResource itemContentTemplate}"/>-->
             
             <PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z"/>
             <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
@@ -309,25 +310,31 @@
                   Grid.Column="1" Grid.Row="1" ResizeBehavior="PreviousAndNext"
                   Width="3" Background="#FF60A917"/>
         <Grid Grid.Column="2" Grid.Row="1" Background="#FF80BA45">
-            <TabControl Style="{x:Null}" ItemsSource="{Binding OpenNotes}" SelectedValue="{Binding SelectedNote}" ItemTemplateSelector="{StaticResource headerTemplateSelector}" ContentTemplateSelector="{StaticResource contentTemplateSelector}">
-                <!--<TabControl.Resources>
+            <TabControl Style="{x:Null}" ItemsSource="{Binding OpenNotes}" SelectedValue="{Binding SelectedNote}">
+                <TabControl.Resources>
                     <Style TargetType="TabItem">
-                        <Setter Property="Header">
+                        <Setter Property="HeaderTemplate">
                             <Setter.Value>
-                                <t:WatermarkTextBox Grid.Row="0" FontSize="18" BorderThickness="0" Watermark="Set title..." Text="{Binding Title}"
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <t:WatermarkTextBox Grid.Row="0" FontSize="18" BorderThickness="0" Watermark="Set title..." Text="{Binding Title}"
                                             IsEnabled="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Background="#00000000" CaretBrush="Black"/>
+                                        <Button Width="20" Height="20" BorderThickness="0" Padding="0" Margin="0"
+                                                VerticalAlignment="Center" Background="#00000000" BorderBrush="#00000000" 
+                                                Command="{Binding Path=DataContext.CloseNote, ElementName=mainWindow}" CommandParameter="{Binding}">
+                                            <Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Height="15" Width="15">
+                                                <Line X1="2" Y1="2" X2="13" Y2="13" StrokeThickness="3" Stroke="#FF919191"/>
+                                                <Line X1="13" Y1="2" X2="2" Y2="13" StrokeThickness="3" Stroke="#FF919191"/>
+                                            </Canvas>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
                             </Setter.Value>
                         </Setter>
                     </Style>
-                </TabControl.Resources>-->
-                <!--<TabControl.ItemTemplate>
+                </TabControl.Resources>
+                <TabControl.ContentTemplate>
                     <DataTemplate>
-                        <t:WatermarkTextBox Grid.Row="0" FontSize="18" BorderThickness="0" Watermark="Set title..." Text="{Binding Title}"
-                                        IsEnabled="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabControl}}}" Background="#00000000" CaretBrush="Black"/>
-                    </DataTemplate>
-                </TabControl.ItemTemplate>-->
-                <!--<TabControl.ContentTemplate>
-                    <DataTemplate DataType="{x:Type vm:NoteViewModel}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -339,7 +346,7 @@
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                                 </Border.BorderBrush>
                                 <ScrollViewer>
-                                    <t:RichTextBox SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0" AcceptsTab="True" >
+                                    <t:RichTextBox local:RichTextBoxHelper.DocumentXaml="{Binding Text}" SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0" AcceptsTab="True" >
                                         <t:RichTextBox.Resources>
                                             <Style TargetType="{x:Type Paragraph}">
                                                 <Setter Property="Margin" Value="0,0,0,5"/>
@@ -357,7 +364,7 @@
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                                 </Border.BorderBrush>
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/>
+                                    <!--Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/-->
                                     <t:WatermarkTextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,1" BorderThickness="0" Watermark="Add labels..."/>
                                 </StackPanel>
                             </Border>
@@ -377,115 +384,7 @@
                             </Border>
                         </Grid>
                     </DataTemplate>
-                </TabControl.ContentTemplate>-->
-                <!--<TabItem x:Name="tab" Style="{x:Null}">
-                <TabItem.Header>
-                    <t:WatermarkTextBox Grid.Row="0" FontSize="18" BorderThickness="0" Watermark="Set title..."
-                                        IsEnabled="{Binding IsSelected, ElementName=tab}" Background="#00000000" CaretBrush="Black"/>
-                </TabItem.Header>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="100"/>
-                    </Grid.RowDefinitions>
-                    <Border Grid.Row="0" BorderThickness="1" CornerRadius="5" Padding="2,4" Margin="0,0,2,2">
-                        <Border.BorderBrush>
-                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
-                        </Border.BorderBrush>
-                        <ScrollViewer>
-                            <t:RichTextBox SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0" AcceptsTab="True">
-                                <t:RichTextBox.Resources>
-                                    <Style TargetType="{x:Type Paragraph}">
-                                        <Setter Property="Margin" Value="0,0,0,5"/>
-                                    </Style>
-                                </t:RichTextBox.Resources>
-                                <t:RichTextBoxFormatBarManager.FormatBar>
-                                    <t:RichTextBoxFormatBar/>
-                                </t:RichTextBoxFormatBarManager.FormatBar>
-                                <FlowDocument Language="hu-hu"/>
-                            </t:RichTextBox>
-                        </ScrollViewer>
-                    </Border>
-                    <Border Grid.Row="1" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,2,2">
-                        <Border.BorderBrush>
-                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
-                        </Border.BorderBrush>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/>
-                            <t:WatermarkTextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,1" BorderThickness="0" Watermark="Add labels..."/>
-                        </StackPanel>
-                    </Border>
-                    <Border Grid.Row="2" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,2,2">
-                        <Border.BorderBrush>
-                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
-                        </Border.BorderBrush>
-                        <StackPanel Orientation="Horizontal">
-                            <Canvas HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                <Rectangle Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="6" Canvas.Left="6" Stroke="#FF919191" RadiusX="5" RadiusY="5" StrokeDashArray="7 7"/>
-                                <Line X1="46" Y1="26" X2="46" Y2="46" StrokeThickness="3" Stroke="#FF919191"/>
-                                <Line X1="36" Y1="36" X2="56" Y2="36" StrokeThickness="3" Stroke="#FF919191"/>
-                                <TextBlock Text="Add" Canvas.Left="6" Canvas.Top="50" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                                <TextBlock Text="attachment..." Canvas.Left="6" Canvas.Top="63" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                            </Canvas>
-                        </StackPanel>
-                    </Border>
-                </Grid>
-            </TabItem>
-                <TabItem x:Name="tab1" Style="{x:Null}">
-                    <TabItem.Header>
-                        <t:WatermarkTextBox Grid.Row="0" FontSize="18" BorderThickness="0" Watermark="Set title..."
-                                        IsEnabled="{Binding IsSelected, ElementName=tab1}" Background="#00000000" CaretBrush="Black"/>
-                    </TabItem.Header>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="100"/>
-                        </Grid.RowDefinitions>
-                        <Border Grid.Row="0" BorderThickness="1" CornerRadius="5" Padding="2,4" Margin="0,0,0,2">
-                            <Border.BorderBrush>
-                                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
-                            </Border.BorderBrush>
-                            <ScrollViewer>
-                                <t:RichTextBox SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0" AcceptsTab="True">
-                                    <t:RichTextBox.Resources>
-                                        <Style TargetType="{x:Type Paragraph}">
-                                            <Setter Property="Margin" Value="0,0,0,5"/>
-                                        </Style>
-                                    </t:RichTextBox.Resources>
-                                    <t:RichTextBoxFormatBarManager.FormatBar>
-                                        <t:RichTextBoxFormatBar/>
-                                    </t:RichTextBoxFormatBarManager.FormatBar>
-                                    <FlowDocument Language="hu-hu"/>
-                                </t:RichTextBox>
-                            </ScrollViewer>
-                        </Border>
-                        <Border Grid.Row="1" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,0,2">
-                            <Border.BorderBrush>
-                                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
-                            </Border.BorderBrush>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/>
-                                <t:WatermarkTextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,1" BorderThickness="0" Watermark="Add labels..."/>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Row="2" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,0,2">
-                            <Border.BorderBrush>
-                                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
-                            </Border.BorderBrush>
-                            <StackPanel Orientation="Horizontal">
-                                <Canvas HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                    <Rectangle Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="6" Canvas.Left="6" Stroke="#FF919191" RadiusX="5" RadiusY="5" StrokeDashArray="7 7"/>
-                                    <Line X1="46" Y1="26" X2="46" Y2="46" StrokeThickness="3" Stroke="#FF919191"/>
-                                    <Line X1="36" Y1="36" X2="56" Y2="36" StrokeThickness="3" Stroke="#FF919191"/>
-                                    <TextBlock Text="Add" Canvas.Left="6" Canvas.Top="50" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                                    <TextBlock Text="attachment..." Canvas.Left="6" Canvas.Top="63" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                                </Canvas>
-                            </StackPanel>
-                        </Border>
-                    </Grid>
-                </TabItem>-->
+                </TabControl.ContentTemplate>
             </TabControl>
         </Grid>
     </Grid>

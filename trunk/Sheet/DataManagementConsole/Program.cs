@@ -55,8 +55,12 @@ namespace DataManagementConsole
         public static bool createDatabase(DataService sheet)
         {
             INote note = sheet.CreateNote();
+            INote note2 = sheet.CreateNote();
+            INote note3 = sheet.CreateNote();
             ILabel label = sheet.CreateLabel();
+            ILabel label2 = sheet.CreateLabel();
             label.Text = "zsírlézer";
+            label2.Text = "atombaró";
 
             note.Title = "Rövid, lényegretörő cím!";
             note.AddLabel(label);
@@ -64,8 +68,21 @@ namespace DataManagementConsole
             note.DateOfCreation = DateTime.Now;
             note.LastModified = DateTime.Now;
 
+            note2.Title = "Első jegyzetem";
+            note2.AddLabel(label);
+            note2.Text = "megszentségteleníthetetlenségeskedéseitekért";
+            note2.DateOfCreation = DateTime.Now;
+            note2.LastModified = DateTime.Now;
+
+            note3.Title = "Második jegyzetem";
+            note3.AddLabel(label2);
+            note3.Text = "Soha többet ne éjszakázz a barátnőd mellett egy házi miatt!";
+            note3.DateOfCreation = DateTime.Now;
+            note3.LastModified = DateTime.Now;
 
             sheet.SaveNote(note);
+            sheet.SaveNote(note2);
+            sheet.SaveNote(note3);
 
             return true;
         }

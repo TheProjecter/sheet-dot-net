@@ -8,16 +8,14 @@ using System.Windows.Input;
 
 namespace Sheet.GUI.Commands
 {
-    class OpenNoteCommand : ICommand
+    class OpenNoteCommand : GlobalCommand
     {
-        private MainViewModel main;
-
         private bool doubleClick = false;
-        private Timer timer = new Timer(500);
+        private object doubleParamter = null;
+        private Timer timer = new Timer(1000);
 
-        public OpenNoteCommand(MainViewModel main)
+        public OpenNoteCommand(MainViewModel main) : base(main)
         {
-            this.main = main;
             timer.Elapsed += timer_Elapsed;
         }
 
@@ -26,18 +24,20 @@ namespace Sheet.GUI.Commands
             doubleClick = false;
         }
 
-        public bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             return true;
         }
 
         public event EventHandler CanExecuteChanged;
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
-            if (doubleClick)
+            if (doubleClick && doubleParamter == parameter)
             {
                 doubleClick = false;
+                doubleParamter = null;
+                timer.Stop();
                 NoteViewModel noteVM = parameter as NoteViewModel;
                 if (noteVM == null)
                     return;
@@ -49,6 +49,8 @@ namespace Sheet.GUI.Commands
             else
             {
                 doubleClick = true;
+                doubleParamter = parameter;
+                timer.Start();
             }
         }
     }

@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using Xceed.Wpf.Toolkit;
 
 namespace Sheet.GUI.ViewModel
 {
@@ -50,9 +52,28 @@ namespace Sheet.GUI.ViewModel
             }
         }
 
+        public string Text
+        {
+            get
+            {
+                return model.Text;
+            }
+            set
+            {
+                if (value == model.Text)
+                    return;
+
+                this.model.Text = value;
+
+                base.RaisePropertyChanged("Text");
+            }
+        }
+
         public void Load()
         {
             App.Bll.LoadNote(model);
         }
+
+
     }
 }
