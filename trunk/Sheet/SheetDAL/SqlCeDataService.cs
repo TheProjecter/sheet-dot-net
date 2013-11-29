@@ -44,7 +44,7 @@ namespace Sheet.DAL
             return new Metainfo();
         }
 
-        public bool SaveNote(Facade.Notes.INote note)
+        public void SaveNote(Facade.Notes.INote note)
         {
             using (SheetContext ctx = new SheetContext())
             {
@@ -52,16 +52,14 @@ namespace Sheet.DAL
                 {
                     ctx.Notes.Add((Note)note);
                     ctx.SaveChanges();
-                    return true;
                 }
                 catch (InvalidOperationException)
                 {
-                    return false;
                 }
             }
         }
 
-        public bool DeleteNote(Facade.Notes.INote note)
+        public void DeleteNote(Facade.Notes.INote note)
         {
             using (SheetContext ctx = new SheetContext())
             {
@@ -69,11 +67,9 @@ namespace Sheet.DAL
                 {
                     ctx.Notes.Remove((Note)note);
                     ctx.SaveChanges();
-                    return true;
                 }
                 catch (InvalidOperationException)
                 {
-                    return false;
                 }
             }
         }
@@ -144,6 +140,22 @@ namespace Sheet.DAL
         }
 
         public ICollection<Facade.Notes.INote> QueryNotes(Facade.Queries.NoteQuery query)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Facade.Notes.IAttachment CreateAttachment(Facade.Notes.INote note, Stream file)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Facade.Notes.ILabel GetLabel(Facade.Notes.INote note, string text)
         {
             throw new NotImplementedException();
         }

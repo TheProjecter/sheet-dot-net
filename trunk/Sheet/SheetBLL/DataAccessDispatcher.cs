@@ -22,30 +22,13 @@ namespace Sheet.BLL
             return service.CreateNote();
         }
 
-        public Facade.Notes.IAttachment CreateAttachment()
-        {
-            return service.CreateAttachment();
-        }
-
-        public Facade.Notes.ILabel CreateLabel()
-        {
-            return service.CreateLabel();
-        }
 
         public Facade.Notes.IMetainfo CreateMetainfo()
         {
             return service.CreateMetainfo();
         }
 
-        public bool SaveNote(Facade.Notes.INote note)
-        {
-            return service.SaveNote(note);
-        }
 
-        public bool DeleteNote(Facade.Notes.INote note)
-        {
-            return service.DeleteNote(note);
-        }
 
         public ICollection<Facade.Notes.ILabel> GetLabels()
         {
@@ -70,6 +53,32 @@ namespace Sheet.BLL
         public ICollection<Facade.Notes.INote> QueryNotes(Facade.Queries.NoteQuery query)
         {
             return service.QueryNotes(query);
+        }
+
+
+        public Facade.Notes.IAttachment CreateAttachment(Facade.Notes.INote note, System.IO.Stream file)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDataService.DeleteNote(Facade.Notes.INote note)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IDataService.SaveNote(Facade.Notes.INote note)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Facade.Notes.ILabel GetLabel(Facade.Notes.INote note, string text)
+        {
+            throw new NotImplementedException();
         }
     }
 }
