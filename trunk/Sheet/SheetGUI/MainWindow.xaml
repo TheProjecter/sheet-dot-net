@@ -6,8 +6,9 @@
         xmlns:tab="clr-namespace:Wpf.Controls;assembly=Wpf.TabControl"
         xmlns:m="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:vm="clr-namespace:Sheet.GUI.ViewModel"
+        xmlns:c="cls-namespace:Sheet.GUI.Converters"
         xmlns:local="clr-namespace:Sheet.GUI"
-        Title="Sheet" Height="600" Width="800" Icon="Resources/Images/Logos/logo128.ico" TitleCaps="False" BorderBrush="#FF80BA45" BorderThickness="3"
+        Title="Sheet" MinHeight="600" MinWidth="800" Height="600" Width="800" Icon="Resources/Images/Logos/logo128.ico" TitleCaps="False" BorderBrush="#FF80BA45" BorderThickness="3"
         Loaded="MetroWindow_Loaded"
         >
     <Window.Resources>
@@ -22,77 +23,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <!--<DataTemplate x:Key="newTabButtonContentTemplate">
-                <Grid/>
-            </DataTemplate>
-
-            <DataTemplate x:Key="newTabButtonHeaderTemplate">
-                <Button Content="+" Command="{Binding NewNote, ElementName=mainWindow}"/>
-            </DataTemplate>
-
-            <DataTemplate x:Key="itemContentTemplate">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="100"/>
-                    </Grid.RowDefinitions>
-                    <Border Grid.Row="0" BorderThickness="1" CornerRadius="5" Padding="2,4" Margin="0,0,2,2">
-                        <Border.BorderBrush>
-                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
-                        </Border.BorderBrush>
-                        <ScrollViewer>
-                            <t:RichTextBox local:RichTextBoxHelper.DocumentXaml="{Binding Text}" SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0" AcceptsTab="True" >
-                                <t:RichTextBox.Resources>
-                                    <Style TargetType="{x:Type Paragraph}">
-                                        <Setter Property="Margin" Value="0,0,0,5"/>
-                                    </Style>
-                                </t:RichTextBox.Resources>
-                                <t:RichTextBoxFormatBarManager.FormatBar>
-                                    <t:RichTextBoxFormatBar/>
-                                </t:RichTextBoxFormatBarManager.FormatBar>
-                                <FlowDocument Language="hu-hu" />
-                            </t:RichTextBox>
-                        </ScrollViewer>
-                    </Border>
-                    <Border Grid.Row="1" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,2,2">
-                        <Border.BorderBrush>
-                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
-                        </Border.BorderBrush>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/>
-                            <t:WatermarkTextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,1" BorderThickness="0" Watermark="Add labels..."/>
-                        </StackPanel>
-                    </Border>
-                    <Border Grid.Row="2" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,2,2">
-                        <Border.BorderBrush>
-                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
-                        </Border.BorderBrush>
-                        <StackPanel Orientation="Horizontal">
-                            <Canvas HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                <Rectangle Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="6" Canvas.Left="6" Stroke="#FF919191" RadiusX="5" RadiusY="5" StrokeDashArray="7 7"/>
-                                <Line X1="46" Y1="26" X2="46" Y2="46" StrokeThickness="3" Stroke="#FF919191"/>
-                                <Line X1="36" Y1="36" X2="56" Y2="36" StrokeThickness="3" Stroke="#FF919191"/>
-                                <TextBlock Text="Add" Canvas.Left="6" Canvas.Top="50" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                                <TextBlock Text="attachment..." Canvas.Left="6" Canvas.Top="63" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                            </Canvas>
-                        </StackPanel>
-                    </Border>
-                </Grid>
-            </DataTemplate>
-
-            <DataTemplate x:Key="itemHeaderTemplate">
-                <t:WatermarkTextBox BorderThickness="0" FontSize="18" Watermark="Set title..." Text="{Binding Title}"
-                                            IsEnabled="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Background="#00000000" CaretBrush="Black"/>
-            </DataTemplate>
-
-            <local:TabTemplateSelector x:Key="headerTemplateSelector"
-                           NewButtonTemplate="{StaticResource newTabButtonHeaderTemplate}"
-                           ItemTemplate="{StaticResource itemHeaderTemplate}"/>
-
-            <local:TabTemplateSelector x:Key="contentTemplateSelector"
-                            NewButtonTemplate="{StaticResource newTabButtonContentTemplate}"
-                            ItemTemplate="{StaticResource itemContentTemplate}"/>-->
             
             <PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z"/>
             <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
@@ -267,7 +197,7 @@
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem Header="_File" HorizontalAlignment="Left">
-                <MenuItem Header="_New note" Foreground="Black"/>
+                <MenuItem Header="_New note" Foreground="Black" Command="{Binding NewNote}"/>
                 <MenuItem Header="_Delete note" Foreground="Black"/>
                 <Separator />
                 <MenuItem Foreground="Black">
@@ -309,8 +239,28 @@
                   VerticalAlignment="Stretch" 
                   Grid.Column="1" Grid.Row="1" ResizeBehavior="PreviousAndNext"
                   Width="3" Background="#FF60A917"/>
-        <Grid Grid.Column="2" Grid.Row="1" Background="#FF80BA45">
-            <TabControl Style="{x:Null}" ItemsSource="{Binding OpenNotes}" SelectedValue="{Binding SelectedNote}">
+        <Grid Grid.Column="2" Grid.Row="1" >
+            <!--<Grid.Background>
+                <VisualBrush AlignmentX="Center" AlignmentY="Center" AutoLayoutContent="True" Stretch="Fill">
+                    <VisualBrush.Visual>
+                        <Grid Background="#FF80BA45" 
+                              Height="{Binding Path=ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}}" 
+                              Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}}">
+                            <Image Source="/Resources/Images/logo_big.png" Width="206" Height="321" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Grid.Background>-->
+            <!--<Button HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <Button.ContentTemplate>
+                    <ItemContainerTemplate>-->
+            <Grid Background="#FF80BA45">
+                <Image Source="Resources/Images/logo_background.png" Width="466" Height="220" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+                    <!--</ItemContainerTemplate>
+                </Button.ContentTemplate>
+            </Button>-->
+            <TabControl Style="{x:Null}" ItemsSource="{Binding OpenNotes}" SelectedValue="{Binding SelectedNote}" Visibility="{Binding TabVisibility}">
                 <TabControl.Resources>
                     <Style TargetType="TabItem">
                         <Setter Property="HeaderTemplate">

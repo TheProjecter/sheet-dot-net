@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Sheet.GUI.Commands;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Windows;
 
 namespace Sheet.GUI.ViewModel
 {
@@ -52,6 +53,8 @@ namespace Sheet.GUI.ViewModel
                 openNote = new OpenNoteCommand(this);
                 newNote = new NewNoteCommand(this);
                 closeNote = new CloseNoteCommand(this);
+
+                OpenNotes.CollectionChanged += openNotes_CollectionChanged;
             }
         }
 
@@ -118,6 +121,16 @@ namespace Sheet.GUI.ViewModel
 
                 base.RaisePropertyChanged("SelectedNote");
             }
+        }
+
+        public Visibility TabVisibility
+        {
+            get { return openNotes.Count == 0 ? Visibility.Collapsed : Visibility.Visible; }
+        }
+
+        void openNotes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            base.RaisePropertyChanged("TabVisibility");
         }
     }
 }

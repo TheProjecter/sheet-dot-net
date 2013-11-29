@@ -24,10 +24,9 @@ namespace Sheet.GUI.Commands
             NoteViewModel noteVM = parameter as NoteViewModel;
             if (noteVM == null)
                 return;
+            main.SelectedNote = main.OpenNotes.LastOrDefault();
             if (main.OpenNotes.Contains(noteVM))
                 main.OpenNotes.Remove(noteVM);
-
-            main.SelectedNote = main.OpenNotes.FirstOrDefault();
         }
     }
 }

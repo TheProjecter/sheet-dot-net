@@ -110,6 +110,7 @@
     <Compile Include="Commands\CloseNoteCommand.cs" />
     <Compile Include="Commands\GlobalCommand.cs" />
     <Compile Include="Commands\OpenNoteCommand.cs" />
+    <Compile Include="Converters\IntVisibilityConverter.cs" />
     <Compile Include="RichTextBoxHelper.cs" />
     <Compile Include="TabTemplateSelector.cs" />
     <Compile Include="ViewModel\AttachmentViewModel.cs" />
@@ -215,6 +216,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Icons\note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\logo_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\logo_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\logo_background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
