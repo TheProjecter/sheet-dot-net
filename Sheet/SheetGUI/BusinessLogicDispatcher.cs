@@ -31,5 +31,36 @@ namespace Sheet.GUI
         {
             return service.LoadNote(note);
         }
+
+
+        public ICollection<Facade.Notes.INote> SearchNote(string expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Facade.Notes.INote UpdateLabels(Facade.Notes.INote note, IEnumerable<string> labels)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Facade.Notes.INote AddAttachment(Facade.Notes.INote note, System.IO.Stream attachment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Facade.Notes.INote SaveNote(Facade.Notes.INote note)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteNote(Facade.Notes.INote note)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Facade.Notes.INote DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
