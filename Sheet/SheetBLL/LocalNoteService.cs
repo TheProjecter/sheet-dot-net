@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Sheet.BLL
 {
-    public class LocalNoteService : NoteService
+    public class LocalNoteService : INoteService
     {
-        private static DataService dal = new DataAccessDispatcher();
+        private static IDataService dal = new DataAccessDispatcher();
 
-        public static DataService Dal
+        public static IDataService Dal
         {
             get { return dal; }
         }

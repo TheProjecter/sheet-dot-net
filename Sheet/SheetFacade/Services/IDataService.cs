@@ -8,7 +8,7 @@ using Sheet.Facade.Queries;
 
 namespace Sheet.Facade.Services
 {
-    public interface DataService
+    public interface IDataService
     {
         INote CreateNote();
         IAttachment CreateAttachment();

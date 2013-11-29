@@ -26,7 +26,7 @@ namespace DataManagementConsole
             AppDomain.CurrentDomain.SetData("DataDirectory", applicationFolder);
             // appdata folder is set
 
-            DataService dataservice = new SqlCeDataService();
+            IDataService dataservice = new SqlCeDataService();
             //ICollection<Note> notes = dataservice.QueryNotes(dataservice.CreateLabel());
             createDatabase(dataservice);
 
@@ -52,7 +52,7 @@ namespace DataManagementConsole
             Console.ReadLine();
         }
 
-        public static bool createDatabase(DataService sheet)
+        public static bool createDatabase(IDataService sheet)
         {
             INote note = sheet.CreateNote();
             INote note2 = sheet.CreateNote();

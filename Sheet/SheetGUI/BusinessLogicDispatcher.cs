@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI
 {
-    public class BusinessLogicDispatcher : NoteService
+    public class BusinessLogicDispatcher : INoteService
     {
-        NoteService service;
+        INoteService service;
 
         public BusinessLogicDispatcher()
         {
