@@ -28,7 +28,7 @@ namespace Sheet.BLL
 
         public ICollection<Facade.Notes.INote> GetNotesByLabel(Facade.Notes.ILabel label)
         {
-            throw new NotImplementedException();
+            return Dal.QueryNotes(label);
         }
 
         public Facade.Notes.INote LoadNote(Facade.Notes.INote note)
