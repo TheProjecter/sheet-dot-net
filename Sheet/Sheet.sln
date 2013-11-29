@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManagementConsole", "Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIControls", "UIControls\UIControls.csproj", "{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.TabControl", "TabControl\Wpf.TabControl.csproj", "{509D06BD-AEB6-4E92-8E5B-21188EBDBD9C}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -47,6 +49,10 @@ Global
 		{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3082956-9EE4-4B35-9B4E-B07D0C4C8B56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{509D06BD-AEB6-4E92-8E5B-21188EBDBD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{509D06BD-AEB6-4E92-8E5B-21188EBDBD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{509D06BD-AEB6-4E92-8E5B-21188EBDBD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{509D06BD-AEB6-4E92-8E5B-21188EBDBD9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

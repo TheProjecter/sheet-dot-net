@@ -107,6 +107,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BusinessLogicDispatcher.cs" />
+    <Compile Include="Commands\CloseNoteCommand.cs" />
+    <Compile Include="Commands\GlobalCommand.cs" />
     <Compile Include="Commands\OpenNoteCommand.cs" />
     <Compile Include="RichTextBoxHelper.cs" />
     <Compile Include="TabTemplateSelector.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="ViewModel\LabelViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MetainfoViewModel.cs" />
+    <Compile Include="Commands\NewNoteCommand.cs" />
     <Compile Include="ViewModel\NoteViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
@@ -193,6 +196,10 @@
     <ProjectReference Include="..\SheetFacade\SheetFacade.csproj">
       <Project>{199d2031-7e60-4c4d-b997-ea84398ea8e8}</Project>
       <Name>SheetFacade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TabControl\Wpf.TabControl.csproj">
+      <Project>{509d06bd-aeb6-4e92-8e5b-21188ebdbd9c}</Project>
+      <Name>Wpf.TabControl</Name>
     </ProjectReference>
     <ProjectReference Include="..\UIControls\UIControls.csproj">
       <Project>{a3082956-9ee4-4b35-9b4e-b07d0c4c8b56}</Project>
