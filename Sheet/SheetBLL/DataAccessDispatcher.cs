@@ -23,9 +23,9 @@ namespace Sheet.BLL
         }
 
 
-        public Facade.Notes.IMetainfo CreateMetainfo()
+        public Facade.Notes.IMetainfo CreateMetainfo(Facade.Notes.IAttachment attachment)
         {
-            return service.CreateMetainfo();
+            return service.CreateMetainfo(attachment);
         }
 
 
@@ -76,7 +76,7 @@ namespace Sheet.BLL
             throw new NotImplementedException();
         }
 
-        public Facade.Notes.ILabel GetLabel(Facade.Notes.INote note, string text)
+        public Facade.Notes.ILabel SetLabel(Facade.Notes.INote note, string text)
         {
             throw new NotImplementedException();
         }

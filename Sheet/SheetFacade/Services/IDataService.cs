@@ -13,7 +13,7 @@ namespace Sheet.Facade.Services
     {
         INote CreateNote();
         IAttachment CreateAttachment(INote note, Stream file);
-        IMetainfo CreateMetainfo();
+        IMetainfo CreateMetainfo(IAttachment attachment);
         void DeleteNote(INote note);
         void DeleteAttachment(INote note, IAttachment attachment);
         
@@ -21,7 +21,7 @@ namespace Sheet.Facade.Services
         void SaveNote(INote note);
 
         ICollection<ILabel> GetLabels();
-        ILabel GetLabel(INote note, string text);
+        ILabel SetLabel(INote note, string text);
 
         INote LoadNote(INote note);
         ICollection<INote> QueryNotes(string expression);

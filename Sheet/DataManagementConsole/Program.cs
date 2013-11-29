@@ -30,7 +30,7 @@ namespace DataManagementConsole
             //ICollection<Note> notes = dataservice.QueryNotes(dataservice.CreateLabel());
             createDatabase(dataservice);
 
-            ICollection<INote> notes = dataservice.QueryNotes("evő");
+            ICollection<INote> notes = dataservice.QueryNotes("");
             if (notes == null)
             {
                 Console.WriteLine("null");
@@ -57,24 +57,18 @@ namespace DataManagementConsole
             INote note = sheet.CreateNote();
             INote note2 = sheet.CreateNote();
             INote note3 = sheet.CreateNote();
-            ILabel label = sheet.GetLabel(note, "zsírlézer");
-            ILabel label2 = sheet.GetLabel(note2, "zsírlézer");
-            ILabel labeltemp = sheet.GetLabel(note3, "atombaró");
+            ILabel label = sheet.SetLabel(note, "zsírlézer");
+            ILabel label2 = sheet.SetLabel(note2, "zsírlézer");
+            ILabel labeltemp = sheet.SetLabel(note3, "atombaró");
 
             note.Title = "Rövid, lényegretörő cím!";
             note.Text = "almakombájn evő szörnyeteg";
-            note.DateOfCreation = DateTime.Now;
-            note.LastModified = DateTime.Now;
 
             note2.Title = "Első jegyzetem";
             note2.Text = "megszentségteleníthetetlenségeskedéseitekért";
-            note2.DateOfCreation = DateTime.Now;
-            note2.LastModified = DateTime.Now;
 
             note3.Title = "Második jegyzetem";
             note3.Text = "Soha többet ne éjszakázz a barátnőd mellett egy házi miatt!";
-            note3.DateOfCreation = DateTime.Now;
-            note3.LastModified = DateTime.Now;
 
             sheet.SaveNote(note);
             sheet.SaveNote(note2);
