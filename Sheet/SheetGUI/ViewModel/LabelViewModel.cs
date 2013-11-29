@@ -25,14 +25,14 @@ namespace Sheet.GUI.ViewModel
             foreach (var note in model.Notes)
             {
                 NoteViewModel noteViewModel;
-                if (!noteViewModels.ContainsKey(model.ID))
+                if (!noteViewModels.ContainsKey(note.ID))
                 {
                     noteViewModel = new NoteViewModel(note);
-                    noteViewModels.Add(model.ID, noteViewModel);
+                    noteViewModels.Add(note.ID, noteViewModel);
                 }
                 else
                 {
-                    noteViewModel = noteViewModels[model.ID];
+                    noteViewModel = noteViewModels[note.ID];
                 }
                 notes.Add(noteViewModel);
             }
