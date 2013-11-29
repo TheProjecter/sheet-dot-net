@@ -49,12 +49,12 @@ namespace Sheet.BLL
             foreach (var label in labels)
             {
                 ++count;
-                Dal.GetLabel(note, label);
+                Dal.SetLabel(note, label);
             }
             if (count == 0)
             {
                 //TODO: use resources instead!
-                Dal.GetLabel(note, "No label");
+                Dal.SetLabel(note, "No label");
             }
             return Dal.LoadNote(note);
         }
@@ -92,7 +92,7 @@ namespace Sheet.BLL
         {
             INote newNote = Dal.CreateNote();
             //TODO: use resources instead!
-            Dal.GetLabel(newNote, "No label");
+            Dal.SetLabel(newNote, "No label");
             return Dal.LoadNote(newNote);
         }
     }
