@@ -26,20 +26,20 @@ namespace Sheet.DAL
 
         public Facade.Notes.INote CreateNote()
         {
-            return new Note();
+            using (SheetContext ctx = new SheetContext())
+            {
+                Note note = new Note()
+                {
+                    DateOfCreation = DateTime.Now,
+                    LastModified = DateTime.Now
+                };
+                ctx.Notes.Add(note);
+                ctx.SaveChanges();
+                return note;
+            }
         }
 
-        public Facade.Notes.IAttachment CreateAttachment()
-        {
-            return new Attachment();
-        }
-
-        public Facade.Notes.ILabel CreateLabel()
-        {
-            return new Label();
-        }
-
-        public Facade.Notes.IMetainfo CreateMetainfo()
+        public Facade.Notes.IMetainfo CreateMetainfo(Facade.Notes.IAttachment attachment)
         {
             return new Metainfo();
         }
@@ -50,7 +50,9 @@ namespace Sheet.DAL
             {
                 try
                 {
-                    ctx.Notes.Add((Note)note);
+                    Note dbNote = ctx.Notes.Find(note.ID);
+                    dbNote.Text = note.Text;
+                    dbNote.Title = note.Title;
                     ctx.SaveChanges();
                 }
                 catch (InvalidOperationException)
@@ -65,7 +67,8 @@ namespace Sheet.DAL
             {
                 try
                 {
-                    ctx.Notes.Remove((Note)note);
+                    Note dbNote = ctx.Notes.Find(note.ID);
+                    ctx.Notes.Remove(dbNote);
                     ctx.SaveChanges();
                 }
                 catch (InvalidOperationException)
@@ -147,17 +150,40 @@ namespace Sheet.DAL
 
         public Facade.Notes.IAttachment CreateAttachment(Facade.Notes.INote note, Stream file)
         {
-            throw new NotImplementedException();
+            using(SheetContext ctx = new SheetContext())
+            {
+                Attachment attachment = new Attachment();
+                Note dbNote = ctx.Notes.Find(note.ID);
+                dbNote.AddAttachment(attachment);
+                ctx.SaveChanges();
+                return attachment;
+            }
         }
 
         public void DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
         {
-            throw new NotImplementedException();
+            using (SheetContext ctx = new SheetContext())
+            {
+                Attachment dbAttachment = ctx.Attachments.Find(attachment.ID);
+                Note dbNote = ctx.Notes.Find(note.ID);
+                dbNote.RemoveAttachment(dbAttachment);
+                ctx.SaveChanges();
+            }
         }
 
-        public Facade.Notes.ILabel GetLabel(Facade.Notes.INote note, string text)
+        public Facade.Notes.ILabel SetLabel(Facade.Notes.INote note, string text)
         {
-            throw new NotImplementedException();
+            using (SheetContext ctx = new SheetContext())
+            {
+                Label dbLabel = ctx.Labels.SingleOrDefault(l => l.Text == text) ?? new Label() { Text = text };
+                Note dbNote = ctx.Notes.Find(note.ID);
+                if (!dbNote.Labels.Any(l => l.ID == dbLabel.ID))
+                {
+                    dbNote.AddLabel(dbLabel);
+                    ctx.SaveChanges();
+                }
+                return dbLabel;
+            }
         }
     }
 }
