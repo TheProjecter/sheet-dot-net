@@ -19,32 +19,32 @@ namespace Sheet.BLL
 
         public Facade.Notes.INote CreateNote()
         {
-            throw new NotImplementedException();
+            return service.CreateNote();
         }
 
         public Facade.Notes.IAttachment CreateAttachment()
         {
-            throw new NotImplementedException();
+            return service.CreateAttachment();
         }
 
         public Facade.Notes.ILabel CreateLabel()
         {
-            throw new NotImplementedException();
+            return service.CreateLabel();
         }
 
         public Facade.Notes.IMetainfo CreateMetainfo()
         {
-            throw new NotImplementedException();
+            return service.CreateMetainfo();
         }
 
         public bool SaveNote(Facade.Notes.INote note)
         {
-            throw new NotImplementedException();
+            return service.SaveNote(note);
         }
 
         public bool DeleteNote(Facade.Notes.INote note)
         {
-            throw new NotImplementedException();
+            return service.DeleteNote(note);
         }
 
         public ICollection<Facade.Notes.ILabel> GetLabels()
@@ -54,22 +54,22 @@ namespace Sheet.BLL
 
         public Facade.Notes.INote LoadNote(Facade.Notes.INote note)
         {
-            throw new NotImplementedException();
+            return service.LoadNote(note);
         }
 
         public ICollection<Facade.Notes.INote> QueryNotes(string expression)
         {
-            throw new NotImplementedException();
+            return service.QueryNotes(expression);
         }
 
         public ICollection<Facade.Notes.INote> QueryNotes(Facade.Notes.ILabel label)
         {
-            throw new NotImplementedException();
+            return service.QueryNotes(label);
         }
 
         public ICollection<Facade.Notes.INote> QueryNotes(Facade.Queries.NoteQuery query)
         {
-            throw new NotImplementedException();
+            return service.QueryNotes(query);
         }
     }
 }
