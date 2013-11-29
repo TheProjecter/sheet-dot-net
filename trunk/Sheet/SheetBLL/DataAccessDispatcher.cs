@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Sheet.BLL
 {
-    public class DataAccessDispatcher : DataService
+    public class DataAccessDispatcher : IDataService
     {
-        private DataService service;
+        private IDataService service;
 
         public DataAccessDispatcher()
         {

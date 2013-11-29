@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Sheet.DAL
 {
-    public class SqlCeDataService : DataService
+    public class SqlCeDataService : IDataService
     {
         public SqlCeDataService()
         {

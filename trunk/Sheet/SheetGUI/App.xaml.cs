@@ -13,9 +13,9 @@ namespace Sheet.GUI
     /// </summary>
     public partial class App : Application
     {
-        public static NoteService Bll
+        public static INoteService Bll
         {
-            get { return App.Current.Resources["Bll"] as NoteService; }
+            get { return App.Current.Resources["Bll"] as INoteService; }
         }
     }
 }

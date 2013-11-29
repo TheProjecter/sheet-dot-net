@@ -56,8 +56,8 @@
     <Compile Include="Queries\OrQuery.cs" />
     <Compile Include="Queries\QueryVisitor.cs" />
     <Compile Include="Queries\TitleQuery.cs" />
-    <Compile Include="Services\DataService.cs" />
-    <Compile Include="Services\NoteService.cs" />
+    <Compile Include="Services\IDataService.cs" />
+    <Compile Include="Services\INoteService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

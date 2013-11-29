@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 using System.Linq;
 using System.Text;
+
 
 namespace Sheet.DAL.Entities
 {
@@ -9,7 +12,8 @@ namespace Sheet.DAL.Entities
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Path { get; set; }
+        [NotMapped]
+        public Stream File { get; set; }
         public string MimeType { get; set; }
 
         private ICollection<Metainfo> _metadata;

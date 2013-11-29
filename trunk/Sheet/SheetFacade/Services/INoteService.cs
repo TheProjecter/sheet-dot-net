@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sheet.Facade.Services
 {
-    public interface NoteService
+    public interface INoteService
     {
         ICollection<ILabel> GetLabels();
         ICollection<INote> GetNotesByLabel(ILabel label);
