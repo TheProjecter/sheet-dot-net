@@ -58,27 +58,27 @@ namespace Sheet.BLL
 
         public Facade.Notes.IAttachment CreateAttachment(Facade.Notes.INote note, System.IO.Stream file)
         {
-            throw new NotImplementedException();
+            return service.CreateAttachment(note, file);
         }
 
-        void IDataService.DeleteNote(Facade.Notes.INote note)
+        public void IDataService.DeleteNote(Facade.Notes.INote note)
         {
-            throw new NotImplementedException();
+            service.DeleteNote(note);
         }
 
         public void DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
         {
-            throw new NotImplementedException();
+            service.DeleteAttachment(note, attachment);
         }
 
-        void IDataService.SaveNote(Facade.Notes.INote note)
+        public void IDataService.SaveNote(Facade.Notes.INote note)
         {
-            throw new NotImplementedException();
+            service.SaveNote(note);
         }
 
         public Facade.Notes.ILabel SetLabel(Facade.Notes.INote note, string text)
         {
-            throw new NotImplementedException();
+            return service.SetLabel(note, text);
         }
     }
 }
