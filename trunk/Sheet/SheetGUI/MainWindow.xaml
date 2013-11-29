@@ -198,14 +198,14 @@
             </Menu.ItemsPanel>
             <MenuItem Header="_File" HorizontalAlignment="Left">
                 <MenuItem Header="_New note" Foreground="Black" Command="{Binding NewNote}"/>
-                <MenuItem Header="_Delete note" Foreground="Black"/>
+                <MenuItem Header="_Delete note" Foreground="Black" Command="{Binding DeleteNote}" CommandParameter="{Binding SelectedValue, ElementName=mainTab}"/>
                 <Separator />
                 <MenuItem Foreground="Black">
                     <MenuItem.Header>
                         <DockPanel>
-                            <TextBlock>Step</TextBlock>
-                            <TextBlock Width="10"></TextBlock>
-                            <TextBlock HorizontalAlignment="Right">F2</TextBlock>
+                            <TextBlock>Exit</TextBlock>
+                            <!--<TextBlock Width="10"></TextBlock>
+                            <TextBlock HorizontalAlignment="Right">F2</TextBlock>-->
                         </DockPanel>
                     </MenuItem.Header>
                 </MenuItem>
@@ -260,7 +260,7 @@
                     <!--</ItemContainerTemplate>
                 </Button.ContentTemplate>
             </Button>-->
-            <TabControl Style="{x:Null}" ItemsSource="{Binding OpenNotes}" SelectedValue="{Binding SelectedNote}" Visibility="{Binding TabVisibility}">
+            <TabControl x:Name="mainTab" Style="{x:Null}" ItemsSource="{Binding OpenNotes}" SelectedValue="{Binding SelectedNote}" Visibility="{Binding TabVisibility}">
                 <TabControl.Resources>
                     <Style TargetType="TabItem">
                         <Setter Property="HeaderTemplate">

@@ -74,6 +74,21 @@ namespace Sheet.GUI.ViewModel
             App.Bll.LoadNote(model);
         }
 
+        public INote Model
+        {
+            set
+            {
+                if (this.model == value)
+                    return;
 
+                this.model = value;
+                base.RaisePropertyChanged("");
+            }
+        }
+
+        internal void Delete()
+        {
+            App.Bll.DeleteNote(model);
+        }
     }
 }
