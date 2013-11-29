@@ -53,31 +53,5 @@ namespace Sheet.DAL.Entities
         {
             get { return Attachments.ToList<Facade.Notes.IAttachment>(); }
         }
-
-        public void AddLabel(Facade.Notes.ILabel label)
-        {
-            if (!Labels.Contains((Label)label))
-            {
-                Labels.Add((Label)label);
-            }
-        }
-
-        public bool RemoveLabel(Facade.Notes.ILabel label)
-        {
-            return Labels.Remove((Label)label);
-        }
-
-        public void AddAttachment(Facade.Notes.IAttachment attachment)
-        {
-            if (!Attachments.Contains((Attachment)attachment))
-            {
-                Attachments.Add((Attachment)attachment);
-            }
-        }
-
-        public bool RemoveAttachment(Facade.Notes.IAttachment attachment)
-        {
-            return Attachments.Remove((Attachment)attachment);
-        }
     }
 }

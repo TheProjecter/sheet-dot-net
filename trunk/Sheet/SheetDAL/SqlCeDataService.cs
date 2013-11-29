@@ -41,7 +41,14 @@ namespace Sheet.DAL
 
         public Facade.Notes.IMetainfo CreateMetainfo(Facade.Notes.IAttachment attachment)
         {
-            return new Metainfo();
+            using (SheetContext ctx = new SheetContext())
+            {
+                Attachment dbAttachment = ctx.Attachments.Find(attachment.ID);
+                Metainfo metainfo = new Metainfo();
+                dbAttachment.Metadata.Add(metainfo);
+                ctx.SaveChanges();
+                return metainfo;
+            }
         }
 
         public void SaveNote(Facade.Notes.INote note)
@@ -155,7 +162,7 @@ namespace Sheet.DAL
             {
                 Attachment attachment = new Attachment();
                 Note dbNote = ctx.Notes.Find(note.ID);
-                dbNote.AddAttachment(attachment);
+                dbNote.Attachments.Add(attachment);
                 ctx.SaveChanges();
                 return attachment;
             }
@@ -167,7 +174,7 @@ namespace Sheet.DAL
             {
                 Attachment dbAttachment = ctx.Attachments.Find(attachment.ID);
                 Note dbNote = ctx.Notes.Find(note.ID);
-                dbNote.RemoveAttachment(dbAttachment);
+                dbNote.Attachments.Remove(dbAttachment);
                 ctx.SaveChanges();
             }
         }
@@ -180,7 +187,7 @@ namespace Sheet.DAL
                 Note dbNote = ctx.Notes.Find(note.ID);
                 if (!dbNote.Labels.Any(l => l.ID == dbLabel.ID))
                 {
-                    dbNote.AddLabel(dbLabel);
+                    dbNote.Labels.Add(dbLabel);
                     ctx.SaveChanges();
                 }
                 return dbLabel;
