@@ -8,6 +8,7 @@ using Sheet.GUI.Commands;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows;
+using Sheet.Facade.Notes;
 
 namespace Sheet.GUI.ViewModel
 {
@@ -138,6 +139,21 @@ namespace Sheet.GUI.ViewModel
         void openNotes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             base.RaisePropertyChanged("TabVisibility");
+        }
+
+        public void DisconnectNote(NoteViewModel note)
+        {
+            
+        }
+
+        public void ConnectNote(INote note)
+        {
+
+        }
+
+        public void ConnectNote(NoteViewModel note)
+        {
+
         }
     }
 }
