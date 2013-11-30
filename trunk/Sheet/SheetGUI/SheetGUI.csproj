@@ -115,11 +115,13 @@
     <Compile Include="RichTextBoxHelper.cs" />
     <Compile Include="TabTemplateSelector.cs" />
     <Compile Include="ViewModel\AttachmentViewModel.cs" />
+    <Compile Include="ViewModel\CompositeViewModel.cs" />
     <Compile Include="ViewModel\LabelViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MetainfoViewModel.cs" />
     <Compile Include="Commands\NewNoteCommand.cs" />
     <Compile Include="ViewModel\NoteViewModel.cs" />
+    <Compile Include="ViewModel\ProducableViewModel.cs" />
     <Compile Include="ViewModel\ViewModelFactory.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
