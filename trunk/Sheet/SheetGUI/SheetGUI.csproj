@@ -120,6 +120,7 @@
     <Compile Include="ViewModel\MetainfoViewModel.cs" />
     <Compile Include="Commands\NewNoteCommand.cs" />
     <Compile Include="ViewModel\NoteViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelFactory.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
