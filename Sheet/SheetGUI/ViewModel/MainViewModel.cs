@@ -8,6 +8,7 @@ using Sheet.GUI.Commands;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows;
+using System.Linq;
 using Sheet.Facade.Notes;
 
 namespace Sheet.GUI.ViewModel
@@ -26,10 +27,7 @@ namespace Sheet.GUI.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private IDictionary<int, LabelViewModel> labelViewModels = new Dictionary<int, LabelViewModel>();
-        private IDictionary<int, NoteViewModel> noteViewModels = new Dictionary<int, NoteViewModel>();
-        //private IDictionary<int, AttachmentViewModel> attachmentViewModels = new Dictionary<int, AttachmentViewModel>();
-        //private IDictionary<int, MetainfoViewModel> metainfoViewModels = new Dictionary<int, MetainfoViewModel>();
+        private ViewModelFactory factory = new ViewModelFactory();
 
         private ObservableCollection<LabelViewModel> labels;
         private ObservableCollection<NoteViewModel> openNotes;
@@ -59,6 +57,11 @@ namespace Sheet.GUI.ViewModel
 
                 OpenNotes.CollectionChanged += openNotes_CollectionChanged;
             }
+        }
+
+        public ViewModelFactory Factory
+        {
+            get { return factory; }
         }
 
         public ObservableCollection<LabelViewModel> Labels
@@ -91,30 +94,8 @@ namespace Sheet.GUI.ViewModel
         {
             foreach (var label in App.Bll.GetLabels())
             {
-                var labelViewModel = new LabelViewModel(label, noteViewModels);
-                labels.Add(labelViewModel);
-                labelViewModels.Add(label.ID, labelViewModel);
+                labels.Add(factory.GetViewModel(label));
             }
-        }
-
-        public ICommand OpenNote
-        {
-            get { return openNote; }
-        }
-
-        public ICommand NewNote
-        {
-            get { return newNote; }
-        }
-
-        public ICommand CloseNote
-        {
-            get { return closeNote; }
-        }
-
-        public ICommand DeleteNote
-        {
-            get { return deleteNote; }
         }
 
         public NoteViewModel SelectedNote
@@ -139,21 +120,31 @@ namespace Sheet.GUI.ViewModel
         void openNotes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             base.RaisePropertyChanged("TabVisibility");
+
+            if (openNotes.Contains(selectedNote) == false)
+            {
+                SelectedNote = OpenNotes.LastOrDefault();
+            }
         }
 
-        public void DisconnectNote(NoteViewModel note)
+        public ICommand OpenNote
         {
-            
+            get { return openNote; }
         }
 
-        public void ConnectNote(INote note)
+        public ICommand NewNote
         {
-
+            get { return newNote; }
         }
 
-        public void ConnectNote(NoteViewModel note)
+        public ICommand CloseNote
         {
+            get { return closeNote; }
+        }
 
+        public ICommand DeleteNote
+        {
+            get { return deleteNote; }
         }
     }
 }

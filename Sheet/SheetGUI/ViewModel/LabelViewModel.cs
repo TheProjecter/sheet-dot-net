@@ -9,32 +9,27 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI.ViewModel
 {
-    public class LabelViewModel : ViewModelBase
+    public class LabelViewModel : CompositeViewModel
     {
         private ILabel model;
 
-        private ObservableCollection<NoteViewModel> notes = new ObservableCollection<NoteViewModel>();
+        private ObservableCollection<NoteViewModel> notes;
 
-        public LabelViewModel(ILabel model, IDictionary<int, NoteViewModel> noteViewModels)
+        public LabelViewModel(ILabel model, ViewModelFactory factory) : base(factory)
         {
             if (model == null)
                 throw new ArgumentNullException("model");
-            if (noteViewModels == null)
-                throw new ArgumentNullException("noteViewModels");
             this.model = model;
+            factory.RegisterViewModel(model, this);
+            LoadViewModels();
+        }
+
+        protected override void LoadViewModels()
+        {
+            Notes.Clear();
             foreach (var note in model.Notes)
             {
-                NoteViewModel noteViewModel;
-                if (!noteViewModels.ContainsKey(note.ID))
-                {
-                    noteViewModel = new NoteViewModel(note);
-                    noteViewModels.Add(note.ID, noteViewModel);
-                }
-                else
-                {
-                    noteViewModel = noteViewModels[note.ID];
-                }
-                notes.Add(noteViewModel);
+                Notes.Add(factory.GetViewModel(note));
             }
         }
 
@@ -57,7 +52,12 @@ namespace Sheet.GUI.ViewModel
 
         public ObservableCollection<NoteViewModel> Notes
         {
-            get { return notes; }
+            get 
+            {
+                if (notes == null)
+                    notes = new ObservableCollection<NoteViewModel>();
+                return notes;
+            }
         }
 
         public ILabel Model
@@ -69,6 +69,7 @@ namespace Sheet.GUI.ViewModel
 
                 this.model = value;
                 base.RaisePropertyChanged("");
+                LoadViewModels();
             }
         }
     }

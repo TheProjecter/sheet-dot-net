@@ -23,10 +23,17 @@ namespace Sheet.GUI.Commands
             NoteViewModel noteVM = parameter as NoteViewModel;
             if (noteVM == null)
                 return;
-            noteVM.Delete();
-            main.SelectedNote = main.OpenNotes.LastOrDefault();
             if (main.OpenNotes.Contains(noteVM))
                 main.OpenNotes.Remove(noteVM);
+            noteVM.Delete();
+            for (int i = 0; i < main.Labels.Count; ++i)
+            {
+                if (main.Labels[i].Notes.Count == 0)
+                {
+                    main.Labels.Remove(main.Labels[i]);
+                    --i;
+                }
+            }
         }
     }
 }

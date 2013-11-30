@@ -8,13 +8,48 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI.ViewModel
 {
-    public class MetainfoViewModel : ViewModelBase
+    public class MetainfoViewModel : ProducableViewModel
     {
         private IMetainfo model;
 
-        public MetainfoViewModel(IMetainfo model)
+        public MetainfoViewModel(IMetainfo model, ViewModelFactory factory) : base(factory)
         {
             this.model = model;
+            factory.RegisterViewModel(model, this);
+        }
+
+        public string Key
+        {
+            get
+            {
+                return model.Key;
+            }
+            set
+            {
+                if (value == model.Key)
+                    return;
+
+                this.model.Key = value;
+
+                base.RaisePropertyChanged("Key");
+            }
+        }
+
+        public string Value
+        {
+            get
+            {
+                return model.Value;
+            }
+            set
+            {
+                if (value == model.Value)
+                    return;
+
+                this.model.Value = value;
+
+                base.RaisePropertyChanged("Value");
+            }
         }
 
         public IMetainfo Model
