@@ -110,7 +110,8 @@ namespace LabelsControl
             LabelTextBox.Text = string.Join(defaultSplit, labels.ToArray());
             if (hit == null)
             {
-                LabelTextBox.Text += defaultSplit;
+                if (labels.Count > 0)
+                   LabelTextBox.Text += defaultSplit;
                 LabelTextBox.CaretIndex = LabelTextBox.Text.Length;
             }
             else
