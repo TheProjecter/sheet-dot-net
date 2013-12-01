@@ -43,9 +43,9 @@ namespace Sheet.GUI
             return service.UpdateLabels(note, labels);
         }
 
-        public Facade.Notes.INote AddAttachment(Facade.Notes.INote note, System.IO.Stream attachment)
+        public Facade.Notes.INote AddAttachment(Facade.Notes.INote note, System.IO.Stream attachment, string fileName)
         {
-            return service.AddAttachment(note, attachment);
+            return service.AddAttachment(note, attachment, fileName);
         }
 
         public void SaveNote(Facade.Notes.INote note)
@@ -67,6 +67,12 @@ namespace Sheet.GUI
         public Facade.Notes.INote NewNote()
         {
             return service.NewNote();
+        }
+
+
+        public System.IO.Stream DownloadAttachment(Facade.Notes.IAttachment attachment)
+        {
+            return service.DownloadAttachment(attachment);
         }
     }
 }

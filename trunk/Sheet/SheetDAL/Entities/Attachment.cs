@@ -12,8 +12,9 @@ namespace Sheet.DAL.Entities
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        [NotMapped]
-        public Stream File { get; set; }
+        //[NotMapped]
+        //public Stream File { get; set; }
+        public string Path { get; set; }
         public string MimeType { get; set; }
 
         private ICollection<Metainfo> _metadata;

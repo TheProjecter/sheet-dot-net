@@ -56,9 +56,9 @@ namespace Sheet.BLL
         }
 
 
-        public Facade.Notes.IAttachment CreateAttachment(Facade.Notes.INote note, System.IO.Stream file)
+        public Facade.Notes.IAttachment CreateAttachment(Facade.Notes.INote note, System.IO.Stream file, string fileName)
         {
-            return service.CreateAttachment(note, file);
+            return service.CreateAttachment(note, file, fileName);
         }
 
         public void DeleteNote(Facade.Notes.INote note)
@@ -79,6 +79,12 @@ namespace Sheet.BLL
         public Facade.Notes.ILabel SetLabel(Facade.Notes.INote note, string text)
         {
             return service.SetLabel(note, text);
+        }
+
+
+        public System.IO.Stream DownloadAttachment(Facade.Notes.IAttachment attachment)
+        {
+            return service.DownloadAttachment(attachment);
         }
     }
 }
