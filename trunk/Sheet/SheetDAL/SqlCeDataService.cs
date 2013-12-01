@@ -78,10 +78,14 @@ namespace Sheet.DAL
                 {
                     this.DeleteAttachment(attachment);
                 }
-                dbNote = ctx.Notes.Find(dbNote.ID);
+            }
+            using (SheetContext ctx = new SheetContext())
+            {
+                Note dbNote = ctx.Notes.Find(note.ID);
                 ctx.Notes.Remove(dbNote);
                 ctx.SaveChanges();
             }
+
             CleanupLabels();
         }
 
