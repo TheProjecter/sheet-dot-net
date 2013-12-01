@@ -289,6 +289,7 @@ namespace Sheet.DAL
             using (SheetContext ctx = new SheetContext())
             {                
                 ctx.Labels.RemoveRange(ctx.Labels.Include("Notes").Where(l => l.Notes.Count == 0));
+                ctx.SaveChanges();
             }
         }
 
