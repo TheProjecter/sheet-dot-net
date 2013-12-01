@@ -115,6 +115,7 @@
     <Compile Include="Commands\DelayedSaveNoteCommand.cs" />
     <Compile Include="Commands\DeleteAttachmentCommand.cs" />
     <Compile Include="Commands\DeleteNoteCommand.cs" />
+    <Compile Include="Commands\SaveAttachmentCommand.cs" />
     <Compile Include="Commands\ViewModelCommand.cs" />
     <Compile Include="Commands\NewAttachmentCommand.cs" />
     <Compile Include="Commands\OpenAttachmentCommand.cs" />

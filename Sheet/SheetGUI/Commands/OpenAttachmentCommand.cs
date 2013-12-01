@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI.Commands
 {
-    public class OpenAttachmentCommand : ViewModelCommand<NoteViewModel>
+    public class OpenAttachmentCommand : ViewModelCommand<AttachmentViewModel>
     {
-        public OpenAttachmentCommand(NoteViewModel vm) : base(vm) { }
+        public OpenAttachmentCommand(AttachmentViewModel vm) : base(vm) { }
 
         public override bool CanExecute(object parameter)
         {
@@ -18,7 +18,7 @@ namespace Sheet.GUI.Commands
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            vm.Open();
         }
     }
 }

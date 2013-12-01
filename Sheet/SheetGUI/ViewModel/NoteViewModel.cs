@@ -27,7 +27,6 @@ namespace Sheet.GUI.ViewModel
 
         private UpdateLabelsCommand update;
         private NewAttachmentCommand newAttachment;
-        private OpenAttachmentCommand openAttachment;
         private DeleteAttachmentCommand deleteAttachment;
 
         public NoteViewModel(MainViewModel main) : base(main)
@@ -42,7 +41,6 @@ namespace Sheet.GUI.ViewModel
             this.model = model;
             update = new UpdateLabelsCommand(this);
             newAttachment = new NewAttachmentCommand(this);
-            openAttachment = new OpenAttachmentCommand(this);
             deleteAttachment = new DeleteAttachmentCommand(this);
             main.RegisterViewModel(model, this);
             LoadViewModels();
@@ -72,11 +70,6 @@ namespace Sheet.GUI.ViewModel
         public ICommand NewAttachment
         {
             get { return newAttachment; }
-        }
-
-        public ICommand OpenAttachment
-        {
-            get { return openAttachment; }
         }
 
         public ICommand DeleteAttachment

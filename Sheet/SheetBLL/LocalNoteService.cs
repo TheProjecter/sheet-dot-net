@@ -63,7 +63,7 @@ namespace Sheet.BLL
 
         private void ExtractMetadata(IAttachment attachment)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void SaveNote(Facade.Notes.INote note)
