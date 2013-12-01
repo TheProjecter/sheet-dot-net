@@ -85,7 +85,7 @@ namespace Sheet.BLL
 
         public Facade.Notes.INote DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
         {
-            Dal.DeleteAttachment(note, attachment);
+            Dal.DeleteAttachment(attachment);
             return Dal.LoadNote(note);
         }
 

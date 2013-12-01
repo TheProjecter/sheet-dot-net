@@ -16,7 +16,7 @@ namespace Sheet.Facade.Services
         Stream DownloadAttachment(IAttachment attachment);
         IMetainfo CreateMetainfo(IAttachment attachment);
         void DeleteNote(INote note);
-        void DeleteAttachment(INote note, IAttachment attachment);
+        void DeleteAttachment(IAttachment attachment);
         void DeleteLabels(INote note);
         
 
