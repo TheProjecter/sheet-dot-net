@@ -110,9 +110,9 @@ namespace Sheet.GUI.ViewModel
             }
         }
 
-        internal void Delete()
+        internal async void Delete()
         {
-            App.Bll.DeleteAttachment(model);
+            await Task.Run(() => App.Bll.DeleteAttachment(model));
         }
 
         internal async void Save(string path)

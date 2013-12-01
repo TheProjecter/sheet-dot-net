@@ -233,7 +233,7 @@
             <!--<Button Content="settings" />-->
             <Button>
                 <StackPanel Orientation="Horizontal">
-                    <s:SearchTextBox x:Name="searchTextBox" Grid.Column="0" Grid.Row="1" Width="150" SearchEventTimeDelay="00:00:01.00"
+                    <s:SearchTextBox x:Name="searchTextBox" Grid.Column="0" Grid.Row="1" Width="150" SearchEventTimeDelay="00:00:00.00"
                 HorizontalAlignment="Stretch" SearchMode="Instant">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Search">
@@ -251,9 +251,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200" MinWidth="100"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" MinWidth="400"/>
         </Grid.ColumnDefinitions>
         <Menu Width="Auto" Height="Auto" Grid.Row="0" Background="#FF60A917" Grid.ColumnSpan="3" Foreground="White">
             <Menu.ItemsPanel>
@@ -429,11 +429,9 @@
                                 <Border.BorderBrush>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                                 </Border.BorderBrush>
-                                <StackPanel Orientation="Horizontal">
                                     <!--Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/-->
                                     <!--<t:WatermarkTextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,1" BorderThickness="0" Watermark="Add labels..."/>-->
                                     <l:LabelsControl VerticalAlignment="Center" HorizontalAlignment="Stretch" Source="{Binding LabelString}" Update="{Binding Update}"/>
-                                </StackPanel>
                             </Border>
                             <Border Grid.Row="2" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,2,2">
                                 <Border.BorderBrush>
