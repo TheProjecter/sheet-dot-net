@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xceed.Wpf.Toolkit;
 
 namespace Sheet.GUI.Commands
 {
@@ -34,8 +35,15 @@ namespace Sheet.GUI.Commands
         {
             if (dialog.ShowDialog() == false)
                 return;
-            Stream stream = dialog.OpenFile();
-            vm.AddNewAttachment(stream, dialog.SafeFileName);
+            try
+            {
+                Stream stream = dialog.OpenFile();
+                vm.AddNewAttachment(stream, dialog.SafeFileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening file: " + ex.Message);
+            }
         }
     }
 }
