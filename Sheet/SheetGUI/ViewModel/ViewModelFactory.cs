@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI.ViewModel
 {
-    public class ViewModelFactory
+    public partial class MainViewModel
     {
         private IDictionary<int, LabelViewModel> labelViewModels = new Dictionary<int, LabelViewModel>();
         private IDictionary<int, NoteViewModel> noteViewModels = new Dictionary<int, NoteViewModel>();
@@ -32,12 +32,14 @@ namespace Sheet.GUI.ViewModel
 
         internal void RegisterViewModel(INote model, NoteViewModel vm)
         {
-            noteViewModels.Add(model.ID, vm);
+            if (noteViewModels.ContainsKey(model.ID) == false)
+                noteViewModels.Add(model.ID, vm);
         }
 
         internal void UnregisterViewModel(INote model)
         {
-            noteViewModels.Remove(model.ID);
+            if (noteViewModels.ContainsKey(model.ID))
+                noteViewModels.Remove(model.ID);
         }
 
         public LabelViewModel GetViewModel(ILabel model)
@@ -57,12 +59,14 @@ namespace Sheet.GUI.ViewModel
 
         internal void RegisterViewModel(ILabel model, LabelViewModel vm)
         {
-            labelViewModels.Add(model.ID, vm);
+            if (labelViewModels.ContainsKey(model.ID) == false)
+                labelViewModels.Add(model.ID, vm);
         }
 
         internal void UnregisterViewModel(ILabel model)
         {
-            labelViewModels.Remove(model.ID);
+            if (labelViewModels.ContainsKey(model.ID))
+                labelViewModels.Remove(model.ID);
         }
 
         public AttachmentViewModel GetViewModel(IAttachment model)
@@ -82,12 +86,14 @@ namespace Sheet.GUI.ViewModel
 
         internal void RegisterViewModel(IAttachment model, AttachmentViewModel vm)
         {
-            attachmentViewModels.Add(model.ID, vm);
+            if (attachmentViewModels.ContainsKey(model.ID) == false)
+                attachmentViewModels.Add(model.ID, vm);
         }
 
         internal void UnregisterViewModel(IAttachment model)
         {
-            attachmentViewModels.Remove(model.ID);
+            if (attachmentViewModels.ContainsKey(model.ID))
+                attachmentViewModels.Remove(model.ID);
         }
 
         public MetainfoViewModel GetViewModel(IMetainfo model)
@@ -107,12 +113,14 @@ namespace Sheet.GUI.ViewModel
 
         internal void RegisterViewModel(IMetainfo model, MetainfoViewModel vm)
         {
-            metainfoViewModels.Add(model.ID, vm);
+            if (metainfoViewModels.ContainsKey(model.ID) == false)
+                metainfoViewModels.Add(model.ID, vm);
         }
 
         internal void UnregisterViewModel(IMetainfo model)
         {
-            metainfoViewModels.Remove(model.ID);
+            if (metainfoViewModels.ContainsKey(model.ID))
+                metainfoViewModels.Remove(model.ID);
         }
     }
 }

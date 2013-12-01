@@ -25,12 +25,11 @@ namespace Sheet.GUI.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public partial class MainViewModel : ViewModelBase
     {
-        private ViewModelFactory factory = new ViewModelFactory();
-
         private ObservableCollection<LabelViewModel> labels;
         private ObservableCollection<NoteViewModel> openNotes;
+        private ObservableCollection<NoteViewModel> searchResults;
 
         private NoteViewModel selectedNote;
 
@@ -38,6 +37,9 @@ namespace Sheet.GUI.ViewModel
         private NewNoteCommand newNote;
         private CloseNoteCommand closeNote;
         private DeleteNoteCommand deleteNote;
+        private SaveNoteCommand saveNote;
+        private DelayedSaveNoteCommand delayedSaveNote;
+        private SimpleSearchCommand simpleSearch;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -54,14 +56,13 @@ namespace Sheet.GUI.ViewModel
                 newNote = new NewNoteCommand(this);
                 closeNote = new CloseNoteCommand(this);
                 deleteNote = new DeleteNoteCommand(this);
+                saveNote = new SaveNoteCommand(this);
+                delayedSaveNote = new DelayedSaveNoteCommand(this);
+                simpleSearch = new SimpleSearchCommand(this);
 
                 OpenNotes.CollectionChanged += openNotes_CollectionChanged;
+                SearchResults.CollectionChanged += searchResults_CollectionChanged;
             }
-        }
-
-        public ViewModelFactory Factory
-        {
-            get { return factory; }
         }
 
         public ObservableCollection<LabelViewModel> Labels
@@ -90,11 +91,24 @@ namespace Sheet.GUI.ViewModel
             }
         }
 
+        public ObservableCollection<NoteViewModel> SearchResults
+        {
+            get
+            {
+                if (searchResults == null)
+                {
+                    searchResults = new ObservableCollection<NoteViewModel>();
+                }
+                return searchResults;
+            }
+        }
+
         public void LoadLabels()
         {
+            Labels.Clear();
             foreach (var label in App.Bll.GetLabels())
             {
-                labels.Add(factory.GetViewModel(label));
+                Labels.Add(this.GetViewModel(label));
             }
         }
 
@@ -127,6 +141,31 @@ namespace Sheet.GUI.ViewModel
             }
         }
 
+        private Visibility searchResultsVisibility = Visibility.Collapsed;
+        public Visibility SearchResultsVisibility
+        {
+            get { return searchResultsVisibility; }
+            set
+            {
+                if (searchResultsVisibility == value)
+                    return;
+
+                searchResultsVisibility = value;
+
+                RaisePropertyChanged("SearchResultsVisibility");
+            }
+        }
+
+        public Visibility NoResultsVisibility
+        {
+            get { return searchResults.Count == 0 && searchResultsVisibility == Visibility.Visible ? Visibility.Visible : Visibility.Collapsed; }
+        }
+
+        void searchResults_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            base.RaisePropertyChanged("NoResultsVisibility");
+        }
+
         public ICommand OpenNote
         {
             get { return openNote; }
@@ -145,6 +184,21 @@ namespace Sheet.GUI.ViewModel
         public ICommand DeleteNote
         {
             get { return deleteNote; }
+        }
+
+        public ICommand SaveNote
+        {
+            get { return saveNote; }
+        }
+
+        public ICommand DelayedSaveNote
+        {
+            get { return delayedSaveNote; }
+        }
+
+        public ICommand SimpleSearch
+        {
+            get { return simpleSearch; }
         }
     }
 }

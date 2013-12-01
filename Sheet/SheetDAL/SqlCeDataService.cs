@@ -55,16 +55,10 @@ namespace Sheet.DAL
         {
             using (SheetContext ctx = new SheetContext())
             {
-                try
-                {
-                    Note dbNote = ctx.Notes.Find(note.ID);
-                    dbNote.Text = note.Text;
-                    dbNote.Title = note.Title;
-                    ctx.SaveChanges();
-                }
-                catch (InvalidOperationException)
-                {
-                }
+                Note dbNote = ctx.Notes.Find(note.ID);
+                dbNote.Text = note.Text;
+                dbNote.Title = note.Title;
+                ctx.SaveChanges();
             }
         }
 
@@ -72,16 +66,11 @@ namespace Sheet.DAL
         {
             using (SheetContext ctx = new SheetContext())
             {
-                try
-                {
-                    Note dbNote = ctx.Notes.Find(note.ID);
-                    ctx.Notes.Remove(dbNote);
-                    ctx.SaveChanges();
-                }
-                catch (InvalidOperationException)
-                {
-                }
+                Note dbNote = ctx.Notes.Find(note.ID);
+                ctx.Notes.Remove(dbNote);
+                ctx.SaveChanges();
             }
+            CleanupLabels();
         }
 
         public ICollection<Facade.Notes.ILabel> GetLabels()
@@ -140,7 +129,7 @@ namespace Sheet.DAL
             {
                 try
                 {
-                    return ctx.Notes.ToList().Where(n => n.Labels.Contains((Label)label)).ToArray<Facade.Notes.INote>();
+                    return ctx.Notes.Where(n => n.Labels.Contains((Label)label)).ToArray<Facade.Notes.INote>();
                 }
                 catch (ArgumentNullException)
                 {
@@ -184,13 +173,22 @@ namespace Sheet.DAL
             using (SheetContext ctx = new SheetContext())
             {
                 Label dbLabel = ctx.Labels.SingleOrDefault(l => l.Text == text) ?? new Label() { Text = text };
-                Note dbNote = ctx.Notes.Find(note.ID);
+                Note dbNote = ctx.Notes.Include("Labels").Where(n => n.ID == note.ID).FirstOrDefault();
                 if (!dbNote.Labels.Any(l => l.ID == dbLabel.ID))
                 {
                     dbNote.Labels.Add(dbLabel);
                     ctx.SaveChanges();
                 }
+                CleanupLabels();
                 return dbLabel;
+            }
+        }
+
+        private void CleanupLabels()
+        {
+            using (SheetContext ctx = new SheetContext())
+            {                
+                ctx.Labels.RemoveRange(ctx.Labels.Include("Notes").Where(l => l.Notes.Count == 0));
             }
         }
     }

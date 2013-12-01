@@ -60,6 +60,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MahApps.Metro.0.11.0.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Blend.Interactivity.Wpf.1.0.1340.0\lib\net\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -72,7 +76,7 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\Expression.Blend.Sdk.1.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
@@ -108,10 +112,19 @@
     </ApplicationDefinition>
     <Compile Include="BusinessLogicDispatcher.cs" />
     <Compile Include="Commands\CloseNoteCommand.cs" />
+    <Compile Include="Commands\DelayedSaveNoteCommand.cs" />
     <Compile Include="Commands\DeleteNoteCommand.cs" />
     <Compile Include="Commands\GlobalCommand.cs" />
     <Compile Include="Commands\OpenNoteCommand.cs" />
+    <Compile Include="Commands\SaveNoteCommand.cs" />
+    <Compile Include="Commands\SimpleSearchCommand.cs" />
+    <Compile Include="Commands\UpdateLabelsCommand.cs" />
     <Compile Include="Converters\IntVisibilityConverter.cs" />
+    <Compile Include="ModelMocks\AttachmentMock.cs" />
+    <Compile Include="ModelMocks\LabelMock.cs" />
+    <Compile Include="ModelMocks\MetainfoMock.cs" />
+    <Compile Include="ModelMocks\ModelMock.cs" />
+    <Compile Include="ModelMocks\NoteMock.cs" />
     <Compile Include="RichTextBoxHelper.cs" />
     <Compile Include="TabTemplateSelector.cs" />
     <Compile Include="ViewModel\AttachmentViewModel.cs" />
@@ -121,7 +134,7 @@
     <Compile Include="ViewModel\MetainfoViewModel.cs" />
     <Compile Include="Commands\NewNoteCommand.cs" />
     <Compile Include="ViewModel\NoteViewModel.cs" />
-    <Compile Include="ViewModel\ProducableViewModel.cs" />
+    <Compile Include="ViewModel\SheetViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelFactory.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
@@ -194,6 +207,10 @@
     <Resource Include="Resources\Images\Logos\logo255.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LabelsControl\LabelsControl.csproj">
+      <Project>{3ed0f92f-4fa6-4152-8be1-ee93a785e2ec}</Project>
+      <Name>LabelsControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SheetBLL\SheetBLL.csproj">
       <Project>{f9c84e28-9e8b-4e1d-b92d-80a27b1450b1}</Project>
       <Name>SheetBLL</Name>

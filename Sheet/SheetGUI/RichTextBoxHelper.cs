@@ -42,6 +42,7 @@ namespace Sheet.GUI
                     richTextBox.Document = doc;
 
                     // When the document changes update the source
+                    //richTextBox.TextChanged
                     range.Changed += (obj2, e2) =>
                     {
                         if (richTextBox.Document == doc)

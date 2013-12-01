@@ -54,6 +54,7 @@ namespace Sheet.BLL
             if (count == 0)
             {
                 //TODO: use resources instead!
+                //TODO: use dummy labelviewmodel instead!
                 Dal.SetLabel(note, "No label");
             }
             return Dal.LoadNote(note);

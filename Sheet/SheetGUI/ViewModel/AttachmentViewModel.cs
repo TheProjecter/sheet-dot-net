@@ -15,12 +15,12 @@ namespace Sheet.GUI.ViewModel
 
         private ObservableCollection<MetainfoViewModel> metadata = new ObservableCollection<MetainfoViewModel>();
 
-        public AttachmentViewModel(IAttachment model, ViewModelFactory factory) : base(factory)
+        public AttachmentViewModel(IAttachment model, MainViewModel main) : base(main)
         {
             if (model == null)
                 throw new ArgumentNullException("model");
             this.model = model;
-            factory.RegisterViewModel(model, this);
+            main.RegisterViewModel(model, this);
             LoadViewModels();
         }
 
@@ -29,7 +29,7 @@ namespace Sheet.GUI.ViewModel
             Metadata.Clear();
             foreach (var metainfo in model.Metadata)
             {
-                Metadata.Add(factory.GetViewModel(metainfo));
+                Metadata.Add(main.GetViewModel(metainfo));
             }
         }
 

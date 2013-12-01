@@ -8,6 +8,8 @@
         xmlns:vm="clr-namespace:Sheet.GUI.ViewModel"
         xmlns:c="cls-namespace:Sheet.GUI.Converters"
         xmlns:local="clr-namespace:Sheet.GUI"
+        xmlns:l="clr-namespace:LabelsControl;assembly=LabelsControl"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="Sheet" MinHeight="600" MinWidth="800" Height="600" Width="800" Icon="Resources/Images/Logos/logo128.ico" TitleCaps="False" BorderBrush="#FF80BA45" BorderThickness="3"
         Loaded="MetroWindow_Loaded"
         >
@@ -174,8 +176,14 @@
             <!--<Button Content="settings" />-->
             <Button>
                 <StackPanel Orientation="Horizontal">
-                    <s:SearchTextBox Grid.Column="0" Grid.Row="1" Width="150" SearchEventTimeDelay="00:00:02.00"
-                HorizontalAlignment="Stretch" />
+                    <s:SearchTextBox x:Name="searchTextBox" Grid.Column="0" Grid.Row="1" Width="150" SearchEventTimeDelay="00:00:01.00"
+                HorizontalAlignment="Stretch" SearchMode="Instant">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Search">
+                                <i:InvokeCommandAction Command="{Binding Path=DataContext.SimpleSearch, ElementName=mainWindow}" CommandParameter="{Binding Text, ElementName=searchTextBox}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </s:SearchTextBox>
                 </StackPanel>
             </Button>
         </m:WindowCommands>
@@ -222,7 +230,7 @@
                     </StackPanel>
                 </HierarchicalDataTemplate>
                 <HierarchicalDataTemplate DataType="{x:Type vm:NoteViewModel}">
-                    <Button Style="{x:Null}" Command="{Binding Path=DataContext.OpenNote, ElementName=mainWindow}" CommandParameter="{Binding}">
+                    <Button Style="{x:Null}" >
                         <Button.Template>
                             <ControlTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -231,10 +239,37 @@
                                 </StackPanel>
                             </ControlTemplate>
                         </Button.Template>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding Path=DataContext.OpenNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </Button>
                 </HierarchicalDataTemplate>
             </TreeView.Resources>
         </TreeView>
+        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding SearchResults}" Visibility="{Binding SearchResultsVisibility}" BorderThickness="0">
+            <ListView.Resources>
+                <DataTemplate DataType="{x:Type vm:NoteViewModel}">
+                    <Button Style="{x:Null}" >
+                        <Button.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="15,0,0,0">
+                                    <Image Source="/Resources/Images/Icons/note.png" Width="15" Height="15" Margin="0,0,2,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding Path=DataContext.OpenNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </DataTemplate>
+            </ListView.Resources>
+        </ListView>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="No results." Visibility="{Binding NoResultsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="10,6,10,20"/>
         <GridSplitter HorizontalAlignment="Right" 
                   VerticalAlignment="Stretch" 
                   Grid.Column="1" Grid.Row="1" ResizeBehavior="PreviousAndNext"
@@ -268,7 +303,13 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <t:WatermarkTextBox Grid.Row="0" FontSize="18" BorderThickness="0" Watermark="Set title..." Text="{Binding Title}"
-                                            IsEnabled="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Background="#00000000" CaretBrush="Black"/>
+                                            IsEnabled="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Background="#00000000" CaretBrush="Black">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="LostFocus">
+                                                    <i:InvokeCommandAction Command="{Binding Path=DataContext.SaveNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </t:WatermarkTextBox>
                                         <Button Width="20" Height="20" BorderThickness="0" Padding="0" Margin="0"
                                                 VerticalAlignment="Center" Background="#00000000" BorderBrush="#00000000" 
                                                 Command="{Binding Path=DataContext.CloseNote, ElementName=mainWindow}" CommandParameter="{Binding}">
@@ -296,7 +337,7 @@
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                                 </Border.BorderBrush>
                                 <ScrollViewer>
-                                    <t:RichTextBox local:RichTextBoxHelper.DocumentXaml="{Binding Text}" SpellCheck.IsEnabled="True" IsDocumentEnabled="True" BorderThickness="0" AcceptsTab="True" >
+                                    <!--<t:RichTextBox local:RichTextBoxHelper.DocumentXaml="{Binding Text}" SpellCheck.IsEnabled="False" IsDocumentEnabled="True" BorderThickness="0" AcceptsTab="True" >
                                         <t:RichTextBox.Resources>
                                             <Style TargetType="{x:Type Paragraph}">
                                                 <Setter Property="Margin" Value="0,0,0,5"/>
@@ -306,7 +347,25 @@
                                             <t:RichTextBoxFormatBar/>
                                         </t:RichTextBoxFormatBarManager.FormatBar>
                                         <FlowDocument Language="hu-hu" />
-                                    </t:RichTextBox>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="LostFocus">
+                                                <i:InvokeCommandAction Command="{Binding Path=DataContext.SaveNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="TextChanged">
+                                                <i:InvokeCommandAction Command="{Binding Path=DataContext.DelayedSaveNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </t:RichTextBox>-->
+                                    <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" AcceptsTab="True" AcceptsReturn="True">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="LostFocus">
+                                                <i:InvokeCommandAction Command="{Binding Path=DataContext.SaveNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                                            </i:EventTrigger>
+                                            <i:EventTrigger EventName="TextChanged">
+                                                <i:InvokeCommandAction Command="{Binding Path=DataContext.DelayedSaveNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </TextBox>
                                 </ScrollViewer>
                             </Border>
                             <Border Grid.Row="1" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,2,2">
@@ -315,7 +374,8 @@
                                 </Border.BorderBrush>
                                 <StackPanel Orientation="Horizontal">
                                     <!--Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/-->
-                                    <t:WatermarkTextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,1" BorderThickness="0" Watermark="Add labels..."/>
+                                    <!--<t:WatermarkTextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,1" BorderThickness="0" Watermark="Add labels..."/>-->
+                                    <l:LabelsControl VerticalAlignment="Center" HorizontalAlignment="Stretch" Source="{Binding LabelString}" Update="{Binding Update}"/>
                                 </StackPanel>
                             </Border>
                             <Border Grid.Row="2" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,2,2">
