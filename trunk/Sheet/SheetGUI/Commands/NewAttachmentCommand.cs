@@ -42,7 +42,7 @@ namespace Sheet.GUI.Commands
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error opening file: " + ex.Message);
+                MessageBox.Show(ex.Message, "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
         }
     }
