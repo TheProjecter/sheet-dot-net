@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.TabControl", "TabContro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabelsControl", "LabelsControl\LabelsControl.csproj", "{3ED0F92F-4FA6-4152-8BE1-EE93A785E2EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSIcon", "OSIcon\OSIcon.csproj", "{3233B80B-EBA7-42E0-999D-7B63FF02A8CC}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -59,6 +61,10 @@ Global
 		{3ED0F92F-4FA6-4152-8BE1-EE93A785E2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ED0F92F-4FA6-4152-8BE1-EE93A785E2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3ED0F92F-4FA6-4152-8BE1-EE93A785E2EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3233B80B-EBA7-42E0-999D-7B63FF02A8CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3233B80B-EBA7-42E0-999D-7B63FF02A8CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3233B80B-EBA7-42E0-999D-7B63FF02A8CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3233B80B-EBA7-42E0-999D-7B63FF02A8CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

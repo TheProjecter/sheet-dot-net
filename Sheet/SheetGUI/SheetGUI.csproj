@@ -215,6 +215,10 @@
       <Project>{3ed0f92f-4fa6-4152-8be1-ee93a785e2ec}</Project>
       <Name>LabelsControl</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OSIcon\OSIcon.csproj">
+      <Project>{3233b80b-eba7-42e0-999d-7b63ff02a8cc}</Project>
+      <Name>OSIcon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SheetBLL\SheetBLL.csproj">
       <Project>{f9c84e28-9e8b-4e1d-b92d-80a27b1450b1}</Project>
       <Name>SheetBLL</Name>

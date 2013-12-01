@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
+using OSIcon.WinAPI;
 using Sheet.Facade.Notes;
 using Sheet.GUI.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,6 +18,8 @@ namespace Sheet.GUI.ViewModel
     public class AttachmentViewModel : CompositeViewModel
     {
         private IAttachment model;
+
+        private Icon thumbnail = null;
 
         private string cache = null;
         private bool real = false;
@@ -59,6 +63,28 @@ namespace Sheet.GUI.ViewModel
             }
         }
 
+        public Icon Thumbnail
+        {
+            get
+            {
+                if (thumbnail == null)
+                {
+                    OSIcon.WinAPI.Shell32.SHFILEINFO shfi = new Shell32.SHFILEINFO();
+                    thumbnail = OSIcon.IconReader.GetFileIcon(Path.GetExtension(model.Name), OSIcon.IconReader.IconSize.Jumbo, false, ref shfi);
+                }
+                return thumbnail;
+            }
+            set
+            {
+                if (thumbnail == value)
+                    return;
+
+                thumbnail = value;
+
+                base.RaisePropertyChanged("Thumbnail");
+            }
+        }
+
         public ObservableCollection<MetainfoViewModel> Metadata
         {
             get
@@ -97,25 +123,25 @@ namespace Sheet.GUI.ViewModel
             App.Bll.DeleteAttachment(model);
         }
 
-        internal void Save(string path)
+        internal async void Save(string path)
         {
             Stream target = File.Open(path, FileMode.Create);
             Stream data = cache == null && File.Exists(cache) ? App.Bll.DownloadAttachment(model) : File.Open(cache, FileMode.Open);
-            data.CopyToAsync(target);
+            await data.CopyToAsync(target);
             if (cache != null && !real && File.Exists(cache))
                 File.Delete(cache);
             cache = path;
             real = true;
         }
 
-        internal void Open()
+        internal async void Open()
         {
             if (cache == null)
             {
-                string path = Path.GetTempFileName();
+                string path = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(model.Name));
                 Stream target = File.Open(path, FileMode.Create);
                 Stream data = App.Bll.DownloadAttachment(model);
-                data.CopyToAsync(target);
+                await data.CopyToAsync(target);
                 cache = path;
                 real = false;
             }
