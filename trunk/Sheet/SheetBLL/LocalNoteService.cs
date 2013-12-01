@@ -85,8 +85,6 @@ namespace Sheet.BLL
         public Facade.Notes.INote NewNote()
         {
             INote newNote = Dal.CreateNote();
-            //TODO: use resources instead!
-            Dal.SetLabel(newNote, "No label");
             return Dal.LoadNote(newNote);
         }
 

@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows;
 using System.Linq;
 using Sheet.Facade.Notes;
+using Sheet.GUI.ModelMocks;
 
 namespace Sheet.GUI.ViewModel
 {
@@ -32,6 +33,7 @@ namespace Sheet.GUI.ViewModel
         private ObservableCollection<NoteViewModel> searchResults;
 
         private NoteViewModel selectedNote;
+        private LabelViewModel noLabel;
 
         private OpenNoteCommand openNote;
         private NewNoteCommand newNote;
@@ -52,6 +54,8 @@ namespace Sheet.GUI.ViewModel
             }
             else
             {
+                noLabel = new LabelViewModel(new LabelMock() { Text = "No label" }, this);
+
                 openNote = new OpenNoteCommand(this);
                 newNote = new NewNoteCommand(this);
                 closeNote = new CloseNoteCommand(this);
@@ -124,6 +128,11 @@ namespace Sheet.GUI.ViewModel
 
                 base.RaisePropertyChanged("SelectedNote");
             }
+        }
+
+        internal LabelViewModel NoLabel
+        {
+            get { return noLabel; }
         }
 
         public Visibility TabVisibility

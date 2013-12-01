@@ -18,6 +18,7 @@ namespace Sheet.GUI.Commands
             dialog = new SaveFileDialog();
             dialog.Title = "Save attachment as...";
             dialog.OverwritePrompt = true;
+            dialog.Filter = "All files (*.*)|*.*";
         }
 
         public SaveAttachmentCommand(AttachmentViewModel vm) : base(vm) { }

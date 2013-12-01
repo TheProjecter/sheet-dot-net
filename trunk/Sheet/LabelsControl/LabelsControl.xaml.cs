@@ -21,7 +21,8 @@ namespace LabelsControl
     /// </summary>
     public partial class LabelsControl : UserControl, INotifyPropertyChanged
     {
-        private static string[] splitChars = {" ", ",", ";"};
+        private static string[] split = {" ", ",", ";"};
+        private static string defaultSplit = ", ";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -43,15 +44,16 @@ namespace LabelsControl
             get { return labels; }
         }
 
+        private string source = "";
         public string Source
         {
-            get { return GetValue(SourceProperty) as string; }
+            get { return source; }
             set 
             {
                 if (Source == value)
                     return;
 
-                SetValue(SourceProperty, value);
+                source = value;
 
                 RaisePropertyChanged("Source");
             }
@@ -66,6 +68,7 @@ namespace LabelsControl
 
         private void SourceChanged()
         {
+            source = GetValue(SourceProperty) as string;
             UpdateLabels();
         }
 
@@ -86,7 +89,7 @@ namespace LabelsControl
 
         private void LabelTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            StartEdit();
+            StartEdit(null);
         }
 
         private void LabelTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -96,14 +99,36 @@ namespace LabelsControl
 
         private void Label_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            StartEdit();
+            Label l = sender as Label;
             LabelTextBox.Focus();
+            StartEdit(l.Content as string);
         }
 
-        private void StartEdit()
+        private void StartEdit(string hit)
         {
             LabelList.Visibility = Visibility.Collapsed;
-            LabelTextBox.Text = string.Join(", ", labels.ToArray());
+            LabelTextBox.Text = string.Join(defaultSplit, labels.ToArray());
+            if (hit == null)
+            {
+                LabelTextBox.Text += defaultSplit;
+                LabelTextBox.CaretIndex = LabelTextBox.Text.Length;
+            }
+            else
+            {
+                int position = LabelTextBox.Text.IndexOf(hit + defaultSplit);
+                if (position < 0)
+                {
+                    LabelTextBox.CaretIndex = LabelTextBox.Text.Length - hit.Length;
+                    LabelTextBox.SelectionStart = LabelTextBox.Text.Length - hit.Length;
+                    LabelTextBox.SelectionLength = hit.Length;
+                }
+                else
+                {
+                    LabelTextBox.CaretIndex = position;
+                    LabelTextBox.SelectionStart = position;
+                    LabelTextBox.SelectionLength = hit.Length;
+                }
+            }
         }
 
         private void EndEdit()
@@ -121,7 +146,7 @@ namespace LabelsControl
         {
             if (Source == null)
                 return;
-            var labelStrings = Source.Split(splitChars, StringSplitOptions.RemoveEmptyEntries);
+            var labelStrings = Source.Split(split, StringSplitOptions.RemoveEmptyEntries);
             labels.Clear();
             foreach (var label in labelStrings)
             {

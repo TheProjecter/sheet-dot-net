@@ -20,6 +20,7 @@ namespace Sheet.GUI.Commands
             dialog.Multiselect = false;
             dialog.CheckPathExists = true;
             dialog.CheckFileExists = true;
+            dialog.Filter = "All files (*.*)|*.*";
         }
 
         public NewAttachmentCommand(NoteViewModel vm) : base(vm) { }

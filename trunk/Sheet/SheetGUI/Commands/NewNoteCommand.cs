@@ -19,6 +19,7 @@ namespace Sheet.GUI.Commands
         public override void Execute(object parameter)
         {
             NoteViewModel newNoteVM = vm.GetViewModel(App.Bll.NewNote());
+            newNoteVM.Connect();
             vm.OpenNotes.Add(newNoteVM);
             vm.SelectedNote = newNoteVM;
         }

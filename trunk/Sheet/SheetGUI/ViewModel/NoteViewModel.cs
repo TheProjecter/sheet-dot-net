@@ -48,7 +48,7 @@ namespace Sheet.GUI.ViewModel
 
         protected override void LoadViewModels()
         {
-            LabelString = string.Join(", ", model.Labels.Where(l => l.Text != "No label").Select((l) => (l.Text)));
+            LabelString = string.Join(", ", model.Labels.Select((l) => (l.Text)));
             Labels.Clear();
             foreach (var label in model.Labels)
             {
@@ -159,26 +159,44 @@ namespace Sheet.GUI.ViewModel
         
         public void Connect()
         {
-            foreach (var label in Labels)
+            if (Labels.Count == 0)
             {
-                if (label.Notes.Contains(this) == false)
-                    label.Notes.Add(this);
-                if (main.Labels.Contains(label) == false)
+                if (main.NoLabel.Notes.Count == 0 && !main.Labels.Contains(main.NoLabel))
+                    main.Labels.Insert(0, main.NoLabel);
+                main.NoLabel.Notes.Add(this);
+            }
+            else
+            {
+                foreach (var label in Labels)
                 {
-                    main.Labels.Add(label);
+                    if (label.Notes.Contains(this) == false)
+                        label.Notes.Add(this);
+                    if (main.Labels.Contains(label) == false)
+                    {
+                        main.Labels.Add(label);
+                    }
                 }
             }
         }
 
         public void Disconnect()
         {
-            foreach (var label in Labels)
+            if (Labels.Count == 0)
             {
-                if (label.Notes.Contains(this))
-                    label.Notes.Remove(this);
-                if (label.Notes.Count == 0)
+                main.NoLabel.Notes.Remove(this);
+                if (main.NoLabel.Notes.Count == 0 && main.Labels.Contains(main.NoLabel))
+                    main.Labels.Remove(main.NoLabel);
+            }
+            else
+            {
+                foreach (var label in Labels)
                 {
-                    main.Labels.Remove(label);
+                    if (label.Notes.Contains(this))
+                        label.Notes.Remove(this);
+                    if (label.Notes.Count == 0)
+                    {
+                        main.Labels.Remove(label);
+                    }
                 }
             }
         }
