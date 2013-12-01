@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI.ViewModel
 {
-    public abstract class CompositeViewModel : SheetViewModelBase
+    public class SheetViewModelBase : ViewModelBase
     {
-        public CompositeViewModel(MainViewModel main) : base (main) { }
+        protected MainViewModel main;
 
-        protected abstract void LoadViewModels();
+        public SheetViewModelBase(MainViewModel main)
+        {
+            this.main = main;
+        }
     }
 }

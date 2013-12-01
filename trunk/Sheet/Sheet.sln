@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIControls", "UIControls\UI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.TabControl", "TabControl\Wpf.TabControl.csproj", "{509D06BD-AEB6-4E92-8E5B-21188EBDBD9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabelsControl", "LabelsControl\LabelsControl.csproj", "{3ED0F92F-4FA6-4152-8BE1-EE93A785E2EC}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -53,6 +55,10 @@ Global
 		{509D06BD-AEB6-4E92-8E5B-21188EBDBD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{509D06BD-AEB6-4E92-8E5B-21188EBDBD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{509D06BD-AEB6-4E92-8E5B-21188EBDBD9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ED0F92F-4FA6-4152-8BE1-EE93A785E2EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ED0F92F-4FA6-4152-8BE1-EE93A785E2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ED0F92F-4FA6-4152-8BE1-EE93A785E2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ED0F92F-4FA6-4152-8BE1-EE93A785E2EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

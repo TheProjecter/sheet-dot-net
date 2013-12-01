@@ -10,19 +10,8 @@ namespace Sheet.GUI.Commands
 {
     class OpenNoteCommand : GlobalCommand
     {
-        private bool doubleClick = false;
-        private object doubleParamter = null;
-        private Timer timer = new Timer(1000);
 
-        public OpenNoteCommand(MainViewModel main) : base(main)
-        {
-            timer.Elapsed += timer_Elapsed;
-        }
-
-        void timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            doubleClick = false;
-        }
+        public OpenNoteCommand(MainViewModel main) : base(main) { }
 
         public override bool CanExecute(object parameter)
         {
@@ -33,25 +22,13 @@ namespace Sheet.GUI.Commands
 
         public override void Execute(object parameter)
         {
-            if (doubleClick && doubleParamter == parameter)
-            {
-                doubleClick = false;
-                doubleParamter = null;
-                timer.Stop();
-                NoteViewModel noteVM = parameter as NoteViewModel;
-                if (noteVM == null)
-                    return;
-                if (!main.OpenNotes.Contains(noteVM))
-                    main.OpenNotes.Add(noteVM);
+            NoteViewModel noteVM = parameter as NoteViewModel;
+            if (noteVM == null)
+                return;
+            if (!main.OpenNotes.Contains(noteVM))
+                main.OpenNotes.Add(noteVM);
 
-                main.SelectedNote = noteVM;
-            }
-            else
-            {
-                doubleClick = true;
-                doubleParamter = parameter;
-                timer.Start();
-            }
+            main.SelectedNote = noteVM;
         }
     }
 }

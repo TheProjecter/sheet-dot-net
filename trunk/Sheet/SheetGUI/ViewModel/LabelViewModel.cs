@@ -15,12 +15,12 @@ namespace Sheet.GUI.ViewModel
 
         private ObservableCollection<NoteViewModel> notes;
 
-        public LabelViewModel(ILabel model, ViewModelFactory factory) : base(factory)
+        public LabelViewModel(ILabel model, MainViewModel main) : base(main)
         {
             if (model == null)
                 throw new ArgumentNullException("model");
             this.model = model;
-            factory.RegisterViewModel(model, this);
+            main.RegisterViewModel(model, this);
             LoadViewModels();
         }
 
@@ -29,7 +29,7 @@ namespace Sheet.GUI.ViewModel
             Notes.Clear();
             foreach (var note in model.Notes)
             {
-                Notes.Add(factory.GetViewModel(note));
+                Notes.Add(main.GetViewModel(note));
             }
         }
 

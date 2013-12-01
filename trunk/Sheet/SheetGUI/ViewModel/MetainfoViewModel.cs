@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI.ViewModel
 {
-    public class MetainfoViewModel : ProducableViewModel
+    public class MetainfoViewModel : SheetViewModelBase
     {
         private IMetainfo model;
 
-        public MetainfoViewModel(IMetainfo model, ViewModelFactory factory) : base(factory)
+        public MetainfoViewModel(IMetainfo model, MainViewModel main) : base(main)
         {
             this.model = model;
-            factory.RegisterViewModel(model, this);
+            main.RegisterViewModel(model, this);
         }
 
         public string Key
