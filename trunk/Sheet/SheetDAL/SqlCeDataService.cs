@@ -121,7 +121,13 @@ namespace Sheet.DAL
             {
                 try
                 {
-                    return ctx.Notes.Include("Labels").Where(n => n.Text.Contains(expression)).ToArray();
+                    return ctx.Notes
+                        .Include("Labels")
+                        .Where(
+                            n => n.Text.Contains(expression) || 
+                            n.Title.Contains(expression) || 
+                            n.Labels.Any(l => l.Text.Contains(expression))
+                        ).ToArray();
                 }
                 catch (ArgumentNullException)
                 {
