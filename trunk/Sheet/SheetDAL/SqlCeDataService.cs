@@ -210,7 +210,7 @@ namespace Sheet.DAL
             return result;
         }
 
-        public void DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
+        public void DeleteAttachment(Facade.Notes.IAttachment attachment)
         {
 
             string fileName = attachment.ID + ".attachment";
@@ -223,8 +223,7 @@ namespace Sheet.DAL
             using (SheetContext ctx = new SheetContext())
             {
                 Attachment dbAttachment = ctx.Attachments.Find(attachment.ID);
-                Note dbNote = ctx.Notes.Find(note.ID);
-                dbNote.Attachments.Remove(dbAttachment);
+                ctx.Attachments.Remove(dbAttachment);
                 ctx.SaveChanges();
             }
         }

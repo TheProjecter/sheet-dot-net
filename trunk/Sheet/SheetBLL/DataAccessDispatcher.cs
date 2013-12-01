@@ -66,9 +66,9 @@ namespace Sheet.BLL
             service.DeleteNote(note);
         }
 
-        public void DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
+        public void DeleteAttachment(Facade.Notes.IAttachment attachment)
         {
-            service.DeleteAttachment(note, attachment);
+            service.DeleteAttachment(attachment);
         }
 
         public void SaveNote(Facade.Notes.INote note)
