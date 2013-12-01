@@ -33,7 +33,7 @@ namespace Sheet.DAL.Entities
 
         ICollection<Facade.Notes.IMetainfo> Facade.Notes.IAttachment.Metadata
         {
-            get { return (ICollection<Facade.Notes.IMetainfo>)Metadata; }
+            get { return Metadata.ToList<Facade.Notes.IMetainfo>(); }
         }
     }
 }
