@@ -73,7 +73,12 @@ namespace Sheet.DAL
         {
             using (SheetContext ctx = new SheetContext())
             {
-                Note dbNote = ctx.Notes.Find(note.ID);
+                Note dbNote = ctx.Notes.Include("Attachments").Single(n => n.ID == note.ID);
+                foreach (Attachment attachment in dbNote.Attachments)
+                {
+                    this.DeleteAttachment(attachment);
+                }
+                dbNote = ctx.Notes.Find(dbNote.ID);
                 ctx.Notes.Remove(dbNote);
                 ctx.SaveChanges();
             }
