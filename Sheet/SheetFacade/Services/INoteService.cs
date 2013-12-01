@@ -15,7 +15,8 @@ namespace Sheet.Facade.Services
         ICollection<INote> SearchNote(string expression);
         INote LoadNote(INote note);
         INote UpdateLabels(INote note, IEnumerable<string> labels);
-        INote AddAttachment(INote note, Stream attachment);
+        INote AddAttachment(INote note, Stream attachment, string fileName);
+        Stream DownloadAttachment(IAttachment attachment);
         INote NewNote();
         void SaveNote(INote note);
         void DeleteNote(INote note);

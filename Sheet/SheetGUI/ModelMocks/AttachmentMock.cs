@@ -15,7 +15,7 @@ namespace Sheet.GUI.ModelMocks
             set;
         }
 
-        public System.IO.Stream File
+        public string Path
         {
             get;
             set;

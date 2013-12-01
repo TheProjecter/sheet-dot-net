@@ -2,6 +2,7 @@
 using Sheet.Facade.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,14 +61,14 @@ namespace Sheet.BLL
             return Dal.LoadNote(note);
         }
 
-        public Facade.Notes.INote AddAttachment(Facade.Notes.INote note, System.IO.Stream data)
+        public Facade.Notes.INote AddAttachment(Facade.Notes.INote note, System.IO.Stream sourceStream, string fileName)
         {
-            IAttachment attachment = Dal.CreateAttachment(note, data);
-            ExtractMetadata(attachment, data);
+            IAttachment attachment = Dal.CreateAttachment(note, sourceStream, fileName);
+            ExtractMetadata(attachment);
             return Dal.LoadNote(note);
         }
 
-        private void ExtractMetadata(IAttachment attachment, System.IO.Stream data)
+        private void ExtractMetadata(IAttachment attachment)
         {
             throw new NotImplementedException();
         }
@@ -95,6 +96,11 @@ namespace Sheet.BLL
             //TODO: use resources instead!
             Dal.SetLabel(newNote, "No label");
             return Dal.LoadNote(newNote);
+        }
+
+        public Stream DownloadAttachment(IAttachment attachment)
+        {
+            return Dal.DownloadAttachment(attachment);
         }
     }
 }

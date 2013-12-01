@@ -12,7 +12,8 @@ namespace Sheet.Facade.Services
     public interface IDataService
     {
         INote CreateNote();
-        IAttachment CreateAttachment(INote note, Stream file);
+        IAttachment CreateAttachment(INote note, Stream file, string fileName);
+        Stream DownloadAttachment(IAttachment attachment);
         IMetainfo CreateMetainfo(IAttachment attachment);
         void DeleteNote(INote note);
         void DeleteAttachment(INote note, IAttachment attachment);

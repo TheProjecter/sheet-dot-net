@@ -21,6 +21,12 @@ namespace Sheet.DAL
                 Directory.CreateDirectory(applicationFolder);
             }
             AppDomain.CurrentDomain.SetData("DataDirectory", applicationFolder);
+            string attachmentFolder = Path.Combine(applicationFolder, @"attachments");
+            if (!Directory.Exists(attachmentFolder))
+            {
+                Directory.CreateDirectory(attachmentFolder);
+            }
+            AppDomain.CurrentDomain.SetData("AttachmentDirectory", attachmentFolder);
             // appdata folder is set
         }
 
@@ -145,16 +151,63 @@ namespace Sheet.DAL
         }
 
 
-        public Facade.Notes.IAttachment CreateAttachment(Facade.Notes.INote note, Stream file)
+        public Facade.Notes.IAttachment CreateAttachment(Facade.Notes.INote note, Stream sourceStream, string fileName)
         {
+            FileStream targetStream = null;
+            string attachmentFolder = (string)AppDomain.CurrentDomain.GetData("AttachmentDirectory");
+            string filePath = Path.Combine(attachmentFolder, fileName);
+
+            using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                const int bufferLen = 65000;
+                byte[] buffer = new byte[bufferLen];
+                int count = 0;
+                while ((count = sourceStream.Read(buffer, 0, bufferLen)) > 0)
+                {
+                    targetStream.Write(buffer, 0, count);
+                }
+                targetStream.Close();
+                sourceStream.Close();
+            }
             using(SheetContext ctx = new SheetContext())
             {
-                Attachment attachment = new Attachment();
+                Attachment attachment = new Attachment()
+                    {
+                        Name = fileName,
+                        Path = filePath
+                    };
+                // TODO: add metadata
                 Note dbNote = ctx.Notes.Find(note.ID);
                 dbNote.Attachments.Add(attachment);
                 ctx.SaveChanges();
                 return attachment;
             }
+        }
+
+        public Stream DownloadAttachment(Facade.Notes.IAttachment attachment)
+        {
+            Stream result = null;
+            string attachmentFolder = (string)AppDomain.CurrentDomain.GetData("AttachmentDirectory");
+            try
+            {
+                string filePath = System.IO.Path.Combine(attachmentFolder, attachment.Name);
+                System.IO.FileInfo fileInfo = new System.IO.FileInfo(filePath);
+
+                if (!fileInfo.Exists)
+                    throw new System.IO.FileNotFoundException("File not found", attachment.Name);
+
+                System.IO.FileStream stream = new System.IO.FileStream(
+                    filePath, 
+                    System.IO.FileMode.Open, 
+                    System.IO.FileAccess.Read
+                    );
+                result = stream;
+            }
+            catch (Exception)
+            {
+
+            }
+            return result;
         }
 
         public void DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
