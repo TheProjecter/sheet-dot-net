@@ -244,5 +244,16 @@ namespace Sheet.DAL
                 ctx.Labels.RemoveRange(ctx.Labels.Include("Notes").Where(l => l.Notes.Count == 0));
             }
         }
+
+
+        public void DeleteLabels(Facade.Notes.INote note)
+        {
+            using (SheetContext ctx = new SheetContext())
+            {
+                Note dbNote = ctx.Notes.Include("Labels").Single(n => n.ID == note.ID);
+                dbNote.Labels.Clear();
+                ctx.SaveChanges();
+            }
+        }
     }
 }
