@@ -155,7 +155,7 @@ namespace Sheet.DAL
         {
             FileStream targetStream = null;
             string attachmentFolder = (string)AppDomain.CurrentDomain.GetData("AttachmentDirectory");
-            string filePath = Path.Combine(attachmentFolder, fileName);
+            string filePath = Path.Combine(attachmentFolder, note.ID + ".attachment");
 
             using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
             {
@@ -188,14 +188,14 @@ namespace Sheet.DAL
         {
             Stream result = null;
             string attachmentFolder = (string)AppDomain.CurrentDomain.GetData("AttachmentDirectory");
+            string fileName = attachment.ID + ".attachment";
             try
             {
-                string filePath = System.IO.Path.Combine(attachmentFolder, attachment.Name);
+                string filePath = System.IO.Path.Combine(attachmentFolder, fileName);
                 System.IO.FileInfo fileInfo = new System.IO.FileInfo(filePath);
 
                 if (!fileInfo.Exists)
-                    throw new System.IO.FileNotFoundException("File not found", attachment.Name);
-
+                    throw new System.IO.FileNotFoundException("File not found", fileName);
                 System.IO.FileStream stream = new System.IO.FileStream(
                     filePath, 
                     System.IO.FileMode.Open, 
@@ -212,6 +212,14 @@ namespace Sheet.DAL
 
         public void DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
         {
+
+            string fileName = attachment.ID + ".attachment";
+            string attachmentFolder = (string)AppDomain.CurrentDomain.GetData("AttachmentDirectory");
+            string filePath = System.IO.Path.Combine(attachmentFolder, fileName);
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
             using (SheetContext ctx = new SheetContext())
             {
                 Attachment dbAttachment = ctx.Attachments.Find(attachment.ID);
