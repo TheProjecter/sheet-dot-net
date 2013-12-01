@@ -124,6 +124,7 @@
     <Compile Include="Commands\SimpleSearchCommand.cs" />
     <Compile Include="Commands\UpdateLabelsCommand.cs" />
     <Compile Include="Converters\IntVisibilityConverter.cs" />
+    <Compile Include="IconUtilities.cs" />
     <Compile Include="ModelMocks\AttachmentMock.cs" />
     <Compile Include="ModelMocks\LabelMock.cs" />
     <Compile Include="ModelMocks\MetainfoMock.cs" />
