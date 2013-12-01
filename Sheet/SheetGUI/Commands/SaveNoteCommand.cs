@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI.Commands
 {
-    public class SaveNoteCommand : GlobalCommand
+    public class SaveNoteCommand : ViewModelCommand<MainViewModel>
     {
-        public SaveNoteCommand(MainViewModel main) : base(main) { }
+        public SaveNoteCommand(MainViewModel vm) : base(vm) { }
 
         public override bool CanExecute(object parameter)
         {
@@ -18,10 +18,10 @@ namespace Sheet.GUI.Commands
 
         public override void Execute(object parameter)
         {
-            NoteViewModel vm = parameter as NoteViewModel;
-            if (vm == null)
+            NoteViewModel noteVM = parameter as NoteViewModel;
+            if (noteVM == null)
                 return;
-            vm.Save();
+            noteVM.Save();
         }
     }
 }

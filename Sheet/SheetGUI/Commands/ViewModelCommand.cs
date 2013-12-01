@@ -8,13 +8,13 @@ using System.Windows.Input;
 
 namespace Sheet.GUI.Commands
 {
-    public abstract class GlobalCommand : ICommand
+    public abstract class ViewModelCommand<T> : ICommand
     {
-        protected MainViewModel main;
+        protected T vm;
 
-        public GlobalCommand(MainViewModel main)
+        public ViewModelCommand(T main)
         {
-            this.main = main;
+            this.vm = main;
         }
 
         public abstract bool CanExecute(object parameter);

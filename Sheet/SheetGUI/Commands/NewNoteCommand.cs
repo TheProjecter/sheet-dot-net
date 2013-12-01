@@ -7,22 +7,20 @@ using System.Windows.Input;
 
 namespace Sheet.GUI.Commands
 {
-    public class NewNoteCommand : GlobalCommand
+    public class NewNoteCommand : ViewModelCommand<MainViewModel>
     {
-        public NewNoteCommand(MainViewModel main) : base (main) { }
+        public NewNoteCommand(MainViewModel vm) : base (vm) { }
 
         public override bool CanExecute(object parameter)
         {
             return true;
         }
 
-        public event EventHandler CanExecuteChanged;
-
         public override void Execute(object parameter)
         {
-            NoteViewModel newNoteVM = main.GetViewModel(App.Bll.NewNote());
-            main.OpenNotes.Add(newNoteVM);
-            main.SelectedNote = newNoteVM;
+            NoteViewModel newNoteVM = vm.GetViewModel(App.Bll.NewNote());
+            vm.OpenNotes.Add(newNoteVM);
+            vm.SelectedNote = newNoteVM;
         }
     }
 }

@@ -8,24 +8,22 @@ using System.Windows.Input;
 
 namespace Sheet.GUI.Commands
 {
-    public class CloseNoteCommand : GlobalCommand
+    public class CloseNoteCommand : ViewModelCommand<MainViewModel>
     {
-        public CloseNoteCommand(MainViewModel main) : base(main) { }
+        public CloseNoteCommand(MainViewModel vm) : base(vm) { }
 
         public override bool CanExecute(object parameter)
         {
             return true;
         }
 
-        public event EventHandler CanExecuteChanged;
-
         public override void Execute(object parameter)
         {
             NoteViewModel noteVM = parameter as NoteViewModel;
             if (noteVM == null)
                 return;
-            if (main.OpenNotes.Contains(noteVM))
-                main.OpenNotes.Remove(noteVM);
+            if (vm.OpenNotes.Contains(noteVM))
+                vm.OpenNotes.Remove(noteVM);
         }
     }
 }

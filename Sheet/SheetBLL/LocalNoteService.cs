@@ -46,17 +46,10 @@ namespace Sheet.BLL
 
         public Facade.Notes.INote UpdateLabels(Facade.Notes.INote note, IEnumerable<string> labels)
         {
-            int count = 0;
+            Dal.DeleteLabels(note);
             foreach (var label in labels)
             {
-                ++count;
                 Dal.SetLabel(note, label);
-            }
-            if (count == 0)
-            {
-                //TODO: use resources instead!
-                //TODO: use dummy labelviewmodel instead!
-                Dal.SetLabel(note, "No label");
             }
             return Dal.LoadNote(note);
         }
@@ -83,10 +76,9 @@ namespace Sheet.BLL
             Dal.DeleteNote(note);
         }
 
-        public Facade.Notes.INote DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
+        public void DeleteAttachment(Facade.Notes.IAttachment attachment)
         {
             Dal.DeleteAttachment(attachment);
-            return Dal.LoadNote(note);
         }
 
 

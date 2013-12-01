@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Sheet.GUI.Commands
 {
-    public class UpdateLabelsCommand : ViewModelCommand<NoteViewModel>
+    public class DeleteAttachmentCommand : ViewModelCommand<NoteViewModel>
     {
-        public UpdateLabelsCommand(NoteViewModel vm) : base(vm) { }
+        public DeleteAttachmentCommand(NoteViewModel vm) : base(vm) { }
 
         public override bool CanExecute(object parameter)
         {
@@ -19,10 +18,12 @@ namespace Sheet.GUI.Commands
 
         public override void Execute(object parameter)
         {
-            var labels = parameter as string[];
-            if (labels == null)
+            AttachmentViewModel attachmentVM = parameter as AttachmentViewModel;
+            if (attachmentVM == null)
                 return;
-            vm.UpdateLabels(labels);
+            if (vm.Attachments.Contains(attachmentVM))
+                vm.Attachments.Remove(attachmentVM);
+            attachmentVM.Delete();
         }
     }
 }

@@ -25,7 +25,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
             <PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z"/>
             <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
                 <Setter Property="Focusable" Value="False"/>
@@ -169,6 +169,62 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <DataTemplate x:Key="AttachmentTemplate" DataType="{x:Type vm:AttachmentViewModel}">
+                <Grid>
+                    <Button Style="{x:Null}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0"/>
+                                    <TextBlock Grid.Row="1" TextAlignment="Center" Text="{Binding Name}"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseUp">
+                                <i:InvokeCommandAction Command="{Binding Path=DataContext.OpenAttachment, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" BorderThickness="0" Padding="0" Margin="0"
+                                                Background="#00000000" BorderBrush="#00000000" 
+                                                Command="{Binding Path=DataContext.DeleteAttachment, ElementName=mainWindow}" CommandParameter="{Binding}">
+                        <Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Height="15" Width="15">
+                            <Line X1="2" Y1="2" X2="13" Y2="13" StrokeThickness="3" Stroke="#FF919191"/>
+                            <Line X1="13" Y1="2" X2="2" Y2="13" StrokeThickness="3" Stroke="#FF919191"/>
+                        </Canvas>
+                    </Button>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="NewAttachmentTemplate" DataType="{x:Type vm:AttachmentViewModel}">
+                <Button Style="{x:Null}" >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Canvas HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                                <Rectangle Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="6" Canvas.Left="6" Stroke="#FF919191" RadiusX="5" RadiusY="5" StrokeDashArray="7 7"/>
+                                <Line X1="46" Y1="26" X2="46" Y2="46" StrokeThickness="3" Stroke="#FF919191"/>
+                                <Line X1="36" Y1="36" X2="56" Y2="36" StrokeThickness="3" Stroke="#FF919191"/>
+                                <TextBlock Text="Add" Canvas.Left="6" Canvas.Top="50" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
+                                <TextBlock Text="attachment..." Canvas.Left="6" Canvas.Top="63" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
+                            </Canvas>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding Path=DataContext.NewAttachment, ElementName=mainWindow}" CommandParameter="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </DataTemplate>
+            <local:NewItemTemplateSelector 
+                    ItemTemplate="{StaticResource AttachmentTemplate}" 
+                    NewButtonTemplate="{StaticResource NewAttachmentTemplate}" 
+                    x:Key="attachmentTemplateSelector" />
         </ResourceDictionary>
     </Window.Resources>
     <m:MetroWindow.WindowCommands>
@@ -292,7 +348,7 @@
             <Grid Background="#FF80BA45">
                 <Image Source="Resources/Images/logo_background.png" Width="466" Height="220" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
-                    <!--</ItemContainerTemplate>
+            <!--</ItemContainerTemplate>
                 </Button.ContentTemplate>
             </Button>-->
             <TabControl x:Name="mainTab" Style="{x:Null}" ItemsSource="{Binding OpenNotes}" SelectedValue="{Binding SelectedNote}" Visibility="{Binding TabVisibility}">
@@ -382,15 +438,16 @@
                                 <Border.BorderBrush>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                                 </Border.BorderBrush>
-                                <StackPanel Orientation="Horizontal">
-                                    <Canvas HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                        <Rectangle Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="6" Canvas.Left="6" Stroke="#FF919191" RadiusX="5" RadiusY="5" StrokeDashArray="7 7"/>
-                                        <Line X1="46" Y1="26" X2="46" Y2="46" StrokeThickness="3" Stroke="#FF919191"/>
-                                        <Line X1="36" Y1="36" X2="56" Y2="36" StrokeThickness="3" Stroke="#FF919191"/>
-                                        <TextBlock Text="Add" Canvas.Left="6" Canvas.Top="50" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                                        <TextBlock Text="attachment..." Canvas.Left="6" Canvas.Top="63" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                                    </Canvas>
-                                </StackPanel>
+                                <ScrollViewer>
+                                    <ItemsControl x:Name="LabelList" ItemTemplateSelector="{StaticResource attachmentTemplateSelector}"
+                                                  ItemsSource="{Binding Attachments}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </ScrollViewer>
                             </Border>
                         </Grid>
                     </DataTemplate>
