@@ -128,10 +128,13 @@ namespace Sheet.DAL
                 {
                     return ctx.Notes
                         .Include("Labels")
+                        .Include("Attachments")
                         .Where(
                             n => n.Text.Contains(expression) || 
                             n.Title.Contains(expression) || 
-                            n.Labels.Any(l => l.Text.Contains(expression))
+                            n.Labels.Any(l => l.Text.Contains(expression)) ||
+                            n.Attachments.Any(a => a.Name.Contains(expression)) ||
+                            n.Attachments.Any(a => a.MimeType.Contains(expression))
                         ).ToArray();
                 }
                 catch (ArgumentNullException)
