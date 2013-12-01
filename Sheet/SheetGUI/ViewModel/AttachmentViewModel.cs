@@ -118,7 +118,7 @@ namespace Sheet.GUI.ViewModel
         internal async void Save(string path)
         {
             using (Stream target = File.Open(path, FileMode.Create))
-            using (Stream data = cache == null && File.Exists(cache) ? App.Bll.DownloadAttachment(model) : File.Open(cache, FileMode.Open))
+            using (Stream data = cache == null || !File.Exists(cache) ? App.Bll.DownloadAttachment(model) : File.Open(cache, FileMode.Open))
             {
                 await data.CopyToAsync(target);
             }
