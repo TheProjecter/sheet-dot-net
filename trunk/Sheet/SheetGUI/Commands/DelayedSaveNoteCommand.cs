@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI.Commands
 {
-    public class DelayedSaveNoteCommand : GlobalCommand
+    public class DelayedSaveNoteCommand : ViewModelCommand<MainViewModel>
     {
-        public DelayedSaveNoteCommand(MainViewModel main) : base(main) { }
+        public DelayedSaveNoteCommand(MainViewModel vm) : base(vm) { }
 
         public override bool CanExecute(object parameter)
         {
@@ -18,11 +18,11 @@ namespace Sheet.GUI.Commands
 
         public override async void Execute(object parameter)
         {
-            NoteViewModel vm = parameter as NoteViewModel;
-            if (vm == null)
+            NoteViewModel noteVM = parameter as NoteViewModel;
+            if (noteVM == null)
                 return;
             await Task.Delay(2000);
-            vm.Save();
+            noteVM.Save();
         }
     }
 }

@@ -7,24 +7,22 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI.Commands
 {
-    public class DeleteNoteCommand : GlobalCommand
+    public class DeleteNoteCommand : ViewModelCommand<MainViewModel>
     {
-        public DeleteNoteCommand(MainViewModel main) : base(main) { }
+        public DeleteNoteCommand(MainViewModel vm) : base(vm) { }
 
         public override bool CanExecute(object parameter)
         {
             return true;
         }
 
-        public event EventHandler CanExecuteChanged;
-
         public override void Execute(object parameter)
         {
             NoteViewModel noteVM = parameter as NoteViewModel;
             if (noteVM == null)
                 return;
-            if (main.OpenNotes.Contains(noteVM))
-                main.OpenNotes.Remove(noteVM);
+            if (vm.OpenNotes.Contains(noteVM))
+                vm.OpenNotes.Remove(noteVM);
             noteVM.Delete();
         }
     }

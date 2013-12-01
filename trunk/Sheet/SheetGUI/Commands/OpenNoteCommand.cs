@@ -8,27 +8,25 @@ using System.Windows.Input;
 
 namespace Sheet.GUI.Commands
 {
-    class OpenNoteCommand : GlobalCommand
+    class OpenNoteCommand : ViewModelCommand<MainViewModel>
     {
 
-        public OpenNoteCommand(MainViewModel main) : base(main) { }
+        public OpenNoteCommand(MainViewModel vm) : base(vm) { }
 
         public override bool CanExecute(object parameter)
         {
             return true;
         }
 
-        public event EventHandler CanExecuteChanged;
-
         public override void Execute(object parameter)
         {
             NoteViewModel noteVM = parameter as NoteViewModel;
             if (noteVM == null)
                 return;
-            if (!main.OpenNotes.Contains(noteVM))
-                main.OpenNotes.Add(noteVM);
+            if (!vm.OpenNotes.Contains(noteVM))
+                vm.OpenNotes.Add(noteVM);
 
-            main.SelectedNote = noteVM;
+            vm.SelectedNote = noteVM;
         }
     }
 }

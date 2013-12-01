@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace Sheet.GUI
 {
-    public class TabTemplateSelector : DataTemplateSelector
+    public class NewItemTemplateSelector : DataTemplateSelector
     {
         public DataTemplate ItemTemplate { get; set; }
         public DataTemplate NewButtonTemplate { get; set; }

@@ -69,5 +69,10 @@ namespace Sheet.GUI.ViewModel
                 LoadViewModels();
             }
         }
+
+        internal void Delete()
+        {
+            App.Bll.DeleteAttachment(model);
+        }
     }
 }

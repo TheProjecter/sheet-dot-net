@@ -15,7 +15,7 @@ namespace Sheet.GUI.ModelMocks
             set;
         }
 
-        private List<INote> notes;
+        private List<INote> notes = new List<INote>();
         public ICollection<INote> Notes
         {
             get { return notes; }

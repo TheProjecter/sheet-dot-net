@@ -113,8 +113,11 @@
     <Compile Include="BusinessLogicDispatcher.cs" />
     <Compile Include="Commands\CloseNoteCommand.cs" />
     <Compile Include="Commands\DelayedSaveNoteCommand.cs" />
+    <Compile Include="Commands\DeleteAttachmentCommand.cs" />
     <Compile Include="Commands\DeleteNoteCommand.cs" />
-    <Compile Include="Commands\GlobalCommand.cs" />
+    <Compile Include="Commands\ViewModelCommand.cs" />
+    <Compile Include="Commands\NewAttachmentCommand.cs" />
+    <Compile Include="Commands\OpenAttachmentCommand.cs" />
     <Compile Include="Commands\OpenNoteCommand.cs" />
     <Compile Include="Commands\SaveNoteCommand.cs" />
     <Compile Include="Commands\SimpleSearchCommand.cs" />
@@ -126,7 +129,7 @@
     <Compile Include="ModelMocks\ModelMock.cs" />
     <Compile Include="ModelMocks\NoteMock.cs" />
     <Compile Include="RichTextBoxHelper.cs" />
-    <Compile Include="TabTemplateSelector.cs" />
+    <Compile Include="NewItemTemplateSelector.cs" />
     <Compile Include="ViewModel\AttachmentViewModel.cs" />
     <Compile Include="ViewModel\CompositeViewModel.cs" />
     <Compile Include="ViewModel\LabelViewModel.cs" />

@@ -20,6 +20,6 @@ namespace Sheet.Facade.Services
         INote NewNote();
         void SaveNote(INote note);
         void DeleteNote(INote note);
-        INote DeleteAttachment(INote note, IAttachment attachment);
+        void DeleteAttachment(IAttachment attachment);
     }
 }

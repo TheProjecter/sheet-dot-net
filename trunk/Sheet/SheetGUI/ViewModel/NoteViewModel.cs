@@ -5,10 +5,12 @@ using Sheet.GUI.ModelMocks;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using Xceed.Wpf.Toolkit;
 
@@ -24,6 +26,9 @@ namespace Sheet.GUI.ViewModel
         private ObservableCollection<AttachmentViewModel> attachments;
 
         private UpdateLabelsCommand update;
+        private NewAttachmentCommand newAttachment;
+        private OpenAttachmentCommand openAttachment;
+        private DeleteAttachmentCommand deleteAttachment;
 
         public NoteViewModel(MainViewModel main) : base(main)
         {
@@ -36,6 +41,9 @@ namespace Sheet.GUI.ViewModel
                 throw new ArgumentNullException("model");
             this.model = model;
             update = new UpdateLabelsCommand(this);
+            newAttachment = new NewAttachmentCommand(this);
+            openAttachment = new OpenAttachmentCommand(this);
+            deleteAttachment = new DeleteAttachmentCommand(this);
             main.RegisterViewModel(model, this);
             LoadViewModels();
         }
@@ -59,6 +67,21 @@ namespace Sheet.GUI.ViewModel
         public ICommand Update
         {
             get { return update; }
+        }
+
+        public ICommand NewAttachment
+        {
+            get { return newAttachment; }
+        }
+
+        public ICommand OpenAttachment
+        {
+            get { return openAttachment; }
+        }
+
+        public ICommand DeleteAttachment
+        {
+            get { return deleteAttachment; }
         }
 
         public string Title
@@ -132,7 +155,11 @@ namespace Sheet.GUI.ViewModel
             get
             {
                 if (attachments == null)
+                {
                     attachments = new ObservableCollection<AttachmentViewModel>();
+                    var itemsView = (IEditableCollectionView)CollectionViewSource.GetDefaultView(attachments);
+                    itemsView.NewItemPlaceholderPosition = NewItemPlaceholderPosition.AtEnd;
+                }
                 return attachments;
             }
         }
@@ -141,7 +168,8 @@ namespace Sheet.GUI.ViewModel
         {
             foreach (var label in Labels)
             {
-                label.Notes.Add(this);
+                if (label.Notes.Contains(this) == false)
+                    label.Notes.Add(this);
                 if (main.Labels.Contains(label) == false)
                 {
                     main.Labels.Add(label);
@@ -153,7 +181,8 @@ namespace Sheet.GUI.ViewModel
         {
             foreach (var label in Labels)
             {
-                label.Notes.Remove(this);
+                if (label.Notes.Contains(this))
+                    label.Notes.Remove(this);
                 if (label.Notes.Count == 0)
                 {
                     main.Labels.Remove(label);
@@ -207,6 +236,11 @@ namespace Sheet.GUI.ViewModel
             Disconnect();
             Model = updated;
             Connect();
+        }
+
+        internal void AddNewAttachment(System.IO.Stream stream, string fileName)
+        {
+            this.Model = App.Bll.AddAttachment(model, stream, fileName);
         }
     }
 }

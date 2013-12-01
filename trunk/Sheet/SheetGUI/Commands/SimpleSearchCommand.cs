@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI.Commands
 {
-    public class SimpleSearchCommand : GlobalCommand
+    public class SimpleSearchCommand : ViewModelCommand<MainViewModel>
     {
-        public SimpleSearchCommand(MainViewModel main) : base(main) { }
+        public SimpleSearchCommand(MainViewModel vm) : base(vm) { }
 
         public override bool CanExecute(object parameter)
         {
@@ -21,18 +21,18 @@ namespace Sheet.GUI.Commands
             string expression = parameter as string;
             if (string.IsNullOrEmpty(expression))
             {
-                main.SearchResultsVisibility = System.Windows.Visibility.Collapsed;
-                main.SearchResults.Clear();
+                vm.SearchResultsVisibility = System.Windows.Visibility.Collapsed;
+                vm.SearchResults.Clear();
                 return;
             }
             else
             {
                 var results = App.Bll.SearchNote(expression);
-                main.SearchResultsVisibility = System.Windows.Visibility.Visible;
-                main.SearchResults.Clear();
+                vm.SearchResultsVisibility = System.Windows.Visibility.Visible;
+                vm.SearchResults.Clear();
                 foreach (var note in results)
                 {
-                    main.SearchResults.Add(main.GetViewModel(note));
+                    vm.SearchResults.Add(vm.GetViewModel(note));
                 }
             }
         }

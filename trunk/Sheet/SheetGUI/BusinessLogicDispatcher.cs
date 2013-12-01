@@ -58,9 +58,9 @@ namespace Sheet.GUI
             service.DeleteNote(note);
         }
 
-        public Facade.Notes.INote DeleteAttachment(Facade.Notes.INote note, Facade.Notes.IAttachment attachment)
+        public void DeleteAttachment(Facade.Notes.IAttachment attachment)
         {
-            return service.DeleteAttachment(note, attachment);
+            service.DeleteAttachment(attachment);
         }
 
 
