@@ -86,5 +86,11 @@ namespace Sheet.BLL
         {
             return service.DownloadAttachment(attachment);
         }
+
+
+        public void DeleteLabels(Facade.Notes.INote note)
+        {
+            service.DeleteLabels(note);
+        }
     }
 }
