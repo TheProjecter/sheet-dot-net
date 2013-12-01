@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Sheet.GUI.ViewModel
 {
@@ -63,7 +64,7 @@ namespace Sheet.GUI.ViewModel
             }
         }
 
-        public Icon Thumbnail
+        public ImageSource Thumbnail
         {
             get
             {
@@ -72,16 +73,7 @@ namespace Sheet.GUI.ViewModel
                     OSIcon.WinAPI.Shell32.SHFILEINFO shfi = new Shell32.SHFILEINFO();
                     thumbnail = OSIcon.IconReader.GetFileIcon(Path.GetExtension(model.Name), OSIcon.IconReader.IconSize.Jumbo, false, ref shfi);
                 }
-                return thumbnail;
-            }
-            set
-            {
-                if (thumbnail == value)
-                    return;
-
-                thumbnail = value;
-
-                base.RaisePropertyChanged("Thumbnail");
+                return thumbnail.ToImageSource();
             }
         }
 
@@ -125,9 +117,11 @@ namespace Sheet.GUI.ViewModel
 
         internal async void Save(string path)
         {
-            Stream target = File.Open(path, FileMode.Create);
-            Stream data = cache == null && File.Exists(cache) ? App.Bll.DownloadAttachment(model) : File.Open(cache, FileMode.Open);
-            await data.CopyToAsync(target);
+            using (Stream target = File.Open(path, FileMode.Create))
+            using (Stream data = cache == null && File.Exists(cache) ? App.Bll.DownloadAttachment(model) : File.Open(cache, FileMode.Open))
+            {
+                await data.CopyToAsync(target);
+            }
             if (cache != null && !real && File.Exists(cache))
                 File.Delete(cache);
             cache = path;
@@ -139,9 +133,11 @@ namespace Sheet.GUI.ViewModel
             if (cache == null)
             {
                 string path = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(model.Name));
-                Stream target = File.Open(path, FileMode.Create);
-                Stream data = App.Bll.DownloadAttachment(model);
-                await data.CopyToAsync(target);
+                using (Stream target = File.Open(path, FileMode.Create))
+                using (Stream data = App.Bll.DownloadAttachment(model))
+                {
+                    await data.CopyToAsync(target);
+                }
                 cache = path;
                 real = false;
             }
