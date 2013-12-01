@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Sheet.Facade.Services;
 using Sheet.DAL.Entities;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Sheet.DAL
 {
@@ -150,13 +151,51 @@ namespace Sheet.DAL
             throw new NotImplementedException();
         }
 
+        [DllImport(@"urlmon.dll", CharSet = CharSet.Auto)]
+        private extern static System.UInt32 FindMimeFromData(
+            System.UInt32 pBC,
+            [MarshalAs(UnmanagedType.LPStr)] System.String pwzUrl,
+            [MarshalAs(UnmanagedType.LPArray)] byte[] pBuffer,
+            System.UInt32 cbSize,
+            [MarshalAs(UnmanagedType.LPStr)] System.String pwzMimeProposed,
+            System.UInt32 dwMimeFlags,
+            out System.UInt32 ppwzMimeOut,
+            System.UInt32 dwReserverd
+        );
 
         public Facade.Notes.IAttachment CreateAttachment(Facade.Notes.INote note, Stream sourceStream, string fileName)
         {
             FileStream targetStream = null;
             string attachmentFolder = (string)AppDomain.CurrentDomain.GetData("AttachmentDirectory");
             string filePath = Path.Combine(attachmentFolder, note.ID + ".attachment");
-
+            /// MIME START
+            string mimeString = "unknown/unknown";
+            byte[] mimebuffer = new byte[256];
+            
+            if (sourceStream.Length >= 256)
+            {
+                sourceStream.Read(mimebuffer, 0, 256);
+            }
+            else
+            {
+                sourceStream.Read(mimebuffer, 0, (int)sourceStream.Length);
+            }
+            try
+            {
+                System.UInt32 mimetype;
+                FindMimeFromData(0, null, mimebuffer, 256, null, 0, out mimetype, 0);
+                System.IntPtr mimeTypePtr = new IntPtr(mimetype);
+                mimeString = Marshal.PtrToStringUni(mimeTypePtr);
+                Marshal.FreeCoTaskMem(mimeTypePtr);
+            }
+            catch (Exception e)
+            {
+            }
+            finally
+            {
+                sourceStream.Position = 0;
+            }
+            /// MIME END
             using (targetStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 const int bufferLen = 65000;
@@ -174,7 +213,8 @@ namespace Sheet.DAL
                 Attachment attachment = new Attachment()
                     {
                         Name = fileName,
-                        Path = filePath
+                        Path = filePath,
+                        MimeType = mimeString
                     };
                 // TODO: add metadata
                 Note dbNote = ctx.Notes.Find(note.ID);
