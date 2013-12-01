@@ -173,6 +173,14 @@
             <DataTemplate x:Key="AttachmentTemplate" DataType="{x:Type vm:AttachmentViewModel}">
                 <Grid>
                     <Button Style="{x:Null}">
+                        <Button.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Open"  Command="{Binding OpenAttachment}"/>
+                                <MenuItem Header="Save as..."  Command="{Binding SaveAttachment}"/>
+                                <Separator/>
+                                <MenuItem Header="Delete" Command="{Binding Path=DataContext.DeleteAttachment, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
+                            </ContextMenu>
+                        </Button.ContextMenu>
                         <Button.Template>
                             <ControlTemplate>
                                 <Grid>
@@ -186,14 +194,14 @@
                             </ControlTemplate>
                         </Button.Template>
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseUp">
-                                <i:InvokeCommandAction Command="{Binding Path=DataContext.OpenAttachment, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding OpenAttachment}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
                     <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" BorderThickness="0" Padding="0" Margin="0"
                                                 Background="#00000000" BorderBrush="#00000000" 
-                                                Command="{Binding Path=DataContext.DeleteAttachment, ElementName=mainWindow}" CommandParameter="{Binding}">
+                                                Command="{Binding Path=DataContext.DeleteAttachment, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}">
                         <Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Height="15" Width="15">
                             <Line X1="2" Y1="2" X2="13" Y2="13" StrokeThickness="3" Stroke="#FF919191"/>
                             <Line X1="13" Y1="2" X2="2" Y2="13" StrokeThickness="3" Stroke="#FF919191"/>
@@ -202,23 +210,16 @@
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="NewAttachmentTemplate" DataType="{x:Type vm:AttachmentViewModel}">
-                <Button Style="{x:Null}" >
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Canvas HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                                <Rectangle Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="6" Canvas.Left="6" Stroke="#FF919191" RadiusX="5" RadiusY="5" StrokeDashArray="7 7"/>
-                                <Line X1="46" Y1="26" X2="46" Y2="46" StrokeThickness="3" Stroke="#FF919191"/>
-                                <Line X1="36" Y1="36" X2="56" Y2="36" StrokeThickness="3" Stroke="#FF919191"/>
-                                <TextBlock Text="Add" Canvas.Left="6" Canvas.Top="50" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                                <TextBlock Text="attachment..." Canvas.Left="6" Canvas.Top="63" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                            </Canvas>
-                        </ControlTemplate>
-                    </Button.Template>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDoubleClick">
-                            <i:InvokeCommandAction Command="{Binding Path=DataContext.NewAttachment, ElementName=mainWindow}" CommandParameter="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                <Button Style="{x:Null}" BorderThickness="0" Background="#00000000" Command="{Binding Path=DataContext.NewAttachment, RelativeSource={RelativeSource AncestorType=ItemsControl}}">
+                    <Border Background="#00000000" BorderThickness="0" VerticalAlignment="Center">
+                    <Canvas Width="90" Height="90">
+                        <Rectangle Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="6" Canvas.Left="6" Stroke="#FF919191" RadiusX="5" RadiusY="5" StrokeDashArray="7 7"/>
+                        <Line X1="46" Y1="26" X2="46" Y2="46" StrokeThickness="3" Stroke="#FF919191"/>
+                        <Line X1="36" Y1="36" X2="56" Y2="36" StrokeThickness="3" Stroke="#FF919191"/>
+                        <TextBlock Text="Add" Canvas.Left="6" Canvas.Top="50" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
+                        <TextBlock Text="attachment..." Canvas.Left="6" Canvas.Top="63" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
+                    </Canvas>
+                    </Border>
                 </Button>
             </DataTemplate>
             <local:NewItemTemplateSelector 

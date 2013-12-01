@@ -34,7 +34,7 @@ namespace Sheet.GUI.Commands
             if (dialog.ShowDialog() == false)
                 return;
             Stream stream = dialog.OpenFile();
-            vm.AddNewAttachment(stream, Path.GetFileName(dialog.FileName));
+            vm.AddNewAttachment(stream, dialog.SafeFileName);
         }
     }
 }
