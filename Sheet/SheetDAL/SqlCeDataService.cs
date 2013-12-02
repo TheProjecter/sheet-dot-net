@@ -9,6 +9,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Data.Common;
 using System.Data.SqlClient;
+using Sheet.Facade.Queries.ComplexQueries;
 
 namespace Sheet.DAL
 {
@@ -303,16 +304,41 @@ namespace Sheet.DAL
             }
         }
 
-
         public ICollection<Facade.Notes.INote> QueryNotes(Facade.Queries.ComplexQueries.ComplexQuery query)
         {
             using (SheetContext ctx = new SheetContext())
             {
-                string sqlQuery = "SELECT * FROM Notes";
-                ICollection<Facade.Notes.INote> result = ctx.Notes.SqlQuery(
-                    sqlQuery
-                    ).ToList<Facade.Notes.INote>();
-                return result;
+                IQueryable<Note> noteQuery = ctx.Notes.Include("Attachments").Where(n => n.DateOfCreation > query.After && n.DateOfCreation < query.Before);
+                foreach (string cond in query.LabelQuery)
+                {
+                    noteQuery = noteQuery.Where(n => n.Labels.Any(l => l.Text.Contains(cond))); 
+                }
+
+                if (query.HasAttachment == true)
+                {
+                    noteQuery = noteQuery.Where(n => n.Attachments.Count > 0);
+                    foreach (ContentType contentType in query.AttachmentOfType)
+                    {
+                        string type = contentType.ToString();
+                        noteQuery = noteQuery.Where(n => n.Attachments.Any(a => a.MimeType.Contains(type)));
+                    }
+                    foreach (string attachmentName in query.AttachmentNameQuery)
+                    {
+                        noteQuery = noteQuery.Where(n => n.Attachments.Any(a => a.Name.Contains(attachmentName)));
+                    }
+                }
+
+                noteQuery = noteQuery.Where(n => query.TitleQuery.All(toCheck => n.Title.Contains(toCheck)));
+                if (query.TitleAny.Count() > 0)
+                {
+                    noteQuery = noteQuery.Where(n => query.TitleAny.Any(toCheck => n.Title.Contains(toCheck)));
+                }
+                noteQuery = noteQuery.Where(n => query.TextQuery.All(toCheck => n.Text.Contains(toCheck)));
+                if (query.TextAny.Count() > 0)
+                {
+                    noteQuery = noteQuery.Where(n => query.TextAny.Any(toCheck => n.Text.Contains(toCheck)));
+                }
+                return noteQuery.ToList<Facade.Notes.INote>();
             }
         }
     }
