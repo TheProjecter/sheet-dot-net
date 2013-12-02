@@ -112,10 +112,14 @@
     </ApplicationDefinition>
     <Compile Include="BusinessLogicDispatcher.cs" />
     <Compile Include="Commands\CloseNoteCommand.cs" />
+    <Compile Include="Commands\ComplexSearchCommand.cs" />
+    <Compile Include="Commands\HideComplexSearchCommand.cs" />
     <Compile Include="Commands\DelayedSaveNoteCommand.cs" />
     <Compile Include="Commands\DeleteAttachmentCommand.cs" />
     <Compile Include="Commands\DeleteNoteCommand.cs" />
+    <Compile Include="Commands\HideSearchViewCommand.cs" />
     <Compile Include="Commands\SaveAttachmentCommand.cs" />
+    <Compile Include="Commands\ToggleAdvancedSearchCommand.cs" />
     <Compile Include="Commands\ViewModelCommand.cs" />
     <Compile Include="Commands\NewAttachmentCommand.cs" />
     <Compile Include="Commands\OpenAttachmentCommand.cs" />
@@ -123,7 +127,7 @@
     <Compile Include="Commands\SaveNoteCommand.cs" />
     <Compile Include="Commands\SimpleSearchCommand.cs" />
     <Compile Include="Commands\UpdateLabelsCommand.cs" />
-    <Compile Include="Converters\IntVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolVisibilityConverter.cs" />
     <Compile Include="IconUtilities.cs" />
     <Compile Include="ModelMocks\AttachmentMock.cs" />
     <Compile Include="ModelMocks\LabelMock.cs" />
@@ -133,6 +137,7 @@
     <Compile Include="RichTextBoxHelper.cs" />
     <Compile Include="NewItemTemplateSelector.cs" />
     <Compile Include="ViewModel\AttachmentViewModel.cs" />
+    <Compile Include="ViewModel\ComplexSearchViewModel.cs" />
     <Compile Include="ViewModel\CompositeViewModel.cs" />
     <Compile Include="ViewModel\LabelViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -183,9 +188,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\Images\Logos\logo16.ico" />
   </ItemGroup>
@@ -258,6 +261,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\logo_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\newnote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\deletenote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\advancedsearch.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -22,5 +22,11 @@ namespace Sheet.GUI.Commands
         public event EventHandler CanExecuteChanged;
 
         public abstract void Execute(object parameter);
+
+        protected void RaiseCanExecutedChanged()
+        {
+            if (CanExecuteChanged != null)
+                CanExecuteChanged(this, new EventArgs());
+        }
     }
 }

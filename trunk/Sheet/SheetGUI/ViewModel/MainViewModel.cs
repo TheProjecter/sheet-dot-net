@@ -28,12 +28,15 @@ namespace Sheet.GUI.ViewModel
     /// </summary>
     public partial class MainViewModel : ViewModelBase
     {
+        private bool complexSearching = false;
+
         private ObservableCollection<LabelViewModel> labels;
         private ObservableCollection<NoteViewModel> openNotes;
         private ObservableCollection<NoteViewModel> searchResults;
 
         private NoteViewModel selectedNote;
         private LabelViewModel noLabel;
+        private ComplexSearchViewModel complexSearch;
 
         private OpenNoteCommand openNote;
         private NewNoteCommand newNote;
@@ -42,6 +45,10 @@ namespace Sheet.GUI.ViewModel
         private SaveNoteCommand saveNote;
         private DelayedSaveNoteCommand delayedSaveNote;
         private SimpleSearchCommand simpleSearch;
+        private ComplexSearchCommand search;
+        private ToggleAdvancedSearchCommand toggleSearch;
+        private HideSearchViewCommand hideSearch;
+        private HideComplexSearchCommand hideComplexSearch;
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -63,6 +70,10 @@ namespace Sheet.GUI.ViewModel
                 saveNote = new SaveNoteCommand(this);
                 delayedSaveNote = new DelayedSaveNoteCommand(this);
                 simpleSearch = new SimpleSearchCommand(this);
+                search = new ComplexSearchCommand(this);
+                toggleSearch = new ToggleAdvancedSearchCommand(this);
+                hideSearch = new HideSearchViewCommand(this);
+                hideComplexSearch = new HideComplexSearchCommand(this);
 
                 OpenNotes.CollectionChanged += openNotes_CollectionChanged;
                 SearchResults.CollectionChanged += searchResults_CollectionChanged;
@@ -88,8 +99,6 @@ namespace Sheet.GUI.ViewModel
                 if (openNotes == null)
                 {
                     openNotes = new ObservableCollection<NoteViewModel>();
-                    //var itemsView = (IEditableCollectionView)CollectionViewSource.GetDefaultView(openNotes);
-                    //itemsView.NewItemPlaceholderPosition = NewItemPlaceholderPosition.AtEnd;
                 }
                 return openNotes;
             }
@@ -107,12 +116,15 @@ namespace Sheet.GUI.ViewModel
             }
         }
 
-        public void LoadLabels()
+        public ComplexSearchViewModel ComplexSearch
         {
-            Labels.Clear();
-            foreach (var label in App.Bll.GetLabels())
+            get
             {
-                Labels.Add(this.GetViewModel(label));
+                if (complexSearch == null)
+                {
+                    complexSearch = new ComplexSearchViewModel(this);
+                }
+                return complexSearch;
             }
         }
 
@@ -175,6 +187,39 @@ namespace Sheet.GUI.ViewModel
             base.RaisePropertyChanged("NoResultsVisibility");
         }
 
+        public void ToggleComplexSearch()
+        {
+            complexSearching = !complexSearching;
+            RaisePropertyChanged("ComplexSearchViewVisibility");
+            RaisePropertyChanged("SimpleSearchViewVisibility");
+        }
+
+        public void SetComplexSearchVisible(bool visible)
+        {
+            complexSearching = visible;
+            RaisePropertyChanged("ComplexSearchViewVisibility");
+            RaisePropertyChanged("SimpleSearchViewVisibility");
+        }
+
+        public Visibility ComplexSearchViewVisibility
+        {
+            get { return complexSearching ? Visibility.Visible : Visibility.Collapsed; }
+        }
+
+        public Visibility SimpleSearchViewVisibility
+        {
+            get { return complexSearching ? Visibility.Collapsed : Visibility.Visible; }
+        }
+
+        public void LoadLabels()
+        {
+            Labels.Clear();
+            foreach (var label in App.Bll.GetLabels())
+            {
+                Labels.Add(this.GetViewModel(label));
+            }
+        }
+
         public ICommand OpenNote
         {
             get { return openNote; }
@@ -208,6 +253,26 @@ namespace Sheet.GUI.ViewModel
         public ICommand SimpleSearch
         {
             get { return simpleSearch; }
+        }
+
+        public ICommand Search
+        {
+            get { return search; }
+        }
+
+        public ICommand ToggleSearch
+        {
+            get { return toggleSearch; }
+        }
+
+        public ICommand HideSearch
+        {
+            get { return hideSearch; }
+        }
+
+        public ICommand HideComplexSearch
+        {
+            get { return hideComplexSearch; }
         }
     }
 }

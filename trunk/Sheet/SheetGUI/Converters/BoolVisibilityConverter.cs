@@ -8,15 +8,14 @@ using System.Windows.Data;
 
 namespace Sheet.GUI.Converters
 {
-    public class IntVisibilityConverter : IValueConverter
+    public class BoolVisibilityConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is int)
+            if (value is bool)
             {
-                int number = (int)value;
-                Visibility result = number == 0 ? Visibility.Collapsed : Visibility.Visible;
+                return (bool)value ? Visibility.Visible : Visibility.Collapsed;
             }
             return null;
         }

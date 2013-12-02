@@ -47,15 +47,17 @@
     <Compile Include="Notes\IMetainfo.cs" />
     <Compile Include="Notes\INote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\AndQuery.cs" />
-    <Compile Include="Queries\AtomicQuery.cs" />
-    <Compile Include="Queries\BinaryQuery.cs" />
-    <Compile Include="Queries\ContentQuery.cs" />
-    <Compile Include="Queries\LabelQuery.cs" />
-    <Compile Include="Queries\NoteQuery.cs" />
-    <Compile Include="Queries\OrQuery.cs" />
-    <Compile Include="Queries\QueryVisitor.cs" />
-    <Compile Include="Queries\TitleQuery.cs" />
+    <Compile Include="Queries\ComplexQueries\ContentType.cs" />
+    <Compile Include="Queries\DynamicQueries\AndQuery.cs" />
+    <Compile Include="Queries\DynamicQueries\AtomicQuery.cs" />
+    <Compile Include="Queries\DynamicQueries\BinaryQuery.cs" />
+    <Compile Include="Queries\ComplexQueries\ComplexQuery.cs" />
+    <Compile Include="Queries\DynamicQueries\ContentQuery.cs" />
+    <Compile Include="Queries\DynamicQueries\LabelQuery.cs" />
+    <Compile Include="Queries\DynamicQueries\NoteQuery.cs" />
+    <Compile Include="Queries\DynamicQueries\OrQuery.cs" />
+    <Compile Include="Queries\DynamicQueries\QueryVisitor.cs" />
+    <Compile Include="Queries\DynamicQueries\TitleQuery.cs" />
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\INoteService.cs" />
   </ItemGroup>

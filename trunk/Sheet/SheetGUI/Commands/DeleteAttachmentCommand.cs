@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xceed.Wpf.Toolkit;
 
 namespace Sheet.GUI.Commands
 {
@@ -21,6 +22,10 @@ namespace Sheet.GUI.Commands
             AttachmentViewModel attachmentVM = parameter as AttachmentViewModel;
             if (attachmentVM == null)
                 return;
+
+            if (MessageBox.Show("Are you sure you want to delete this attachemnt? Only the stored copy will be erased, your original file will be preserved.", "Warning", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Warning) == System.Windows.MessageBoxResult.No)
+                return;
+
             if (vm.Attachments.Contains(attachmentVM))
                 vm.Attachments.Remove(attachmentVM);
             attachmentVM.Delete();
