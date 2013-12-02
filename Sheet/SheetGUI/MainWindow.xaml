@@ -6,7 +6,7 @@
         xmlns:tab="clr-namespace:Wpf.Controls;assembly=Wpf.TabControl"
         xmlns:m="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:vm="clr-namespace:Sheet.GUI.ViewModel"
-        xmlns:c="cls-namespace:Sheet.GUI.Converters"
+        xmlns:c="clr-namespace:Sheet.GUI.Converters"
         xmlns:local="clr-namespace:Sheet.GUI"
         xmlns:l="clr-namespace:LabelsControl;assembly=LabelsControl"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
@@ -183,15 +183,15 @@
                         </Button.ContextMenu>
                         <!--<Button.Template>
                             <ControlTemplate>-->
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Image Grid.Row="0" Source="{Binding Thumbnail, Mode=OneWay}" Width="60" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Row="1" TextAlignment="Center" Text="{Binding Name}" TextTrimming="CharacterEllipsis"/>
-                                </Grid>
-                            <!--</ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="{Binding Thumbnail, Mode=OneWay}" Width="60" Height="60" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" TextAlignment="Center" Text="{Binding Name}" TextTrimming="CharacterEllipsis"/>
+                        </Grid>
+                        <!--</ControlTemplate>
                         </Button.Template>-->
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
@@ -212,13 +212,13 @@
             <DataTemplate x:Key="NewAttachmentTemplate" DataType="{x:Type vm:AttachmentViewModel}">
                 <Button Style="{x:Null}" BorderThickness="0" Background="#00000000" Command="{Binding Path=DataContext.NewAttachment, RelativeSource={RelativeSource AncestorType=ItemsControl}}">
                     <Border Background="#00000000" BorderThickness="0" VerticalAlignment="Center">
-                    <Canvas Width="90" Height="90">
-                        <Rectangle Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="6" Canvas.Left="6" Stroke="#FF919191" RadiusX="5" RadiusY="5" StrokeDashArray="7 7"/>
-                        <Line X1="46" Y1="26" X2="46" Y2="46" StrokeThickness="3" Stroke="#FF919191"/>
-                        <Line X1="36" Y1="36" X2="56" Y2="36" StrokeThickness="3" Stroke="#FF919191"/>
-                        <TextBlock Text="Add" Canvas.Left="6" Canvas.Top="50" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                        <TextBlock Text="attachment..." Canvas.Left="6" Canvas.Top="63" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
-                    </Canvas>
+                        <Canvas Width="90" Height="90">
+                            <Rectangle Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="6" Canvas.Left="6" Stroke="#FF919191" RadiusX="5" RadiusY="5" StrokeDashArray="7 7"/>
+                            <Line X1="46" Y1="26" X2="46" Y2="46" StrokeThickness="3" Stroke="#FF919191"/>
+                            <Line X1="36" Y1="36" X2="56" Y2="36" StrokeThickness="3" Stroke="#FF919191"/>
+                            <TextBlock Text="Add" Canvas.Left="6" Canvas.Top="50" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
+                            <TextBlock Text="attachment..." Canvas.Left="6" Canvas.Top="63" Width="80" TextAlignment="Center" Foreground="#FF919191"/>
+                        </Canvas>
                     </Border>
                 </Button>
             </DataTemplate>
@@ -226,14 +226,28 @@
                     ItemTemplate="{StaticResource AttachmentTemplate}" 
                     NewButtonTemplate="{StaticResource NewAttachmentTemplate}" 
                     x:Key="attachmentTemplateSelector" />
+            <c:BoolVisibilityConverter x:Key="bvConverter"/>
         </ResourceDictionary>
     </Window.Resources>
     <m:MetroWindow.WindowCommands>
         <m:WindowCommands>
-            <!--<Button Content="settings" />-->
-            <Button>
-                <StackPanel Orientation="Horizontal">
-                    <s:SearchTextBox x:Name="searchTextBox" Grid.Column="0" Grid.Row="1" Width="150" SearchEventTimeDelay="00:00:00.00"
+            <Button Command="{Binding Path=DataContext.NewNote, ElementName=mainWindow}">
+                <Button.ToolTip>
+                    <ToolTip Content="Create a new note."/>
+                </Button.ToolTip>
+                <Image Source="Resources/Images/Icons/newnote.png" Width="16" Height="16"/>
+            </Button>
+            <Button Command="{Binding Path=DataContext.DeleteNote, ElementName=mainWindow}" CommandParameter="{Binding Path=DataContext.SelectedNote, ElementName=mainWindow}">
+                <Button.ToolTip>
+                    <ToolTip Content="Delete the note currently open."/>
+                </Button.ToolTip>
+                <Image Source="Resources/Images/Icons/deletenote.png" Width="16" Height="16"/>
+            </Button>
+            <Button Visibility="{Binding SimpleSearchViewVisibility}">
+                <Button.ToolTip>
+                    <ToolTip Content="Search in all notes."/>
+                </Button.ToolTip>
+                    <s:SearchTextBox x:Name="searchTextBox" Width="150" SearchEventTimeDelay="00:00:00.00"
                 HorizontalAlignment="Stretch" SearchMode="Instant">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Search">
@@ -241,7 +255,12 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </s:SearchTextBox>
-                </StackPanel>
+            </Button>
+            <Button Command="{Binding Path=DataContext.ToggleSearch, ElementName=mainWindow}">
+                <Button.ToolTip>
+                    <ToolTip Content="Toggle advanced search view."/>
+                </Button.ToolTip>
+                <Image Source="Resources/Images/Icons/advancedsearch.png" Width="16" Height="16"/>
             </Button>
         </m:WindowCommands>
     </m:MetroWindow.WindowCommands>
@@ -255,7 +274,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*" MinWidth="400"/>
         </Grid.ColumnDefinitions>
-        <Menu Width="Auto" Height="Auto" Grid.Row="0" Background="#FF60A917" Grid.ColumnSpan="3" Foreground="White">
+        <!--<Menu Width="Auto" Height="Auto" Grid.Row="0" Background="#FF60A917" Grid.ColumnSpan="3" Foreground="White">
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <DockPanel HorizontalAlignment="Stretch"/>
@@ -269,89 +288,104 @@
                     <MenuItem.Header>
                         <DockPanel>
                             <TextBlock>Exit</TextBlock>
-                            <!--<TextBlock Width="10"></TextBlock>
-                            <TextBlock HorizontalAlignment="Right">F2</TextBlock>-->
                         </DockPanel>
                     </MenuItem.Header>
                 </MenuItem>
             </MenuItem>
-        </Menu>
+        </Menu>-->
         <!--<s:SearchTextBox Grid.Column="0" Grid.Row="1" SearchEventTimeDelay="00:00:02.00"
                 HorizontalAlignment="Stretch" />-->
-        <TreeView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Labels}">
-            <TreeView.Resources>
-                <HierarchicalDataTemplate DataType="{x:Type vm:LabelViewModel}" ItemsSource="{Binding Notes}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/Images/Icons/label.ico" Width="15" Height="15" Margin="0,0,2,0"/>
-                        <TextBlock Text="{Binding Path=Text}"/>
-                    </StackPanel>
-                </HierarchicalDataTemplate>
-                <HierarchicalDataTemplate DataType="{x:Type vm:NoteViewModel}">
-                    <Button Style="{x:Null}" >
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Resources/Images/Icons/note.png" Width="15" Height="15" Margin="0,0,2,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDoubleClick">
-                                <i:InvokeCommandAction Command="{Binding Path=DataContext.OpenNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Button>
-                </HierarchicalDataTemplate>
-            </TreeView.Resources>
-        </TreeView>
-        <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding SearchResults}" Visibility="{Binding SearchResultsVisibility}" BorderThickness="0">
-            <ListView.Resources>
-                <DataTemplate DataType="{x:Type vm:NoteViewModel}">
-                    <Button Style="{x:Null}" >
-                        <Button.Template>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="15,0,0,0">
-                                    <Image Source="/Resources/Images/Icons/note.png" Width="15" Height="15" Margin="0,0,2,0" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Button.Template>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDoubleClick">
-                                <i:InvokeCommandAction Command="{Binding Path=DataContext.OpenNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Button>
-                </DataTemplate>
-            </ListView.Resources>
-        </ListView>
-        <TextBlock Grid.Column="0" Grid.Row="1" Text="No results." Visibility="{Binding NoResultsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="10,6,10,20"/>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Notes by label" Background="#FF60A917" Foreground="White" HorizontalAlignment="Stretch" Padding="10,5,10,5"/>
+            <TreeView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Labels}" BorderThickness="0">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type vm:LabelViewModel}" ItemsSource="{Binding Notes}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Resources/Images/Icons/label.ico" Width="15" Height="15" Margin="0,0,2,0"/>
+                            <TextBlock Text="{Binding Text}"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type vm:NoteViewModel}">
+                        <Button Style="{x:Null}" >
+                            <!--<Button.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Open" Command="{Binding Path=DataContext.OpenNote, RelativeSource={RelativeSource AncestorType=m:MetroWindow}}" CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Delete" Command="{Binding Path=DataContext.DeleteNote, RelativeSource={RelativeSource AncestorType=m:MetroWindow}}" CommandParameter="{Binding}"/>
+                                </ContextMenu>
+                            </Button.ContextMenu>-->
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Resources/Images/Icons/note.png" Width="15" Height="15" Margin="0,0,2,0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDoubleClick">
+                                    <i:InvokeCommandAction Command="{Binding Path=DataContext.OpenNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="1" Visibility="{Binding SearchResultsVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Background="#FF60A917">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Search results" Background="#00000000" Foreground="White" HorizontalAlignment="Stretch" Padding="10,5,10,5"/>
+                <Button Grid.Column="1" Width="20" Height="20" BorderThickness="0" Padding="0" Margin="0" HorizontalAlignment="Left"
+                                                VerticalAlignment="Center" Background="#00000000" BorderBrush="#00000000" 
+                                                Command="{Binding Path=DataContext.HideSearch, ElementName=mainWindow}">
+                    <Canvas HorizontalAlignment="Right" VerticalAlignment="Center" Height="15" Width="15">
+                        <Line X1="2" Y1="2" X2="13" Y2="13" StrokeThickness="3" Stroke="#FFFFFFFF"/>
+                        <Line X1="13" Y1="2" X2="2" Y2="13" StrokeThickness="3" Stroke="#FFFFFFFF"/>
+                    </Canvas>
+                </Button>
+            </Grid>
+            <ListView Grid.Column="0" Grid.Row="1" ItemsSource="{Binding SearchResults}" BorderThickness="0">
+                <ListView.Resources>
+                    <DataTemplate DataType="{x:Type vm:NoteViewModel}">
+                        <Button Style="{x:Null}" >
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="15,0,0,0">
+                                        <Image Source="/Resources/Images/Icons/note.png" Width="15" Height="15" Margin="0,0,2,0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDoubleClick">
+                                    <i:InvokeCommandAction Command="{Binding Path=DataContext.OpenNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </DataTemplate>
+                </ListView.Resources>
+            </ListView>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="No results." Visibility="{Binding NoResultsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="10,6,10,20"/>
+        </Grid>
         <GridSplitter HorizontalAlignment="Right" 
                   VerticalAlignment="Stretch" 
                   Grid.Column="1" Grid.Row="1" ResizeBehavior="PreviousAndNext"
                   Width="3" Background="#FF60A917"/>
         <Grid Grid.Column="2" Grid.Row="1" >
-            <!--<Grid.Background>
-                <VisualBrush AlignmentX="Center" AlignmentY="Center" AutoLayoutContent="True" Stretch="Fill">
-                    <VisualBrush.Visual>
-                        <Grid Background="#FF80BA45" 
-                              Height="{Binding Path=ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}}" 
-                              Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}}">
-                            <Image Source="/Resources/Images/logo_big.png" Width="206" Height="321" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                    </VisualBrush.Visual>
-                </VisualBrush>
-            </Grid.Background>-->
-            <!--<Button HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                <Button.ContentTemplate>
-                    <ItemContainerTemplate>-->
             <Grid Background="#FF80BA45">
                 <Image Source="Resources/Images/logo_background.png" Width="466" Height="220" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
-            <!--</ItemContainerTemplate>
-                </Button.ContentTemplate>
-            </Button>-->
             <TabControl x:Name="mainTab" Style="{x:Null}" ItemsSource="{Binding OpenNotes}" SelectedValue="{Binding SelectedNote}" Visibility="{Binding TabVisibility}">
                 <TabControl.Resources>
                     <Style TargetType="TabItem">
@@ -429,9 +463,9 @@
                                 <Border.BorderBrush>
                                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
                                 </Border.BorderBrush>
-                                    <!--Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/-->
-                                    <!--<t:WatermarkTextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,1" BorderThickness="0" Watermark="Add labels..."/>-->
-                                    <l:LabelsControl VerticalAlignment="Center" HorizontalAlignment="Stretch" Source="{Binding LabelString}" Update="{Binding Update}"/>
+                                <!--Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/-->
+                                <!--<t:WatermarkTextBox Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,1" BorderThickness="0" Watermark="Add labels..."/>-->
+                                <l:LabelsControl VerticalAlignment="Center" HorizontalAlignment="Stretch" Source="{Binding LabelString}" Update="{Binding Update}"/>
                             </Border>
                             <Border Grid.Row="2" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,2,2">
                                 <Border.BorderBrush>
@@ -452,6 +486,114 @@
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>
+        </Grid>
+        <Grid x:Name="complexSearchView" Grid.Column="2" Grid.Row="1" Background="White" Visibility="{Binding ComplexSearchViewVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#FF60A917">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Advanced search" Background="#00000000" Foreground="White" HorizontalAlignment="Stretch" Padding="10,5,10,5"/>
+                <Button Grid.Column="1" Width="20" Height="20" BorderThickness="0" Padding="0" Margin="0,0,5,0" HorizontalAlignment="Left"
+                                                VerticalAlignment="Center" Background="#00000000" BorderBrush="#00000000" 
+                                                Command="{Binding Path=DataContext.HideComplexSearch, ElementName=mainWindow}">
+                    <Canvas HorizontalAlignment="Right" VerticalAlignment="Center" Height="15" Width="15">
+                        <Line X1="2" Y1="2" X2="13" Y2="13" StrokeThickness="3" Stroke="#FFFFFFFF"/>
+                        <Line X1="13" Y1="2" X2="2" Y2="13" StrokeThickness="3" Stroke="#FFFFFFFF"/>
+                    </Canvas>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" Margin="10,10,15,10" DataContext="{Binding ComplexSearch, Mode=OneTime}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Title contains every word:" FontSize="16" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,0,10"/>
+                <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding TitleContains}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Title contains exacly:" FontSize="16" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,0,10"/>
+                <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding TitleContainsExact}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Title contains any word:" FontSize="16" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,0,10"/>
+                <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding TitleContainsAny}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                <Separator Grid.Row="3" Grid.ColumnSpan="3" Margin="0,0,0,5"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Text contains every word:" FontSize="16" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,0,10"/>
+                <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding TextContains}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Text contains exacly:" FontSize="16" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,0,10"/>
+                <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding TextContainsExact}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Text contains any word:" FontSize="16" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,0,10"/>
+                <TextBox Grid.Row="6" Grid.Column="2" Text="{Binding TextContainsAny}" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                <Separator Grid.Row="7" Grid.ColumnSpan="3" Margin="0,0,0,5"/>
+                
+                <Grid Grid.Row="8" Grid.ColumnSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Created after:" FontSize="16" VerticalAlignment="Center" TextAlignment="Center" Margin="0,0,0,10"/>
+                    <DatePicker Grid.Row="1" Grid.Column="0" SelectedDate="{Binding After}" SelectedDateFormat="Long" Margin="0,0,0,10"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Created before:" FontSize="16" VerticalAlignment="Center" TextAlignment="Center" Margin="0,0,0,10"/>
+                    <DatePicker Grid.Row="1" Grid.Column="2" SelectedDate="{Binding Before}" SelectedDateFormat="Long" Margin="0,0,0,10"/>
+                </Grid>
+                <Separator Grid.Row="9" Grid.ColumnSpan="3" Margin="0,0,0,10"/>
+
+                <TextBlock Grid.Row="10" Grid.Column="0" Text="Notes with attachments:" FontSize="16" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,0,10"/>
+                <CheckBox Grid.Row="10" Grid.Column="2" x:Name="hasAny" IsChecked="{Binding HasAny}" Margin="0,0,0,10"/>
+
+                <TextBlock Grid.Row="11" Grid.Column="0" Text="Attachment types:" FontSize="16" VerticalAlignment="Top" TextAlignment="Right" Margin="0,0,0,10"
+                           Visibility="{Binding IsChecked, ElementName=hasAny, Converter={StaticResource bvConverter}}"/>
+                <Grid Grid.Row="11" Grid.Column="2" Visibility="{Binding IsChecked, ElementName=hasAny, Converter={StaticResource bvConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <CheckBox Grid.Row="0" Grid.Column="0" Content="Text" FontSize="16" IsChecked="{Binding HasText}" Margin="0,0,0,10"/>
+                    <CheckBox Grid.Row="0" Grid.Column="1" Content="Image" FontSize="16" IsChecked="{Binding HasImage}" Margin="0,0,0,10"/>
+                    <CheckBox Grid.Row="1" Grid.Column="0" Content="Audio" FontSize="16" IsChecked="{Binding HasAudio}" Margin="0,0,0,10"/>
+                    <CheckBox Grid.Row="2" Grid.Column="1" Content="Video" FontSize="16" IsChecked="{Binding HasVideo}" Margin="0,0,0,10"/>
+
+                </Grid>
+                <TextBlock Grid.Row="12" Grid.Column="0" Text="Attachment names:" FontSize="16" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,0,10" 
+                           Visibility="{Binding IsChecked, ElementName=hasAny, Converter={StaticResource bvConverter}}"/>
+                <TextBox Grid.Row="12" Grid.Column="2" Text="{Binding TitleContains}" VerticalAlignment="Center" Margin="0,0,0,10"
+                         Visibility="{Binding IsChecked, ElementName=hasAny, Converter={StaticResource bvConverter}}"/>
+
+                <Button Grid.Row="13" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Content="Search" FontSize="14" Command="{Binding Path=DataContext.Search, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+            </Grid>
         </Grid>
     </Grid>
 </m:MetroWindow>
