@@ -92,5 +92,11 @@ namespace Sheet.BLL
         {
             service.DeleteLabels(note);
         }
+
+
+        public ICollection<Facade.Notes.INote> QueryNotes(Facade.Queries.ComplexQueries.ComplexQuery query)
+        {
+            return service.QueryNotes(query);
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Sheet.Facade.Notes;
 using Sheet.Facade.Queries;
 using System.IO;
+using Sheet.Facade.Queries.ComplexQueries;
 
 namespace Sheet.Facade.Services
 {
@@ -29,5 +30,6 @@ namespace Sheet.Facade.Services
         ICollection<INote> QueryNotes(string expression);
         ICollection<INote> QueryNotes(ILabel label);
         ICollection<INote> QueryNotes(NoteQuery query);
+        ICollection<INote> QueryNotes(ComplexQuery query);
     }
 }
