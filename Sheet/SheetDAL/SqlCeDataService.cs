@@ -7,6 +7,8 @@ using Sheet.Facade.Services;
 using Sheet.DAL.Entities;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace Sheet.DAL
 {
@@ -298,6 +300,19 @@ namespace Sheet.DAL
                 Note dbNote = ctx.Notes.Include("Labels").Single(n => n.ID == note.ID);
                 dbNote.Labels.Clear();
                 ctx.SaveChanges();
+            }
+        }
+
+
+        public ICollection<Facade.Notes.INote> QueryNotes(Facade.Queries.ComplexQueries.ComplexQuery query)
+        {
+            using (SheetContext ctx = new SheetContext())
+            {
+                string sqlQuery = "SELECT * FROM Notes";
+                ICollection<Facade.Notes.INote> result = ctx.Notes.SqlQuery(
+                    sqlQuery
+                    ).ToList<Facade.Notes.INote>();
+                return result;
             }
         }
     }

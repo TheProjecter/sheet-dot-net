@@ -92,5 +92,11 @@ namespace Sheet.BLL
         {
             return Dal.DownloadAttachment(attachment);
         }
+
+
+        public ICollection<INote> SearchNote(Facade.Queries.ComplexQueries.ComplexQuery query)
+        {
+            return Dal.QueryNotes(query);
+        }
     }
 }

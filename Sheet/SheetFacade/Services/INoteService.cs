@@ -1,4 +1,5 @@
 ﻿using Sheet.Facade.Notes;
+using Sheet.Facade.Queries.ComplexQueries;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,7 @@ namespace Sheet.Facade.Services
         ICollection<ILabel> GetLabels();
         ICollection<INote> GetNotesByLabel(ILabel label);
         ICollection<INote> SearchNote(string expression);
+        ICollection<INote> SearchNote(ComplexQuery query);
         INote LoadNote(INote note);
         INote UpdateLabels(INote note, IEnumerable<string> labels);
         INote AddAttachment(INote note, Stream attachment, string fileName);

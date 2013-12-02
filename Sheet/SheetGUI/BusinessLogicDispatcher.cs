@@ -74,5 +74,11 @@ namespace Sheet.GUI
         {
             return service.DownloadAttachment(attachment);
         }
+
+
+        public ICollection<Facade.Notes.INote> SearchNote(Facade.Queries.ComplexQueries.ComplexQuery query)
+        {
+            return service.SearchNote(query);
+        }
     }
 }
