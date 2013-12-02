@@ -23,7 +23,7 @@ namespace Sheet.Facade.Services
 
         void SaveNote(INote note);
 
-        ICollection<ILabel> GetLabels();
+        ICollection<INote> GetNotes();
         ILabel SetLabel(INote note, string text);
 
         INote LoadNote(INote note);

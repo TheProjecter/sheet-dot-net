@@ -214,10 +214,14 @@ namespace Sheet.GUI.ViewModel
 
         public async Task LoadLabels()
         {
-            Labels.Clear();
-            foreach (var label in await App.Bll.GetLabels())
+            foreach (var note in await App.Bll.GetNotes())
             {
-                Labels.Add(this.GetViewModel(label));
+                this.GetViewModel(note).Connect();
+            }
+            Labels.Clear();
+            foreach (var label in labelViewModels.Values)
+            {
+                Labels.Add(label);
             }
         }
 
