@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sheet.Facade.Queries.ComplexQueries;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace Sheet.GUI.ViewModel
 {
     public class ComplexSearchViewModel : SheetViewModelBase
     {
+        private static string[] separators = new string[]{" ", ",", ";"};
+
         private string titleContains = "";
         private string titleContainsExact = "";
         private string textContains = "";
@@ -241,7 +244,55 @@ namespace Sheet.GUI.ViewModel
 
         public void Search()
         {
-            throw new NotImplementedException();
+            ComplexQuery query = new ComplexQuery();
+
+            List<string> titleQuery = new List<string>(titleContains.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+            if (!string.IsNullOrWhiteSpace(titleContainsExact))
+                titleQuery.Add(titleContainsExact);
+            query.TitleQuery = titleQuery;
+
+            List<string> titleAny = new List<string>(titleContainsAny.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+            query.TitleAny = titleAny;
+
+            List<string> textQuery = new List<string>(textContains.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+            if (!string.IsNullOrWhiteSpace(textContainsExact))
+                textQuery.Add(textContainsExact);
+            query.TextQuery = textQuery;
+
+            List<string> textAny = new List<string>(textContainsAny.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+            query.TextAny = textAny;
+
+            List<string> labelQuery = new List<string>(labels.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+            query.LabelQuery = labelQuery;
+
+            query.Before = before;
+            query.After = after;
+
+            query.HasAttachment = hasAny;
+
+            if (hasAny)
+            {
+                List<ContentType> attachmentOfType = new List<ContentType>();
+                if (hasText)
+                    attachmentOfType.Add(ContentType.Text);
+                if (hasImage)
+                    attachmentOfType.Add(ContentType.Image);
+                if (hasAudio)
+                    attachmentOfType.Add(ContentType.Audio);
+                if (hasVideo)
+                    attachmentOfType.Add(ContentType.Video);
+                query.AttachmentOfType = attachmentOfType;
+
+                query.AttachmentNameQuery = new List<string>(this.attachmentNames.Split(separators, StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            var results = App.Bll.SearchNote(query);
+            main.SearchResultsVisibility = System.Windows.Visibility.Visible;
+            main.SearchResults.Clear();
+            foreach (var note in results)
+            {
+                main.SearchResults.Add(main.GetViewModel(note));
+            }
         }
     }
 }

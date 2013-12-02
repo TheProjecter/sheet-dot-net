@@ -15,7 +15,8 @@ namespace Sheet.Facade.Queries.ComplexQueries
         public IEnumerable<string> LabelQuery { get; set; }
         public DateTime Before { get; set; }
         public DateTime After { get; set; }
-        public IEnumerable<ContentType> HasAttachment { get; set; }
+        public bool HasAttachment { get; set; }
+        public IEnumerable<ContentType> AttachmentOfType { get; set; }
         public IEnumerable<string> AttachmentNameQuery { get; set; }
     }
 }
