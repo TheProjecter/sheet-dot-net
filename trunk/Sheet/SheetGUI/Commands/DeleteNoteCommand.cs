@@ -17,7 +17,7 @@ namespace Sheet.GUI.Commands
 
         void vm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "SelectedNote" || e.PropertyName == string.Empty)
+            if (e.PropertyName == "SelectedNote" || e.PropertyName == "ComplexSearchViewVisibility" || e.PropertyName == string.Empty)
             {
                 base.RaiseCanExecutedChanged();
             }
@@ -27,7 +27,7 @@ namespace Sheet.GUI.Commands
         {
             //NoteViewModel noteVM = parameter as NoteViewModel;
             //return noteVM != null;
-            return vm.SelectedNote != null;
+            return vm.SelectedNote != null && vm.ComplexSearchViewVisibility != System.Windows.Visibility.Visible;
         }
 
         public override void Execute(object parameter)
