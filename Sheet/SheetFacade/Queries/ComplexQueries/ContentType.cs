@@ -11,7 +11,6 @@ namespace Sheet.Facade.Queries.ComplexQueries
         Text,
         Image,
         Video,
-        Audio,
-        Any
+        Audio
     }
 }

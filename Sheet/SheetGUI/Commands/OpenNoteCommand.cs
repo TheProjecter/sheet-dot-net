@@ -26,6 +26,7 @@ namespace Sheet.GUI.Commands
             if (!vm.OpenNotes.Contains(noteVM))
                 vm.OpenNotes.Add(noteVM);
             vm.SelectedNote = noteVM;
+            vm.SetComplexSearchVisible(false);
             noteVM.Load();
         }
     }
