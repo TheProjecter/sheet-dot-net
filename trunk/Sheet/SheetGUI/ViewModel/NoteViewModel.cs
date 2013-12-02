@@ -226,9 +226,9 @@ namespace Sheet.GUI.ViewModel
             App.Bll.DeleteNote(model);
         }
 
-        public void Load()
+        public async void Load()
         {
-            Model = App.Bll.LoadNote(model);
+            Model = await App.Bll.LoadNote(model);
         }
 
         public void Save()
@@ -241,17 +241,17 @@ namespace Sheet.GUI.ViewModel
             }
         }
 
-        internal void UpdateLabels(string[] labels)
+        internal async void UpdateLabels(string[] labels)
         {
-            INote updated = App.Bll.UpdateLabels(model, labels);
+            INote updated = await App.Bll.UpdateLabels(model, labels);
             Disconnect();
             Model = updated;
             Connect();
         }
 
-        internal void AddNewAttachment(System.IO.Stream stream, string fileName)
+        internal async void AddNewAttachment(System.IO.Stream stream, string fileName)
         {
-            this.Model = App.Bll.AddAttachment(model, stream, fileName);
+            this.Model = await App.Bll.AddAttachment(model, stream, fileName);
         }
     }
 }

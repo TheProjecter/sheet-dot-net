@@ -13,9 +13,9 @@ namespace Sheet.GUI
     /// </summary>
     public partial class App : Application
     {
-        public static INoteService Bll
+        public static BusinessLogicDispatcher Bll
         {
-            get { return App.Current.Resources["Bll"] as INoteService; }
+            get { return App.Current.Resources["Bll"] as BusinessLogicDispatcher; }
         }
 
         protected override void OnStartup(StartupEventArgs e)

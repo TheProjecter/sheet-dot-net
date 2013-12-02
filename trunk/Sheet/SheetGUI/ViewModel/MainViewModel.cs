@@ -11,6 +11,7 @@ using System.Windows;
 using System.Linq;
 using Sheet.Facade.Notes;
 using Sheet.GUI.ModelMocks;
+using System.Threading.Tasks;
 
 namespace Sheet.GUI.ViewModel
 {
@@ -211,10 +212,10 @@ namespace Sheet.GUI.ViewModel
             get { return complexSearching ? Visibility.Collapsed : Visibility.Visible; }
         }
 
-        public void LoadLabels()
+        public async Task LoadLabels()
         {
             Labels.Clear();
-            foreach (var label in App.Bll.GetLabels())
+            foreach (var label in await App.Bll.GetLabels())
             {
                 Labels.Add(this.GetViewModel(label));
             }

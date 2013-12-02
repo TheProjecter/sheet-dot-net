@@ -16,9 +16,9 @@ namespace Sheet.GUI.Commands
             return true;
         }
 
-        public override void Execute(object parameter)
+        public async override void Execute(object parameter)
         {
-            NoteViewModel newNoteVM = vm.GetViewModel(App.Bll.NewNote());
+            NoteViewModel newNoteVM = vm.GetViewModel(await App.Bll.NewNote());
             newNoteVM.Connect();
             vm.OpenNotes.Add(newNoteVM);
             vm.SelectedNote = newNoteVM;

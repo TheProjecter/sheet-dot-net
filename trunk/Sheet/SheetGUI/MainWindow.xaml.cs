@@ -34,9 +34,9 @@ namespace SheetGUI
             this.Close();
         }
 
-        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        private async void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            viewModel.LoadLabels();
+            await viewModel.LoadLabels();
         }
     }
 }

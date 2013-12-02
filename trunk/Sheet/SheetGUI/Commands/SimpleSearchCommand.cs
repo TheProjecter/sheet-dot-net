@@ -16,7 +16,7 @@ namespace Sheet.GUI.Commands
             return true;
         }
 
-        public override void Execute(object parameter)
+        public async override void Execute(object parameter)
         {
             string expression = parameter as string;
             if (string.IsNullOrEmpty(expression))
@@ -27,7 +27,7 @@ namespace Sheet.GUI.Commands
             }
             else
             {
-                var results = App.Bll.SearchNote(expression);
+                var results = await App.Bll.SearchNote(expression);
                 vm.SearchResultsVisibility = System.Windows.Visibility.Visible;
                 vm.SearchResults.Clear();
                 foreach (var note in results)
