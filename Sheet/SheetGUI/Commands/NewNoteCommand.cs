@@ -22,6 +22,7 @@ namespace Sheet.GUI.Commands
             newNoteVM.Connect();
             vm.OpenNotes.Add(newNoteVM);
             vm.SelectedNote = newNoteVM;
+            vm.SetComplexSearchVisible(false);
         }
     }
 }
