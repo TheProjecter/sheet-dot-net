@@ -11,7 +11,7 @@ namespace Sheet.Facade.Services
 {
     public interface INoteService
     {
-        ICollection<ILabel> GetLabels();
+        ICollection<INote> GetNotes();
         ICollection<INote> GetNotesByLabel(ILabel label);
         ICollection<INote> SearchNote(string expression);
         ICollection<INote> SearchNote(ComplexQuery query);

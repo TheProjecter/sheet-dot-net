@@ -596,7 +596,7 @@
                 </Grid>
                 <TextBlock Grid.Row="14" Grid.Column="0" Text="Attachment names:" FontSize="16" VerticalAlignment="Center" TextAlignment="Right" Margin="0,0,0,10" 
                            Visibility="{Binding IsChecked, ElementName=hasAny, Converter={StaticResource bvConverter}}"/>
-                <TextBox Grid.Row="14" Grid.Column="2" Text="{Binding TitleContains}" VerticalAlignment="Center" Margin="0,0,0,10"
+                <TextBox Grid.Row="14" Grid.Column="2" Text="{Binding AttachmentNames}" VerticalAlignment="Center" Margin="0,0,0,10"
                          Visibility="{Binding IsChecked, ElementName=hasAny, Converter={StaticResource bvConverter}}"/>
 
                 <Button Grid.Row="15" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Content="Search" FontSize="14" Command="{Binding Path=DataContext.Search, ElementName=mainWindow}" CommandParameter="{Binding}"/>

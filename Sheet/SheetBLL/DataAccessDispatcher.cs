@@ -30,9 +30,9 @@ namespace Sheet.BLL
 
 
 
-        public ICollection<Facade.Notes.ILabel> GetLabels()
+        public ICollection<Facade.Notes.INote> GetNotes()
         {
-            return service.GetLabels();
+            return service.GetNotes();
         }
 
         public Facade.Notes.INote LoadNote(Facade.Notes.INote note)

@@ -23,9 +23,9 @@ namespace Sheet.BLL
 
         }
 
-        public ICollection<Facade.Notes.ILabel> GetLabels()
+        public ICollection<Facade.Notes.INote> GetNotes()
         {
-            return Dal.GetLabels();
+            return Dal.GetNotes();
         }
 
         public ICollection<Facade.Notes.INote> GetNotesByLabel(Facade.Notes.ILabel label)
@@ -37,7 +37,6 @@ namespace Sheet.BLL
         {
             return Dal.LoadNote(note);
         }
-
 
         public ICollection<Facade.Notes.INote> SearchNote(string expression)
         {

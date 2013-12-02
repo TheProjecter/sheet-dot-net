@@ -17,9 +17,9 @@ namespace Sheet.GUI
             service = new LocalNoteService();
         }
 
-        public async Task<ICollection<Facade.Notes.ILabel>> GetLabels()
+        public async Task<ICollection<Facade.Notes.INote>> GetNotes()
         {
-            return await Task<ICollection<Sheet.Facade.Notes.ILabel>>.Run((() => service.GetLabels()));
+            return await Task<ICollection<Sheet.Facade.Notes.INote>>.Run((() => service.GetNotes()));
         }
 
         public async Task<ICollection<Facade.Notes.INote>> GetNotesByLabel(Facade.Notes.ILabel label)

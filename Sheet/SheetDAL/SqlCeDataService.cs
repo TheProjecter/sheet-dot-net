@@ -92,13 +92,13 @@ namespace Sheet.DAL
             CleanupLabels();
         }
 
-        public ICollection<Facade.Notes.ILabel> GetLabels()
+        public ICollection<Facade.Notes.INote> GetNotes()
         {
             using (SheetContext ctx = new SheetContext())
             {
                 try
                 {
-                    var result = ctx.Labels.Include("Notes").ToArray();
+                    var result = ctx.Notes.Include("Labels").ToArray();
                     return result;
                 }
                 catch (ArgumentNullException)
