@@ -242,7 +242,7 @@ namespace Sheet.GUI.ViewModel
             }
         }
 
-        public void Search()
+        public async void Search()
         {
             ComplexQuery query = new ComplexQuery();
 
@@ -286,7 +286,7 @@ namespace Sheet.GUI.ViewModel
                 query.AttachmentNameQuery = new List<string>(this.attachmentNames.Split(separators, StringSplitOptions.RemoveEmptyEntries));
             }
 
-            var results = App.Bll.SearchNote(query);
+            var results = await App.Bll.SearchNote(query);
             main.SearchResultsVisibility = System.Windows.Visibility.Visible;
             main.SearchResults.Clear();
             foreach (var note in results)

@@ -117,8 +117,8 @@ namespace Sheet.GUI.ViewModel
 
         internal async void Save(string path)
         {
+            using (Stream data = cache == null || !File.Exists(cache) ? await App.Bll.DownloadAttachment(model) : File.Open(cache, FileMode.Open))
             using (Stream target = File.Open(path, FileMode.Create))
-            using (Stream data = cache == null || !File.Exists(cache) ? App.Bll.DownloadAttachment(model) : File.Open(cache, FileMode.Open))
             {
                 await data.CopyToAsync(target);
             }
@@ -133,8 +133,8 @@ namespace Sheet.GUI.ViewModel
             if (cache == null)
             {
                 string path = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(model.Name));
+                using (Stream data = await App.Bll.DownloadAttachment(model))
                 using (Stream target = File.Open(path, FileMode.Create))
-                using (Stream data = App.Bll.DownloadAttachment(model))
                 {
                     await data.CopyToAsync(target);
                 }
@@ -145,7 +145,7 @@ namespace Sheet.GUI.ViewModel
             {
                 Process.Start(cache);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 SaveAttachment.Execute(null);
             }

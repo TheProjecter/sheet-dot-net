@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sheet.GUI
 {
-    public class BusinessLogicDispatcher : INoteService
+    public class BusinessLogicDispatcher
     {
         INoteService service;
 
@@ -17,68 +17,67 @@ namespace Sheet.GUI
             service = new LocalNoteService();
         }
 
-        public ICollection<Facade.Notes.ILabel> GetLabels()
+        public async Task<ICollection<Facade.Notes.ILabel>> GetLabels()
         {
-            return service.GetLabels();
+            return await Task<ICollection<Sheet.Facade.Notes.ILabel>>.Run((() => service.GetLabels()));
         }
 
-        public ICollection<Facade.Notes.INote> GetNotesByLabel(Facade.Notes.ILabel label)
+        public async Task<ICollection<Facade.Notes.INote>> GetNotesByLabel(Facade.Notes.ILabel label)
         {
-            return service.GetNotesByLabel(label);
+            return await Task<ICollection<Sheet.Facade.Notes.INote>>.Run(() => service.GetNotesByLabel(label));
         }
 
-        public Facade.Notes.INote LoadNote(Facade.Notes.INote note)
+        public async Task<Facade.Notes.INote> LoadNote(Facade.Notes.INote note)
         {
-            return service.LoadNote(note);
+            return await Task<Sheet.Facade.Notes.INote>.Run(() => service.LoadNote(note));
         }
 
-
-        public ICollection<Facade.Notes.INote> SearchNote(string expression)
+        public async Task<ICollection<Facade.Notes.INote>> SearchNote(string expression)
         {
-            return service.SearchNote(expression);
+            return await Task<ICollection<Sheet.Facade.Notes.INote>>.Run(() => service.SearchNote(expression));
         }
 
-        public Facade.Notes.INote UpdateLabels(Facade.Notes.INote note, IEnumerable<string> labels)
+        public async Task<Facade.Notes.INote> UpdateLabels(Facade.Notes.INote note, IEnumerable<string> labels)
         {
-            return service.UpdateLabels(note, labels);
+            return await Task<Sheet.Facade.Notes.INote>.Run(() => service.UpdateLabels(note, labels));
         }
 
-        public Facade.Notes.INote AddAttachment(Facade.Notes.INote note, System.IO.Stream attachment, string fileName)
+        public async Task<Facade.Notes.INote> AddAttachment(Facade.Notes.INote note, System.IO.Stream attachment, string fileName)
         {
-            return service.AddAttachment(note, attachment, fileName);
+            return await Task<Sheet.Facade.Notes.INote>.Run(() => service.AddAttachment(note, attachment, fileName));
         }
 
-        public void SaveNote(Facade.Notes.INote note)
+        public async Task SaveNote(Facade.Notes.INote note)
         {
-            service.SaveNote(note);
+            await Task.Run(() => service.SaveNote(note));
         }
 
-        public void DeleteNote(Facade.Notes.INote note)
+        public async Task DeleteNote(Facade.Notes.INote note)
         {
-            service.DeleteNote(note);
+            await Task.Run(() => service.DeleteNote(note));
         }
 
-        public void DeleteAttachment(Facade.Notes.IAttachment attachment)
+        public async Task DeleteAttachment(Facade.Notes.IAttachment attachment)
         {
-            service.DeleteAttachment(attachment);
-        }
-
-
-        public Facade.Notes.INote NewNote()
-        {
-            return service.NewNote();
+            await Task.Run(() => service.DeleteAttachment(attachment));
         }
 
 
-        public System.IO.Stream DownloadAttachment(Facade.Notes.IAttachment attachment)
+        public async Task<Facade.Notes.INote> NewNote()
         {
-            return service.DownloadAttachment(attachment);
+            return await Task.Run<Sheet.Facade.Notes.INote>(() => service.NewNote());
         }
 
 
-        public ICollection<Facade.Notes.INote> SearchNote(Facade.Queries.ComplexQueries.ComplexQuery query)
+        public async Task<System.IO.Stream> DownloadAttachment(Facade.Notes.IAttachment attachment)
         {
-            return service.SearchNote(query);
+            return await Task<System.IO.Stream>.Run(() => service.DownloadAttachment(attachment));
+        }
+
+
+        public async Task<ICollection<Facade.Notes.INote>> SearchNote(Facade.Queries.ComplexQueries.ComplexQuery query)
+        {
+            return await Task<ICollection<Sheet.Facade.Notes.INote>>.Run(() => service.SearchNote(query));
         }
     }
 }
