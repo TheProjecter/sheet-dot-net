@@ -172,18 +172,6 @@ namespace Sheet.DAL
             throw new NotImplementedException();
         }
 
-        [DllImport(@"urlmon.dll", CharSet = CharSet.Auto)]
-        private extern static System.UInt32 FindMimeFromData(
-            System.UInt32 pBC,
-            [MarshalAs(UnmanagedType.LPStr)] System.String pwzUrl,
-            [MarshalAs(UnmanagedType.LPArray)] byte[] pBuffer,
-            System.UInt32 cbSize,
-            [MarshalAs(UnmanagedType.LPStr)] System.String pwzMimeProposed,
-            System.UInt32 dwMimeFlags,
-            out System.UInt32 ppwzMimeOut,
-            System.UInt32 dwReserverd
-        );
-
         public Facade.Notes.IAttachment CreateAttachment(Facade.Notes.INote note, Stream sourceStream, string fileName)
         {
             Attachment attachment = new Attachment()
@@ -308,7 +296,9 @@ namespace Sheet.DAL
         {
             using (SheetContext ctx = new SheetContext())
             {
-                IQueryable<Note> noteQuery = ctx.Notes.Include("Attachments").Where(n => n.DateOfCreation > query.After && n.DateOfCreation < query.Before);
+                DateTime beforeQuery = query.Before.Date.AddDays(1);
+                DateTime afterQuery = query.After.Date;
+                IQueryable<Note> noteQuery = ctx.Notes.Include("Attachments").Where(n => (n.DateOfCreation > afterQuery) && (n.DateOfCreation < beforeQuery));
                 foreach (string cond in query.LabelQuery)
                 {
                     noteQuery = noteQuery.Where(n => n.Labels.Any(l => l.Text.Contains(cond))); 
