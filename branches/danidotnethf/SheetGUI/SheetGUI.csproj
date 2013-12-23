@@ -75,6 +75,8 @@
       <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Expression.Blend.Sdk.1.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -136,6 +138,11 @@
     <Compile Include="ModelMocks\NoteMock.cs" />
     <Compile Include="RichTextBoxHelper.cs" />
     <Compile Include="NewItemTemplateSelector.cs" />
+    <Compile Include="Service References\SheetServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AttachmentViewModel.cs" />
     <Compile Include="ViewModel\ComplexSearchViewModel.cs" />
     <Compile Include="ViewModel\CompositeViewModel.cs" />
@@ -182,13 +189,44 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Sheet.BLLService.Entities.Note.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\SheetServiceReference\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SheetServiceReference\Message.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SheetServiceReference\service.wsdl" />
+    <None Include="Service References\SheetServiceReference\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SheetServiceReference\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SheetServiceReference\Sheet.BLLService.Entities.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SheetServiceReference\Sheet.Facade.Queries.ComplexQueries.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SheetServiceReference\Sheet.GUI.SheetServiceReference.AddAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SheetServiceReference\System.IO.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SheetServiceReference\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Images\Logos\logo16.ico" />
   </ItemGroup>
@@ -222,6 +260,10 @@
     <ProjectReference Include="..\OSIcon\OSIcon.csproj">
       <Project>{3233b80b-eba7-42e0-999d-7b63ff02a8cc}</Project>
       <Name>OSIcon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SheetBLLService\SheetBLLService.csproj">
+      <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
+      <Name>SheetBLLService</Name>
     </ProjectReference>
     <ProjectReference Include="..\SheetBLL\SheetBLL.csproj">
       <Project>{f9c84e28-9e8b-4e1d-b92d-80a27b1450b1}</Project>
@@ -270,6 +312,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Icons\advancedsearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SheetServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SheetServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SheetServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SheetServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

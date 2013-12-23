@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Sheet.Facade.Queries.ComplexQueries" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.microsoft.com/Message" />
+  <xs:element name="GetNotes">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="GetNotesResult" nillable="true" type="q1:ArrayOfNote" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotesByLabel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="label" nillable="true" type="xs:anyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotesByLabelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="GetNotesByLabelResult" nillable="true" type="q2:ArrayOfNote" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchNote">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="expression" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchNoteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="SearchNoteResult" nillable="true" type="q3:ArrayOfNote" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchNoteQuery">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Sheet.Facade.Queries.ComplexQueries" minOccurs="0" name="query" nillable="true" type="q4:ComplexQuery" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchNoteQueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="SearchNoteQueryResult" nillable="true" type="q5:ArrayOfNote" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadNote">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:anyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadNoteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="LoadNoteResult" nillable="true" type="q6:Note" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateLabels">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:anyType" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="labels" nillable="true" type="q7:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateLabelsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="UpdateLabelsResult" nillable="true" type="q8:Note" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AttachmentInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.microsoft.com/Message" name="AttachmentStream" type="q9:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FileName" nillable="true" type="xs:string" />
+  <xs:element name="Note" nillable="true" type="xs:anyType" />
+  <xs:element name="DownloadAttachment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="attachment" nillable="true" type="xs:anyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DownloadAttachmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.microsoft.com/Message" name="DownloadAttachmentResult" type="q10:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewNote">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewNoteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="NewNoteResult" nillable="true" type="q11:Note" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveNote">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:anyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveNoteResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteNote">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:anyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteNoteResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAttachment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="attachment" nillable="true" type="xs:anyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAttachmentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

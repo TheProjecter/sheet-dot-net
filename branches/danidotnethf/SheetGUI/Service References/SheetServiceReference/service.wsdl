@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BLLService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Sheet.Facade.Queries.ComplexQueries" />
+      <xsd:import namespace="http://schemas.microsoft.com/Message" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBLLService_GetNotes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotes" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_GetNotes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_GetNotesByLabel_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotesByLabel" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_GetNotesByLabel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotesByLabelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_SearchNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchNote" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_SearchNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_SearchNoteQuery_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchNoteQuery" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_SearchNoteQuery_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchNoteQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_LoadNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadNote" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_LoadNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_UpdateLabels_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLabels" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_UpdateLabels_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLabelsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AttachmentInfo">
+    <wsdl:part name="parameters" element="tns:AttachmentInfo" />
+  </wsdl:message>
+  <wsdl:message name="AttachmentInfo_Headers">
+    <wsdl:part name="FileName" element="tns:FileName" />
+    <wsdl:part name="Note" element="tns:Note" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_AddAttachment_OutputMessage" />
+  <wsdl:message name="IBLLService_DownloadAttachment_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadAttachment" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_DownloadAttachment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_NewNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewNote" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_NewNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_SaveNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveNote" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_SaveNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_DeleteNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNote" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_DeleteNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_DeleteAttachment_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAttachment" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_DeleteAttachment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBLLService">
+    <wsdl:operation name="GetNotes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/GetNotes" message="tns:IBLLService_GetNotes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/GetNotesResponse" message="tns:IBLLService_GetNotes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotesByLabel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/GetNotesByLabel" message="tns:IBLLService_GetNotesByLabel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/GetNotesByLabelResponse" message="tns:IBLLService_GetNotesByLabel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/SearchNote" message="tns:IBLLService_SearchNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/SearchNoteResponse" message="tns:IBLLService_SearchNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchNoteQuery">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/SearchNoteQuery" message="tns:IBLLService_SearchNoteQuery_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/SearchNoteQueryResponse" message="tns:IBLLService_SearchNoteQuery_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/LoadNote" message="tns:IBLLService_LoadNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/LoadNoteResponse" message="tns:IBLLService_LoadNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLabels">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/UpdateLabels" message="tns:IBLLService_UpdateLabels_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/UpdateLabelsResponse" message="tns:IBLLService_UpdateLabels_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAttachment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/AddAttachment" name="AttachmentInfo" message="tns:AttachmentInfo" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/AddAttachmentResponse" message="tns:IBLLService_AddAttachment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadAttachment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/DownloadAttachment" message="tns:IBLLService_DownloadAttachment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/DownloadAttachmentResponse" message="tns:IBLLService_DownloadAttachment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NewNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/NewNote" message="tns:IBLLService_NewNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/NewNoteResponse" message="tns:IBLLService_NewNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/SaveNote" message="tns:IBLLService_SaveNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/SaveNoteResponse" message="tns:IBLLService_SaveNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/DeleteNote" message="tns:IBLLService_DeleteNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/DeleteNoteResponse" message="tns:IBLLService_DeleteNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAttachment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/DeleteAttachment" message="tns:IBLLService_DeleteAttachment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/DeleteAttachmentResponse" message="tns:IBLLService_DeleteAttachment_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBLLService" type="tns:IBLLService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetNotes">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/GetNotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotesByLabel">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/GetNotesByLabel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchNote">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/SearchNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchNoteQuery">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/SearchNoteQuery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadNote">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/LoadNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLabels">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/UpdateLabels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAttachment">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/AddAttachment" style="document" />
+      <wsdl:input name="AttachmentInfo">
+        <soap:header message="tns:AttachmentInfo_Headers" part="FileName" use="literal" />
+        <soap:header message="tns:AttachmentInfo_Headers" part="Note" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadAttachment">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/DownloadAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewNote">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/NewNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveNote">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/SaveNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNote">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/DeleteNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAttachment">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/DeleteAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BLLService">
+    <wsdl:port name="BasicHttpBinding_IBLLService" binding="tns:BasicHttpBinding_IBLLService">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
