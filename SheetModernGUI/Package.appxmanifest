@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="98768901-89a0-48f8-bd5e-83d8b12fec15" Publisher="CN=dani" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>SheetModernGUI</DisplayName>
+    <PublisherDisplayName>dani</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <Description>SheetModernGUI</Description>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="SheetModernGUI.App">
+      <VisualElements DisplayName="SheetModernGUI" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="SheetModernGUI" ForegroundText="light" BackgroundColor="#60A917">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
