@@ -50,6 +50,14 @@ namespace Sheet.ModernGUI.ViewModel
             }
         }
 
+        public string Title
+        {
+            get
+            {
+                return Text;
+            }
+        }
+
         public ObservableCollection<NoteViewModel> Notes
         {
             get 

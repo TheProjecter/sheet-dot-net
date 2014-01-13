@@ -165,6 +165,26 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Resources\Images\Logos\logo96.ico" />
+    <Content Include="Resources\Images\Logos\logo64.ico" />
+    <Content Include="Resources\Images\Logos\logo48.ico" />
+    <Content Include="Resources\Images\Logos\logo32.ico" />
+    <Content Include="Resources\Images\Logos\logo255.ico" />
+    <Content Include="Resources\Images\Logos\logo24.ico" />
+    <Content Include="Resources\Images\Logos\logo196.ico" />
+    <Content Include="Resources\Images\Logos\logo16.ico" />
+    <Content Include="Resources\Images\Logos\logo128.ico" />
+    <Content Include="Resources\Images\logo_big.png" />
+    <Content Include="Resources\Images\logo_bg.png" />
+    <Content Include="Resources\Images\logo_background.png" />
+    <Content Include="Resources\Images\logo.png" />
+    <Content Include="Resources\Images\Icons\settings.ico" />
+    <Content Include="Resources\Images\Icons\note.png" />
+    <Content Include="Resources\Images\Icons\note.ico" />
+    <Content Include="Resources\Images\Icons\newnote.png" />
+    <Content Include="Resources\Images\Icons\label.ico" />
+    <Content Include="Resources\Images\Icons\deletenote.png" />
+    <Content Include="Resources\Images\Icons\advancedsearch.png" />
     <None Include="Service References\SheetServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
