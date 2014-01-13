@@ -8,7 +8,8 @@
                         mc:Ignorable="d ignore"
                         d:DesignHeight="768"
                         d:DesignWidth="1366"
-                        DataContext="{Binding Main, Source={StaticResource Locator}}">
+                        DataContext="{Binding Main, Source={StaticResource Locator}}"
+                        Loaded="MainPage_Loaded">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -42,7 +43,7 @@
         </Grid>
         <Grid HorizontalAlignment="Left" Height="688" VerticalAlignment="Top" Width="1346" Margin="10,5,0,0" Grid.Row="1" Background="{StaticResource SheetDarkBackgroundBrush}">
             <Grid HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="333">
-                <TextBlock x:Name="SearchResultsTB" TextWrapping="Wrap" VerticalAlignment="Center" Text="Search results" FontSize="16" Margin="3,3,0,3" HorizontalAlignment="Left" Width="110"/>
+                <TextBlock x:Name="SearchResultsTB" TextWrapping="Wrap" VerticalAlignment="Center" Text="Notes by labels" FontSize="16" Margin="3,3,0,3" HorizontalAlignment="Left" Width="110"/>
                 <Button BorderThickness="0" Padding="0" Margin="313,2,0,3" HorizontalAlignment="Stretch"
         			VerticalAlignment="Stretch" Background="#00000000" BorderBrush="#00000000" 
         			Command="{Binding DataContext.HideSearch, ElementName=mainWindow}">
@@ -52,8 +53,31 @@
                     </Canvas>
                 </Button>
             </Grid>
+            <ListView Margin="0,25,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}" 
+                      HorizontalAlignment="Left" Width="333" 
+                      ItemsSource="{Binding Labels}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Text}"/>
+                            <ListView ItemsSource="{Binding Notes}" Padding="20,0,0,0">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Title}"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Height" Value="30"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <StackPanel Margin="338,0,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}"/>
-            <ListView Margin="0,25,1013,0" Background="{StaticResource SheetWhiteBackgroundBrush}"/>
+
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

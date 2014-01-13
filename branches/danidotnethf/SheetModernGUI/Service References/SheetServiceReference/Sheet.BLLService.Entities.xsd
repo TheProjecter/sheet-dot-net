@@ -1,25 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfNote">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Note" nillable="true" type="tns:Note" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNote" nillable="true" type="tns:ArrayOfNote" />
+  <xs:complexType name="Note">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Attachments" nillable="true" type="tns:ArrayOfAttachment" />
+      <xs:element minOccurs="0" name="DateOfCreation" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Labels" nillable="true" type="tns:ArrayOfLabel" />
+      <xs:element minOccurs="0" name="LastModified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Note" nillable="true" type="tns:Note" />
+  <xs:complexType name="ArrayOfAttachment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Attachment" nillable="true" type="tns:Attachment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAttachment" nillable="true" type="tns:ArrayOfAttachment" />
   <xs:complexType name="Attachment">
     <xs:sequence>
       <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Metadata" nillable="true" type="q1:ArrayOfanyType" />
+      <xs:element minOccurs="0" name="Metadata" nillable="true" type="tns:ArrayOfMetainfo" />
       <xs:element minOccurs="0" name="MimeType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Path" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Attachment" nillable="true" type="tns:Attachment" />
-  <xs:complexType name="Label">
+  <xs:complexType name="ArrayOfMetainfo">
     <xs:sequence>
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Notes" nillable="true" type="q2:ArrayOfanyType" />
-      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Metainfo" nillable="true" type="tns:Metainfo" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Label" nillable="true" type="tns:Label" />
+  <xs:element name="ArrayOfMetainfo" nillable="true" type="tns:ArrayOfMetainfo" />
   <xs:complexType name="Metainfo">
     <xs:sequence>
       <xs:element minOccurs="0" name="ID" type="xs:int" />
@@ -28,30 +51,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Metainfo" nillable="true" type="tns:Metainfo" />
-  <xs:complexType name="AttachmentInfo">
+  <xs:complexType name="ArrayOfLabel">
     <xs:sequence>
-      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System.IO" minOccurs="0" name="AttachmentStream" nillable="true" type="q3:Stream" />
-      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Note" nillable="true" type="xs:anyType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Label" nillable="true" type="tns:Label" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="AttachmentInfo" nillable="true" type="tns:AttachmentInfo" />
-  <xs:complexType name="Note">
+  <xs:element name="ArrayOfLabel" nillable="true" type="tns:ArrayOfLabel" />
+  <xs:complexType name="Label">
     <xs:sequence>
-      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Attachments" nillable="true" type="q4:ArrayOfanyType" />
-      <xs:element minOccurs="0" name="DateOfCreation" type="xs:dateTime" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Labels" nillable="true" type="q5:ArrayOfanyType" />
-      <xs:element minOccurs="0" name="LastModified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="tns:ArrayOfNote" />
       <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
-  <xs:element name="Note" nillable="true" type="tns:Note" />
-  <xs:complexType name="ArrayOfNote">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Note" nillable="true" type="tns:Note" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfNote" nillable="true" type="tns:ArrayOfNote" />
+  <xs:element name="Label" nillable="true" type="tns:Label" />
 </xs:schema>

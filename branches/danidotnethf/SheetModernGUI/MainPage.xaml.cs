@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sheet.ModernGUI.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,9 +17,12 @@ namespace Sheet.ModernGUI
 {
     public sealed partial class MainPage
     {
+        private MainViewModel viewModel = new MainViewModel();
+
         public MainPage()
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
 
         /// <summary>
@@ -42,6 +46,11 @@ namespace Sheet.ModernGUI
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await viewModel.LoadLabels();
         }
     }
 }

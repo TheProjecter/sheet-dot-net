@@ -25,12 +25,9 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="b0f8521f-ce4c-49f1-b881-4a2890cba21c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3c5bf24f-c7ec-470e-afcb-7103459d0c7b" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="d424f5d3-a2f9-4d0a-9eef-bdcd0fb89581" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1/mex" />
     <MetadataFile FileName="Sheet.BLLService.Entities.xsd" MetadataType="Schema" ID="8b855108-e719-4b10-9d04-b45896899376" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="48c803fb-e196-4159-91dc-f489ffa8f009" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1/mex" />
-    <MetadataFile FileName="System.IO.xsd" MetadataType="Schema" ID="a7bbbcd2-d306-4d08-869b-3122cb825c1d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1/mex" />
-    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="8732194c-697a-4ff6-89b4-c771163e3772" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3c5bf24f-c7ec-470e-afcb-7103459d0c7b" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

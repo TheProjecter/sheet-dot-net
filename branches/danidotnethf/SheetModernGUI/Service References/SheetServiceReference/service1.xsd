@@ -13,4 +13,32 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetNotesByLabel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="label" nillable="true" type="q2:Label" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNotesByLabelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="GetNotesByLabelResult" nillable="true" type="q3:ArrayOfNote" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadNote">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="note" nillable="true" type="q4:Note" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadNoteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="LoadNoteResult" nillable="true" type="q5:Note" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

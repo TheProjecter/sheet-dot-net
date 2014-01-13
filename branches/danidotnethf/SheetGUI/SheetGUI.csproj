@@ -14,6 +14,8 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -195,12 +197,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\SheetServiceReference\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SheetServiceReference\Message.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\SheetServiceReference\service.wsdl" />
     <None Include="Service References\SheetServiceReference\service.xsd">
       <SubType>Designer</SubType>
@@ -209,18 +205,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\SheetServiceReference\Sheet.BLLService.Entities.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SheetServiceReference\Sheet.Facade.Queries.ComplexQueries.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SheetServiceReference\Sheet.GUI.SheetServiceReference.AddAttachmentResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\SheetServiceReference\System.IO.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SheetServiceReference\System.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -336,6 +320,7 @@
     if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
     xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
