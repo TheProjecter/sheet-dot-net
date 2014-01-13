@@ -79,9 +79,12 @@
                 </ListView.ItemTemplate>
             </ListView>-->
 
-            <xc:TreeView Margin="0,25,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}" 
+            <xc:TreeView
+                      Name="NotesTree"
+                      Margin="0,25,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}" 
                       HorizontalAlignment="Left" Width="333" 
-                      ItemsSource="{Binding Labels}">
+                      ItemsSource="{Binding Labels}"
+                      SelectedItemChanged="NotesTree_SelectedItemChanged">
                 <xc:TreeView.ItemTemplate>
                     <DataTemplate>
                         <data:DataTemplateExtensions.Hierarchy>
@@ -92,7 +95,6 @@
                             <TextBlock Text="{Binding Title}"/>
                         </StackPanel>
                     </DataTemplate>
-                    
                 </xc:TreeView.ItemTemplate>
                 <xc:TreeView.Resources>
                     <!--<HierarchicalDataTemplate DataType="{x:Type vm:LabelViewModel}" ItemsSource="{Binding Notes}">

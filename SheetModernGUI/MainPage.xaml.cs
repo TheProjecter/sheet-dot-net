@@ -52,5 +52,13 @@ namespace Sheet.ModernGUI
         {
             await viewModel.LoadLabels();
         }
+
+        private void NotesTree_SelectedItemChanged(object sender, WinRTXamlToolkit.Controls.RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (e.NewValue is NoteViewModel)
+            {
+                viewModel.SelectedNote = e.NewValue as NoteViewModel;                
+            }
+        }
     }
 }
