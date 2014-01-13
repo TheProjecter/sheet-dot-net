@@ -357,6 +357,9 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/LoadNote", ReplyAction="http://tempuri.org/IBLLService/LoadNoteResponse")]
         System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> LoadNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/SaveNote", ReplyAction="http://tempuri.org/IBLLService/SaveNoteResponse")]
+        System.Threading.Tasks.Task SaveNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -412,6 +415,10 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         
         public System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> LoadNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note) {
             return base.Channel.LoadNoteAsync(note);
+        }
+        
+        public System.Threading.Tasks.Task SaveNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note) {
+            return base.Channel.SaveNoteAsync(note);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {
