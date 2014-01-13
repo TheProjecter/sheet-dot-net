@@ -5,6 +5,8 @@
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:common="using:Sheet.ModernGUI.Common"
                         xmlns:ignore="http://www.ignore.com"
+                        xmlns:xc="using:WinRTXamlToolkit.Controls"
+                        xmlns:data="using:WinRTXamlToolkit.Controls.Data"
                         mc:Ignorable="d ignore"
                         d:DesignHeight="768"
                         d:DesignWidth="1366"
@@ -53,7 +55,7 @@
                     </Canvas>
                 </Button>
             </Grid>
-            <ListView Margin="0,25,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}" 
+            <!--<ListView Margin="0,25,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}" 
                       HorizontalAlignment="Left" Width="333" 
                       ItemsSource="{Binding Labels}">
                 <ListView.ItemTemplate>
@@ -75,8 +77,55 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
-            <StackPanel Margin="338,0,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}"/>
+            </ListView>-->
+
+            <xc:TreeView Margin="0,25,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}" 
+                      HorizontalAlignment="Left" Width="333" 
+                      ItemsSource="{Binding Labels}">
+                <xc:TreeView.ItemTemplate>
+                    <DataTemplate>
+                        <data:DataTemplateExtensions.Hierarchy>
+                            <data:HierarchicalDataTemplate ItemsSource="{Binding Notes}"/>
+                        </data:DataTemplateExtensions.Hierarchy>
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Image Source="/Resources/Images/Icons/label.ico" Width="15" Height="15" Margin="0,0,2,0"/>-->
+                            <TextBlock Text="{Binding Title}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                    
+                </xc:TreeView.ItemTemplate>
+                <xc:TreeView.Resources>
+                    <!--<HierarchicalDataTemplate DataType="{x:Type vm:LabelViewModel}" ItemsSource="{Binding Notes}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Resources/Images/Icons/label.ico" Width="15" Height="15" Margin="0,0,2,0"/>
+                            <TextBlock Text="{Binding Text}"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type vm:NoteViewModel}">
+                        <Button Style="{x:Null}" >
+                            
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Resources/Images/Icons/note.png" Width="15" Height="15" Margin="0,0,2,0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseDoubleClick">
+                                    <i:InvokeCommandAction Command="{Binding Path=DataContext.OpenNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </HierarchicalDataTemplate>-->
+                </xc:TreeView.Resources>
+            </xc:TreeView>
+            <StackPanel Margin="338,0,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}">
+                <StackPanel Orientation="Horizontal" DataContext="{Binding SelectedNote}">
+                    <xc:WatermarkTextBox WatermarkText="Set title..." Text="{Binding Title}"/>
+                </StackPanel>
+            </StackPanel>
 
         </Grid>
 
