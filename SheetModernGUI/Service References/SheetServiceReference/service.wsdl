@@ -25,6 +25,12 @@
   <wsdl:message name="IBLLService_LoadNote_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadNoteResponse" />
   </wsdl:message>
+  <wsdl:message name="IBLLService_SaveNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveNote" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_SaveNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveNoteResponse" />
+  </wsdl:message>
   <wsdl:portType name="IBLLService">
     <wsdl:operation name="GetNotes">
       <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/GetNotes" message="tns:IBLLService_GetNotes_InputMessage" />
@@ -37,6 +43,10 @@
     <wsdl:operation name="LoadNote">
       <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/LoadNote" message="tns:IBLLService_LoadNote_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/LoadNoteResponse" message="tns:IBLLService_LoadNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/SaveNote" message="tns:IBLLService_SaveNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/SaveNoteResponse" message="tns:IBLLService_SaveNote_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IBLLService" type="tns:IBLLService">
@@ -61,6 +71,15 @@
     </wsdl:operation>
     <wsdl:operation name="LoadNote">
       <soap:operation soapAction="http://tempuri.org/IBLLService/LoadNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveNote">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/SaveNote" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

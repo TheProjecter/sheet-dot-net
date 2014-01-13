@@ -55,9 +55,29 @@ namespace Sheet.ModernGUI
 
         private void NotesTree_SelectedItemChanged(object sender, WinRTXamlToolkit.Controls.RoutedPropertyChangedEventArgs<object> e)
         {
-            if (e.NewValue is NoteViewModel)
+            if (e.NewValue == null)
             {
+                OpenedNotePanel.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+            else if (e.NewValue is NoteViewModel)
+            {
+                OpenedNotePanel.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 viewModel.SelectedNote = e.NewValue as NoteViewModel;                
+            }
+        }
+
+        private void SaveNoteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Type etype = e.GetType();
+            Type originaltype = e.OriginalSource.GetType();
+            int i = 3;
+            if (e is NoteViewModel)
+            {
+                i = 5;
+            }
+            else
+            {
+                i = 7;
             }
         }
     }

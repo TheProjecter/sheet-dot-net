@@ -57,11 +57,10 @@ namespace Sheet.ModernGUI
         //    //return await Task<Sheet.Facade.Notes.INote>.Run(() => service.AddAttachment(attachmentInfo) as INote);
         //}
 
-        //public async Task SaveNote(Facade.Notes.INote note)
-        //{
-        //    throw new NotImplementedException();
-        //    //await Task.Run(() => service.SaveNote(note));
-        //}
+        public async Task SaveNote(Note note)
+        {
+            await service.SaveNoteAsync(note);
+        }
 
         //public async Task DeleteNote(Facade.Notes.INote note)
         //{

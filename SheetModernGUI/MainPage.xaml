@@ -123,10 +123,59 @@
                     </HierarchicalDataTemplate>-->
                 </xc:TreeView.Resources>
             </xc:TreeView>
-            <StackPanel Margin="338,0,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}">
-                <StackPanel Orientation="Horizontal" DataContext="{Binding SelectedNote}">
-                    <xc:WatermarkTextBox WatermarkText="Set title..." Text="{Binding Title}"/>
+            <StackPanel Visibility="Visible"
+                        Name="OpenedNotePanel"
+                        Margin="338,0,0,0" Background="{StaticResource SheetWhiteBackgroundBrush}" 
+                        Orientation="Vertical" 
+                        DataContext="{Binding SelectedNote}">
+                <StackPanel Orientation="Horizontal">
+                    <xc:WatermarkTextBox WatermarkText="Set title..." Text="{Binding Title, Mode=TwoWay}"/>
+                    <Button Name="SaveNoteButton" 
+                            Content="Save" 
+                            Height="30" 
+                            VerticalAlignment="Stretch" 
+                            Width="65" 
+                            Click="SaveNoteButton_Click"
+                            Command="{Binding SaveNote}" 
+                            CommandParameter="{Binding}"/>
                 </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="120"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1" CornerRadius="5" Padding="2,4" Margin="0,0,2,2">
+                        <ScrollViewer>
+                            <TextBox Text="{Binding Text, Mode=TwoWay}" BorderThickness="0" AcceptsReturn="True">
+                                <!--<i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="LostFocus">
+                                        <i:InvokeCommandAction Command="{Binding Path=DataContext.SaveNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction Command="{Binding Path=DataContext.DelayedSaveNote, ElementName=mainWindow}" CommandParameter="{Binding}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>-->
+                            </TextBox>
+                        </ScrollViewer>
+                    </Border>
+                    
+                    <!--<Border Grid.Row="2" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,2,2">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>
+                        </Border.BorderBrush>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                            <ItemsControl x:Name="LabelList" ItemTemplateSelector="{StaticResource attachmentTemplateSelector}"
+                                                  ItemsSource="{Binding Attachments}" Height="100" VerticalAlignment="Top">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>-->
+                </Grid>
             </StackPanel>
 
         </Grid>

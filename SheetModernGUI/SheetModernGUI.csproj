@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="BusinessLogicDispatcher.cs" />
     <Compile Include="Commands\OpenNoteCommand.cs" />
+    <Compile Include="Commands\SaveNoteCommand.cs" />
     <Compile Include="Commands\ViewModelCommand.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\SuspensionManager.cs" />

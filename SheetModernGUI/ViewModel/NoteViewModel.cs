@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using Sheet.ModernGUI.Commands;
 using Sheet.ModernGUI.SheetServiceReference;
 //using Sheet.ModernGUI.Commands;
 //using Sheet.GUI.ModelMocks;
@@ -26,6 +27,8 @@ namespace Sheet.ModernGUI.ViewModel
         //private UpdateLabelsCommand update;
         //private NewAttachmentCommand newAttachment;
         //private DeleteAttachmentCommand deleteAttachment;
+        private SaveNoteCommand saveNote;
+        
 
         public NoteViewModel(MainViewModel main) : base(main)
         {
@@ -40,6 +43,8 @@ namespace Sheet.ModernGUI.ViewModel
             //update = new UpdateLabelsCommand(this);
             //newAttachment = new NewAttachmentCommand(this);
             //deleteAttachment = new DeleteAttachmentCommand(this);
+            saveNote = new SaveNoteCommand(this);
+
             main.RegisterViewModel(model, this);
             LoadViewModels();
         }
@@ -74,6 +79,12 @@ namespace Sheet.ModernGUI.ViewModel
         //{
         //    get { return deleteAttachment; }
         //}
+
+        public ICommand SaveNote
+        {
+            get { return saveNote; }
+        }
+
 
         public string Title
         {
@@ -229,15 +240,14 @@ namespace Sheet.ModernGUI.ViewModel
             Model = await App.Bll.LoadNote(model);
         }
 
-        //public void Save()
-        //{
-        //    if (!upToDate)
-        //    {
-        //        upToDate = true;
-        //        App.Bll.SaveNote(model);
-        //        //Task.Run(() => App.Bll.SaveNote(model));
-        //    }
-        //}
+        public async void Save()
+        {
+            //if (!upToDate)
+            //{
+            //    upToDate = true;
+            await App.Bll.SaveNote(model);
+            //}
+        }
 
         //internal async void UpdateLabels(string[] labels)
         //{

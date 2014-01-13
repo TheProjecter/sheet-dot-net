@@ -1,9 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
+using Sheet.ModernGUI.Commands;
 using Sheet.ModernGUI.Model;
 using Sheet.ModernGUI.SheetServiceReference;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Sheet.ModernGUI.ViewModel
 {
@@ -21,6 +23,8 @@ namespace Sheet.ModernGUI.ViewModel
 
         private ObservableCollection<LabelViewModel> labels;
         private ObservableCollection<NoteViewModel> notes;
+
+        private SaveNoteCommand saveNote;
 
         private LabelViewModel noLabel;
 
@@ -99,7 +103,10 @@ namespace Sheet.ModernGUI.ViewModel
                 return notes;
             }
         }
-
+        public ICommand SaveNote
+        {
+            get { return saveNote; }
+        }
         public NoteViewModel SelectedNote
         {
             get { return selectedNote; }
