@@ -5,16 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:ignore="http://www.ignore.com"
              mc:Ignorable="d ignore"
-             xmlns:vm="using:Sheet.ModernGUI.ViewModel">
+             xmlns:vm="using:Sheet.ModernGUI.ViewModel"
+             xmlns:bl="using:Sheet.ModernGUI"
+             RequestedTheme="Light">
 
     <Application.Resources>
         <ResourceDictionary>
             <!--Global View Model Locator-->
-            <vm:ViewModelLocator x:Key="Locator"
-                                 d:IsDataSource="True" />
+            <!--<vm:ViewModelLocator x:Key="Locator"
+                                 d:IsDataSource="True" />-->
+            <bl:BusinessLogicDispatcher x:Key="Bll" />
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
+            
             <SolidColorBrush x:Key="SheetDarkBackgroundBrush" Color="#FF60A917"/>
             <SolidColorBrush x:Key="SheetLightBackgroundBrush" Color="#FF80BA45"/>
             <SolidColorBrush x:Key="SheetWhiteBackgroundBrush" Color="White"/>
+            <SolidColorBrush x:Key="Foreground" Color="#DEFFFFFF"/>
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Skins/MainSkin.xaml" />
@@ -24,7 +30,6 @@
                  -->
                 <ResourceDictionary Source="Common/StandardStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

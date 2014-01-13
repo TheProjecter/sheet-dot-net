@@ -22,230 +22,16 @@ namespace Sheet.GUI.SheetServiceReference {
         System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note[]> GetNotesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/GetNotesByLabel", ReplyAction="http://tempuri.org/IBLLService/GetNotesByLabelResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Metainfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Label))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.AttachmentInfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Attachment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.IO.Stream))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.MarshalByRefObject))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ComplexQuery))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(byte[]))]
-        Sheet.BLLService.Entities.Note[] GetNotesByLabel(object label);
+        Sheet.BLLService.Entities.Note[] GetNotesByLabel(Sheet.BLLService.Entities.Label label);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/GetNotesByLabel", ReplyAction="http://tempuri.org/IBLLService/GetNotesByLabelResponse")]
-        System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note[]> GetNotesByLabelAsync(object label);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/SearchNote", ReplyAction="http://tempuri.org/IBLLService/SearchNoteResponse")]
-        Sheet.BLLService.Entities.Note[] SearchNote(string expression);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/SearchNote", ReplyAction="http://tempuri.org/IBLLService/SearchNoteResponse")]
-        System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note[]> SearchNoteAsync(string expression);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/SearchNoteQuery", ReplyAction="http://tempuri.org/IBLLService/SearchNoteQueryResponse")]
-        Sheet.BLLService.Entities.Note[] SearchNoteQuery(Sheet.Facade.Queries.ComplexQueries.ComplexQuery query);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/SearchNoteQuery", ReplyAction="http://tempuri.org/IBLLService/SearchNoteQueryResponse")]
-        System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note[]> SearchNoteQueryAsync(Sheet.Facade.Queries.ComplexQueries.ComplexQuery query);
+        System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note[]> GetNotesByLabelAsync(Sheet.BLLService.Entities.Label label);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/LoadNote", ReplyAction="http://tempuri.org/IBLLService/LoadNoteResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Metainfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Label))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.AttachmentInfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Attachment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.IO.Stream))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.MarshalByRefObject))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ComplexQuery))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(byte[]))]
-        Sheet.BLLService.Entities.Note LoadNote(object note);
+        Sheet.BLLService.Entities.Note LoadNote(Sheet.BLLService.Entities.Note note);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/LoadNote", ReplyAction="http://tempuri.org/IBLLService/LoadNoteResponse")]
-        System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note> LoadNoteAsync(object note);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/UpdateLabels", ReplyAction="http://tempuri.org/IBLLService/UpdateLabelsResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Metainfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Label))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.AttachmentInfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Attachment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.IO.Stream))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.MarshalByRefObject))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ComplexQuery))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(byte[]))]
-        Sheet.BLLService.Entities.Note UpdateLabels(object note, string[] labels);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/UpdateLabels", ReplyAction="http://tempuri.org/IBLLService/UpdateLabelsResponse")]
-        System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note> UpdateLabelsAsync(object note, string[] labels);
-        
-        // CODEGEN: Generating message contract since the operation AddAttachment is neither RPC nor document wrapped.
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/AddAttachment", ReplyAction="http://tempuri.org/IBLLService/AddAttachmentResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Metainfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Label))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.AttachmentInfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Attachment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.IO.Stream))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.MarshalByRefObject))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ComplexQuery))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(byte[]))]
-        Sheet.GUI.SheetServiceReference.AddAttachmentResponse AddAttachment(Sheet.GUI.SheetServiceReference.AttachmentInfo request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/AddAttachment", ReplyAction="http://tempuri.org/IBLLService/AddAttachmentResponse")]
-        System.Threading.Tasks.Task<Sheet.GUI.SheetServiceReference.AddAttachmentResponse> AddAttachmentAsync(Sheet.GUI.SheetServiceReference.AttachmentInfo request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/DownloadAttachment", ReplyAction="http://tempuri.org/IBLLService/DownloadAttachmentResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Metainfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Label))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.AttachmentInfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Attachment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.IO.Stream))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.MarshalByRefObject))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ComplexQuery))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(byte[]))]
-        System.IO.Stream DownloadAttachment(object attachment);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/DownloadAttachment", ReplyAction="http://tempuri.org/IBLLService/DownloadAttachmentResponse")]
-        System.Threading.Tasks.Task<System.IO.Stream> DownloadAttachmentAsync(object attachment);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/NewNote", ReplyAction="http://tempuri.org/IBLLService/NewNoteResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Metainfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Label))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.AttachmentInfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Attachment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.IO.Stream))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.MarshalByRefObject))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ComplexQuery))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType))]
-        Sheet.BLLService.Entities.Note NewNote();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/NewNote", ReplyAction="http://tempuri.org/IBLLService/NewNoteResponse")]
-        System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note> NewNoteAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/SaveNote", ReplyAction="http://tempuri.org/IBLLService/SaveNoteResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Metainfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Label))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.AttachmentInfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Attachment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.IO.Stream))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.MarshalByRefObject))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ComplexQuery))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(byte[]))]
-        void SaveNote(object note);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/SaveNote", ReplyAction="http://tempuri.org/IBLLService/SaveNoteResponse")]
-        System.Threading.Tasks.Task SaveNoteAsync(object note);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/DeleteNote", ReplyAction="http://tempuri.org/IBLLService/DeleteNoteResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Metainfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Label))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.AttachmentInfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Attachment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.IO.Stream))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.MarshalByRefObject))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ComplexQuery))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(byte[]))]
-        void DeleteNote(object note);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/DeleteNote", ReplyAction="http://tempuri.org/IBLLService/DeleteNoteResponse")]
-        System.Threading.Tasks.Task DeleteNoteAsync(object note);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/DeleteAttachment", ReplyAction="http://tempuri.org/IBLLService/DeleteAttachmentResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Metainfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Label))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.AttachmentInfo))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Attachment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.BLLService.Entities.Note[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.IO.Stream))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.MarshalByRefObject))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ComplexQuery))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Sheet.Facade.Queries.ComplexQueries.ContentType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(byte[]))]
-        void DeleteAttachment(object attachment);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/DeleteAttachment", ReplyAction="http://tempuri.org/IBLLService/DeleteAttachmentResponse")]
-        System.Threading.Tasks.Task DeleteAttachmentAsync(object attachment);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="AttachmentInfo", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class AttachmentInfo {
-        
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public string FileName;
-        
-        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public object Note;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.IO.Stream AttachmentStream;
-        
-        public AttachmentInfo() {
-        }
-        
-        public AttachmentInfo(string FileName, object Note, System.IO.Stream AttachmentStream) {
-            this.FileName = FileName;
-            this.Note = Note;
-            this.AttachmentStream = AttachmentStream;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class AddAttachmentResponse {
-        
-        public AddAttachmentResponse() {
-        }
+        System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note> LoadNoteAsync(Sheet.BLLService.Entities.Note note);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -283,110 +69,20 @@ namespace Sheet.GUI.SheetServiceReference {
             return base.Channel.GetNotesAsync();
         }
         
-        public Sheet.BLLService.Entities.Note[] GetNotesByLabel(object label) {
+        public Sheet.BLLService.Entities.Note[] GetNotesByLabel(Sheet.BLLService.Entities.Label label) {
             return base.Channel.GetNotesByLabel(label);
         }
         
-        public System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note[]> GetNotesByLabelAsync(object label) {
+        public System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note[]> GetNotesByLabelAsync(Sheet.BLLService.Entities.Label label) {
             return base.Channel.GetNotesByLabelAsync(label);
         }
         
-        public Sheet.BLLService.Entities.Note[] SearchNote(string expression) {
-            return base.Channel.SearchNote(expression);
-        }
-        
-        public System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note[]> SearchNoteAsync(string expression) {
-            return base.Channel.SearchNoteAsync(expression);
-        }
-        
-        public Sheet.BLLService.Entities.Note[] SearchNoteQuery(Sheet.Facade.Queries.ComplexQueries.ComplexQuery query) {
-            return base.Channel.SearchNoteQuery(query);
-        }
-        
-        public System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note[]> SearchNoteQueryAsync(Sheet.Facade.Queries.ComplexQueries.ComplexQuery query) {
-            return base.Channel.SearchNoteQueryAsync(query);
-        }
-        
-        public Sheet.BLLService.Entities.Note LoadNote(object note) {
+        public Sheet.BLLService.Entities.Note LoadNote(Sheet.BLLService.Entities.Note note) {
             return base.Channel.LoadNote(note);
         }
         
-        public System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note> LoadNoteAsync(object note) {
+        public System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note> LoadNoteAsync(Sheet.BLLService.Entities.Note note) {
             return base.Channel.LoadNoteAsync(note);
-        }
-        
-        public Sheet.BLLService.Entities.Note UpdateLabels(object note, string[] labels) {
-            return base.Channel.UpdateLabels(note, labels);
-        }
-        
-        public System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note> UpdateLabelsAsync(object note, string[] labels) {
-            return base.Channel.UpdateLabelsAsync(note, labels);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Sheet.GUI.SheetServiceReference.AddAttachmentResponse Sheet.GUI.SheetServiceReference.IBLLService.AddAttachment(Sheet.GUI.SheetServiceReference.AttachmentInfo request) {
-            return base.Channel.AddAttachment(request);
-        }
-        
-        public void AddAttachment(string FileName, object Note, System.IO.Stream AttachmentStream) {
-            Sheet.GUI.SheetServiceReference.AttachmentInfo inValue = new Sheet.GUI.SheetServiceReference.AttachmentInfo();
-            inValue.FileName = FileName;
-            inValue.Note = Note;
-            inValue.AttachmentStream = AttachmentStream;
-            Sheet.GUI.SheetServiceReference.AddAttachmentResponse retVal = ((Sheet.GUI.SheetServiceReference.IBLLService)(this)).AddAttachment(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Sheet.GUI.SheetServiceReference.AddAttachmentResponse> Sheet.GUI.SheetServiceReference.IBLLService.AddAttachmentAsync(Sheet.GUI.SheetServiceReference.AttachmentInfo request) {
-            return base.Channel.AddAttachmentAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<Sheet.GUI.SheetServiceReference.AddAttachmentResponse> AddAttachmentAsync(string FileName, object Note, System.IO.Stream AttachmentStream) {
-            Sheet.GUI.SheetServiceReference.AttachmentInfo inValue = new Sheet.GUI.SheetServiceReference.AttachmentInfo();
-            inValue.FileName = FileName;
-            inValue.Note = Note;
-            inValue.AttachmentStream = AttachmentStream;
-            return ((Sheet.GUI.SheetServiceReference.IBLLService)(this)).AddAttachmentAsync(inValue);
-        }
-        
-        public System.IO.Stream DownloadAttachment(object attachment) {
-            return base.Channel.DownloadAttachment(attachment);
-        }
-        
-        public System.Threading.Tasks.Task<System.IO.Stream> DownloadAttachmentAsync(object attachment) {
-            return base.Channel.DownloadAttachmentAsync(attachment);
-        }
-        
-        public Sheet.BLLService.Entities.Note NewNote() {
-            return base.Channel.NewNote();
-        }
-        
-        public System.Threading.Tasks.Task<Sheet.BLLService.Entities.Note> NewNoteAsync() {
-            return base.Channel.NewNoteAsync();
-        }
-        
-        public void SaveNote(object note) {
-            base.Channel.SaveNote(note);
-        }
-        
-        public System.Threading.Tasks.Task SaveNoteAsync(object note) {
-            return base.Channel.SaveNoteAsync(note);
-        }
-        
-        public void DeleteNote(object note) {
-            base.Channel.DeleteNote(note);
-        }
-        
-        public System.Threading.Tasks.Task DeleteNoteAsync(object note) {
-            return base.Channel.DeleteNoteAsync(note);
-        }
-        
-        public void DeleteAttachment(object attachment) {
-            base.Channel.DeleteAttachment(attachment);
-        }
-        
-        public System.Threading.Tasks.Task DeleteAttachmentAsync(object attachment) {
-            return base.Channel.DeleteAttachmentAsync(attachment);
         }
     }
 }

@@ -1,5 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using Sheet.ModernGUI.Model;
+using Sheet.ModernGUI.SheetServiceReference;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace Sheet.ModernGUI.ViewModel
 {
@@ -9,9 +13,16 @@ namespace Sheet.ModernGUI.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public partial class MainViewModel : ViewModelBase
     {
         private readonly IDataService _dataService;
+
+        private NoteViewModel selectedNote;
+
+        private ObservableCollection<LabelViewModel> labels;
+        private ObservableCollection<NoteViewModel> notes;
+
+        private LabelViewModel noLabel;
 
         private string _welcomeTitle = string.Empty;
 
@@ -41,20 +52,86 @@ namespace Sheet.ModernGUI.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IDataService dataService)
+        /// //param: IDataService dataService
+        public MainViewModel()
         {
-            _dataService = dataService;
-            _dataService.GetData(
-                (item, error) =>
-                {
-                    if (error != null)
-                    {
-                        // Report error here
-                        return;
-                    }
+            noLabel = new LabelViewModel(new Label() { 
+                                                         Text = "No label",
+                                                         ID = -1,
+                                                         Notes = new ObservableCollection<Note>()
+                                                     }, this);
+            //notes = 
 
-                    WelcomeTitle = item.Title;
-                });
+            //_dataService = dataService;
+            //_dataService.GetData(
+            //    (item, error) =>
+            //    {
+            //        if (error != null)
+            //        {
+            //            // Report error here
+            //            return;
+            //        }
+
+            //        WelcomeTitle = item.Title;
+            //    });
+        }
+
+        public ObservableCollection<LabelViewModel> Labels
+        {
+            get
+            {
+                if (labels == null)
+                {
+                    labels = new ObservableCollection<LabelViewModel>();
+                }
+                return labels;
+            }
+        }
+
+        public ObservableCollection<NoteViewModel> Notes
+        {
+            get
+            {
+                if (notes == null)
+                {
+                    notes = new ObservableCollection<NoteViewModel>();
+                }
+                return notes;
+            }
+        }
+
+        public NoteViewModel SelectedNote
+        {
+            get { return selectedNote; }
+            set
+            {
+                if (value == selectedNote)
+                    return;
+
+                this.selectedNote = value;
+
+                base.RaisePropertyChanged("SelectedNote");
+            }
+        }
+
+        public async Task LoadLabels()
+        {
+            ICollection<Note> notes = await App.Bll.GetNotes();
+            foreach (var note in notes)
+            {
+                this.GetViewModel(note).Connect();
+            }
+            Labels.Clear();
+            foreach (var label in labelViewModels.Values)
+            {
+                Labels.Add(label);
+            }
+        }
+
+
+        internal LabelViewModel NoLabel
+        {
+            get { return noLabel; }
         }
 
         ////public override void Cleanup()

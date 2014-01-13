@@ -87,7 +87,8 @@ namespace Sheet.GUI
         public async Task<ICollection<Facade.Notes.INote>> SearchNote(Facade.Queries.ComplexQueries.ComplexQuery query)
         {
             // TODO: Complex Query
-            return await Task<ICollection<Sheet.Facade.Notes.INote>>.Run(() => service.SearchNote("alma") as ICollection<INote>);
+            //return await Task<ICollection<Sheet.Facade.Notes.INote>>.Run(() => service.SearchNote("alma") as ICollection<INote>);
+            return new List<INote>();
         }
     }
 }

@@ -17,24 +17,16 @@ namespace Sheet.ModernGUI.SheetServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Note", Namespace="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Attachment))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Label))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Metainfo))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.AttachmentInfo))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<object>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(byte[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.MarshalByRefObject))]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Note", Namespace="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities", IsReference=true)]
     public partial class Note : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private System.Collections.ObjectModel.ObservableCollection<object> AttachmentsField;
+        private System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Attachment> AttachmentsField;
         
         private System.DateTime DateOfCreationField;
         
         private int IDField;
         
-        private System.Collections.ObjectModel.ObservableCollection<object> LabelsField;
+        private System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Label> LabelsField;
         
         private System.DateTime LastModifiedField;
         
@@ -43,7 +35,7 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         private string TitleField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<object> Attachments {
+        public System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Attachment> Attachments {
             get {
                 return this.AttachmentsField;
             }
@@ -82,7 +74,7 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<object> Labels {
+        public System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Label> Labels {
             get {
                 return this.LabelsField;
             }
@@ -146,19 +138,11 @@ namespace Sheet.ModernGUI.SheetServiceReference {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Attachment", Namespace="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Label))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Metainfo))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.AttachmentInfo))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Note))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<object>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(byte[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.MarshalByRefObject))]
     public partial class Attachment : object, System.ComponentModel.INotifyPropertyChanged {
         
         private int IDField;
         
-        private System.Collections.ObjectModel.ObservableCollection<object> MetadataField;
+        private System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Metainfo> MetadataField;
         
         private string MimeTypeField;
         
@@ -180,7 +164,7 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<object> Metadata {
+        public System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Metainfo> Metadata {
             get {
                 return this.MetadataField;
             }
@@ -243,20 +227,12 @@ namespace Sheet.ModernGUI.SheetServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Label", Namespace="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Attachment))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Metainfo))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.AttachmentInfo))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Note))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<object>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(byte[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.MarshalByRefObject))]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Label", Namespace="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities", IsReference=true)]
     public partial class Label : object, System.ComponentModel.INotifyPropertyChanged {
         
         private int IDField;
         
-        private System.Collections.ObjectModel.ObservableCollection<object> NotesField;
+        private System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note> NotesField;
         
         private string TextField;
         
@@ -274,7 +250,7 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.ObjectModel.ObservableCollection<object> Notes {
+        public System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note> Notes {
             get {
                 return this.NotesField;
             }
@@ -369,118 +345,18 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AttachmentInfo", Namespace="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Attachment))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Label))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Metainfo))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Note))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<object>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(byte[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.MarshalByRefObject))]
-    public partial class AttachmentInfo : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private byte[] AttachmentStreamField;
-        
-        private string FileNameField;
-        
-        private object NoteField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] AttachmentStream {
-            get {
-                return this.AttachmentStreamField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AttachmentStreamField, value) != true)) {
-                    this.AttachmentStreamField = value;
-                    this.RaisePropertyChanged("AttachmentStream");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FileName {
-            get {
-                return this.FileNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FileNameField, value) != true)) {
-                    this.FileNameField = value;
-                    this.RaisePropertyChanged("FileName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public object Note {
-            get {
-                return this.NoteField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NoteField, value) != true)) {
-                    this.NoteField = value;
-                    this.RaisePropertyChanged("Note");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MarshalByRefObject", Namespace="http://schemas.datacontract.org/2004/07/System")]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(byte[]))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Attachment))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Label))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Metainfo))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.AttachmentInfo))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Sheet.ModernGUI.SheetServiceReference.Note))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.ObjectModel.ObservableCollection<object>))]
-    public partial class MarshalByRefObject : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private object @__identityField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public object @__identity {
-            get {
-                return this.@__identityField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.@__identityField, value) != true)) {
-                    this.@__identityField = value;
-                    this.RaisePropertyChanged("__identity");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SheetServiceReference.IBLLService")]
     public interface IBLLService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/GetNotes", ReplyAction="http://tempuri.org/IBLLService/GetNotesResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>> GetNotesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/GetNotesByLabel", ReplyAction="http://tempuri.org/IBLLService/GetNotesByLabelResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>> GetNotesByLabelAsync(Sheet.ModernGUI.SheetServiceReference.Label label);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/LoadNote", ReplyAction="http://tempuri.org/IBLLService/LoadNoteResponse")]
+        System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> LoadNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -530,6 +406,14 @@ namespace Sheet.ModernGUI.SheetServiceReference {
             return base.Channel.GetNotesAsync();
         }
         
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>> GetNotesByLabelAsync(Sheet.ModernGUI.SheetServiceReference.Label label) {
+            return base.Channel.GetNotesByLabelAsync(label);
+        }
+        
+        public System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> LoadNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note) {
+            return base.Channel.LoadNoteAsync(note);
+        }
+        
         public virtual System.Threading.Tasks.Task OpenAsync() {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
         }
@@ -552,7 +436,7 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration) {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IBLLService)) {
-                return new System.ServiceModel.EndpointAddress("http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1/");
+                return new System.ServiceModel.EndpointAddress("http://localhost:8733/Design_Time_Addresses/SheetBLLService/Service1");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }

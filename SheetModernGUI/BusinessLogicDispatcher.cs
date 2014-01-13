@@ -28,11 +28,10 @@ namespace Sheet.ModernGUI
         //    //return await Task<ICollection<Sheet.Facade.Notes.INote>>.Run(() => service.GetNotesByLabel(label) as ICollection<INote>);
         //}
 
-        //public async Task<Facade.Notes.INote> LoadNote(Facade.Notes.INote note)
-        //{
-        //    throw new NotImplementedException();
-        //    //return await Task<Sheet.Facade.Notes.INote>.Run(() => service.LoadNote(note) as INote);
-        //}
+        public async Task<Note> LoadNote(Note note)
+        {
+            return await service.LoadNoteAsync(note);
+        }
 
         //public async Task<ICollection<Facade.Notes.INote>> SearchNote(string expression)
         //{

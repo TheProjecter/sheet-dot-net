@@ -8,34 +8,35 @@ using Sheet.Facade.Notes;
 
 namespace Sheet.BLLService.Entities
 {
-    [DataContract]
+    [DataContract(IsReference=true)]
     public class Label : ILabel
     {
         public Label(ILabel label)
         {
-            this.Notes = new List<INote>();
+            this.Notes = new List<Note>();
             this.ID = label.ID;
             this.Text = label.Text;
-            foreach (INote note in label.Notes)
-            {
-                this.Notes.Add(new Note(note, this));
-            }
         }
 
-        public Label(ILabel label, Note note)
-        {
-            this.Notes = new List<INote>();
+        //public Label(ILabel label, Note note)
+        //{
+        //    this.Notes = new List<Note>();
 
-            this.ID = label.ID;
-            this.Text = label.Text;
-            this.Notes.Add(note);
-        }
+        //    this.ID = label.ID;
+        //    this.Text = label.Text;
+        //    this.Notes.Add(note);
+        //}
 
         [DataMember]
         public string Text { get; set; }
         [DataMember]
-        public ICollection<INote> Notes { get; private set; }
+        public ICollection<Note> Notes { get; private set; }
         [DataMember]
         public int ID { get; private set; }
+
+        ICollection<INote> ILabel.Notes
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

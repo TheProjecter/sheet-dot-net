@@ -13,7 +13,7 @@ namespace Sheet.BLLService.Entities
     {
         public Attachment(IAttachment attachment)
         {
-            this.Metadata = new List<IMetainfo>();
+            this.Metadata = new List<Metainfo>();
 
             this.ID = attachment.ID;
             this.Name = attachment.Name;
@@ -32,8 +32,14 @@ namespace Sheet.BLLService.Entities
         [DataMember]
         public string MimeType { get; set; }
         [DataMember]
-        public ICollection<IMetainfo> Metadata { get; private set; }
+        public ICollection<Metainfo> Metadata { get; private set; }
         [DataMember]
         public int ID { get; private set; }
+
+
+        ICollection<IMetainfo> IAttachment.Metadata
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace DataManagementConsole
             //ICollection<Note> notes = dataservice.QueryNotes(dataservice.CreateLabel());
             createDatabase(dataservice);
 
-            ICollection<INote> notes = dataservice.QueryNotes("");
+            ICollection<INote> notes = dataservice.GetNotes();
             if (notes == null)
             {
                 Console.WriteLine("null");
