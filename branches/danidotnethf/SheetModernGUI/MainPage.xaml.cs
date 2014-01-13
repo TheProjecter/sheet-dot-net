@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinRTXamlToolkit.Controls;
 
 namespace Sheet.ModernGUI
 {
@@ -68,16 +69,15 @@ namespace Sheet.ModernGUI
 
         private void SaveNoteButton_Click(object sender, RoutedEventArgs e)
         {
-            Type etype = e.GetType();
-            Type originaltype = e.OriginalSource.GetType();
-            int i = 3;
-            if (e is NoteViewModel)
+            
+        }
+
+        private void CloseNote_Click(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem selectedItem = NotesTree.SelectedContainer;
+            if (selectedItem != null)
             {
-                i = 5;
-            }
-            else
-            {
-                i = 7;
+                selectedItem.IsSelected = false; 
             }
         }
     }
