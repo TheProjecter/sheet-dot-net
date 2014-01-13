@@ -119,10 +119,10 @@ namespace Sheet.BLLService
         //    return new Note(service.NewNote());
         //}
 
-        //public void SaveNote(INote note)
-        //{
-        //    service.SaveNote(note);
-        //}
+        public void SaveNote(Note note)
+        {
+            service.SaveNote(note);
+        }
 
         //public void DeleteNote(INote note)
         //{

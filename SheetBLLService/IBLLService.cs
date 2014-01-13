@@ -39,8 +39,8 @@ namespace Sheet.BLLService
         //Stream DownloadAttachment(Attachment attachment);
         //[OperationContract]
         //Note NewNote();
-        //[OperationContract]
-        //void SaveNote(Note note);
+        [OperationContract]
+        void SaveNote(Note note);
         //[OperationContract]
         //void DeleteNote(Note note);
         //[OperationContract]
