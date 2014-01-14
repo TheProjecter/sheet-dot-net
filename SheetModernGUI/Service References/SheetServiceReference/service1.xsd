@@ -28,32 +28,46 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SearchNote">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="expression" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchNoteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="SearchNoteResult" nillable="true" type="q4:ArrayOfNote" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="LoadNote">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="note" nillable="true" type="q4:Note" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="note" nillable="true" type="q5:Note" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="LoadNoteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="LoadNoteResult" nillable="true" type="q5:Note" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="LoadNoteResult" nillable="true" type="q6:Note" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateLabels">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="note" nillable="true" type="q6:Note" />
-        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="labels" nillable="true" type="q7:ArrayOfstring" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="note" nillable="true" type="q7:Note" />
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="labels" nillable="true" type="q8:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateLabelsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="UpdateLabelsResult" nillable="true" type="q8:Note" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="UpdateLabelsResult" nillable="true" type="q9:Note" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -65,14 +79,14 @@
   <xs:element name="NewNoteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="NewNoteResult" nillable="true" type="q9:Note" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="NewNoteResult" nillable="true" type="q10:Note" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveNote">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="note" nillable="true" type="q10:Note" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="note" nillable="true" type="q11:Note" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -84,7 +98,7 @@
   <xs:element name="DeleteNote">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="note" nillable="true" type="q11:Note" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Sheet.BLLService.Entities" minOccurs="0" name="note" nillable="true" type="q12:Note" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

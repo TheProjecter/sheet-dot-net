@@ -355,6 +355,9 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/GetNotesByLabel", ReplyAction="http://tempuri.org/IBLLService/GetNotesByLabelResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>> GetNotesByLabelAsync(Sheet.ModernGUI.SheetServiceReference.Label label);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/SearchNote", ReplyAction="http://tempuri.org/IBLLService/SearchNoteResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>> SearchNoteAsync(string expression);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/LoadNote", ReplyAction="http://tempuri.org/IBLLService/LoadNoteResponse")]
         System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> LoadNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note);
         
@@ -420,6 +423,10 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>> GetNotesByLabelAsync(Sheet.ModernGUI.SheetServiceReference.Label label) {
             return base.Channel.GetNotesByLabelAsync(label);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<Sheet.ModernGUI.SheetServiceReference.Note>> SearchNoteAsync(string expression) {
+            return base.Channel.SearchNoteAsync(expression);
         }
         
         public System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> LoadNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note) {
