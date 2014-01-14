@@ -25,6 +25,7 @@ namespace Sheet.ModernGUI.ViewModel
         private ObservableCollection<NoteViewModel> notes;
 
         private SaveNoteCommand saveNote;
+        private NewNoteCommand newNote;
 
         private LabelViewModel noLabel;
 
@@ -64,20 +65,7 @@ namespace Sheet.ModernGUI.ViewModel
                                                          ID = -1,
                                                          Notes = new ObservableCollection<Note>()
                                                      }, this);
-            //notes = 
-
-            //_dataService = dataService;
-            //_dataService.GetData(
-            //    (item, error) =>
-            //    {
-            //        if (error != null)
-            //        {
-            //            // Report error here
-            //            return;
-            //        }
-
-            //        WelcomeTitle = item.Title;
-            //    });
+            newNote = new NewNoteCommand(this);
         }
 
         public ObservableCollection<LabelViewModel> Labels
@@ -107,6 +95,11 @@ namespace Sheet.ModernGUI.ViewModel
         {
             get { return saveNote; }
         }
+        public ICommand NewNote
+        {
+            get { return newNote; }
+        }
+
         public NoteViewModel SelectedNote
         {
             get { return selectedNote; }
@@ -131,10 +124,12 @@ namespace Sheet.ModernGUI.ViewModel
             Labels.Clear();
             foreach (var label in labelViewModels.Values)
             {
-                Labels.Add(label);
+                if (label.Notes.Count > 0)
+                {
+                    Labels.Add(label); 
+                }
             }
         }
-
 
         internal LabelViewModel NoLabel
         {

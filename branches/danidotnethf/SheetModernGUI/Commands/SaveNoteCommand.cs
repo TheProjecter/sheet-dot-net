@@ -21,6 +21,7 @@ namespace Sheet.ModernGUI.Commands
             NoteViewModel noteVM = parameter as NoteViewModel;
             if (noteVM == null)
                 return;
+            noteVM.UpdateLabels();
             noteVM.Save();
         }
     }

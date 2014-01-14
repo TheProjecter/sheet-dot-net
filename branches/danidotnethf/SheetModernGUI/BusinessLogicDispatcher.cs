@@ -1,6 +1,7 @@
 ﻿using Sheet.ModernGUI.SheetServiceReference;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,11 +40,11 @@ namespace Sheet.ModernGUI
         //    //return await Task<ICollection<Sheet.Facade.Notes.INote>>.Run(() => service.SearchNote(expression) as ICollection<INote>);
         //}
 
-        //public async Task<Facade.Notes.INote> UpdateLabels(Facade.Notes.INote note, IEnumerable<string> labels)
-        //{
-        //    throw new NotImplementedException();
-        //    //return await Task<Sheet.Facade.Notes.INote>.Run(() => service.UpdateLabels(note, (string[])labels) as INote);
-        //}
+        public async Task<Note> UpdateLabels(Note note, IEnumerable<string> labels)
+        {
+            ObservableCollection<string> observableLabels = new ObservableCollection<string>(labels);
+            return await service.UpdateLabelsAsync(note, observableLabels);
+        }
 
         //public async Task<Facade.Notes.INote> AddAttachment(Facade.Notes.INote note, System.IO.Stream attachment, string fileName)
         //{
@@ -62,11 +63,10 @@ namespace Sheet.ModernGUI
             await service.SaveNoteAsync(note);
         }
 
-        //public async Task DeleteNote(Facade.Notes.INote note)
-        //{
-        //    throw new NotImplementedException();
-        //    //await Task.Run(() => service.DeleteNote(note));
-        //}
+        public async Task DeleteNote(Note note)
+        {
+            await service.DeleteNoteAsync(note);
+        }
 
         //public async Task DeleteAttachment(Facade.Notes.IAttachment attachment)
         //{
@@ -75,11 +75,10 @@ namespace Sheet.ModernGUI
         //}
 
 
-        //public async Task<Facade.Notes.INote> NewNote()
-        //{
-        //    throw new NotImplementedException();
-        //    //return await Task.Run<Sheet.Facade.Notes.INote>(() => service.NewNote() as INote);
-        //}
+        public async Task<Note> NewNote()
+        {
+            return await service.NewNoteAsync();
+        }
 
 
         //public async Task<System.IO.Stream> DownloadAttachment(Facade.Notes.IAttachment attachment)

@@ -67,11 +67,6 @@ namespace Sheet.ModernGUI
             }
         }
 
-        private void SaveNoteButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void CloseNote_Click(object sender, RoutedEventArgs e)
         {
             TreeViewItem selectedItem = NotesTree.SelectedContainer;
