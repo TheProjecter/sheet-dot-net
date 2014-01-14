@@ -1,4 +1,5 @@
-﻿using Sheet.ModernGUI.ViewModel;
+﻿using Sheet.ModernGUI.SheetServiceReference;
+using Sheet.ModernGUI.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,9 @@ namespace Sheet.ModernGUI.Commands
             }
             else
             {
-                var results = await App.Bll.SearchNote(expression);
+                var allNotes = await App.Bll.GetNotes();
+                var searchResults = await App.Bll.SearchNote(expression);
+                var results = allNotes.Where(n => searchResults.Select(s => s.ID).Contains(n.ID));
                 vm.SearchResultsVisibility = Visibility.Visible;
                 vm.SearchResults.Clear();
                 foreach (var note in results)

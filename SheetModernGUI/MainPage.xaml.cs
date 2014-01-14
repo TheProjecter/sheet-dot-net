@@ -56,23 +56,34 @@ namespace Sheet.ModernGUI
 
         private void NotesTree_SelectedItemChanged(object sender, WinRTXamlToolkit.Controls.RoutedPropertyChangedEventArgs<object> e)
         {
-            if (e.NewValue == null)
+            if (e.NewValue != null && e.NewValue is NoteViewModel)
             {
-                OpenedNotePanel.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                viewModel.SelectedNote = e.NewValue as NoteViewModel;
+                DeselectTree(SearchResultsTree);
             }
-            else if (e.NewValue is NoteViewModel)
+        }
+
+        private void SearchResultTree_SelectedItemChanged(object sender, WinRTXamlToolkit.Controls.RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (e.NewValue != null && e.NewValue is NoteViewModel)
             {
-                OpenedNotePanel.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                viewModel.SelectedNote = e.NewValue as NoteViewModel;                
+                viewModel.SelectedNote = e.NewValue as NoteViewModel;
+                DeselectTree(NotesTree);
             }
         }
 
         private void CloseNote_Click(object sender, RoutedEventArgs e)
         {
-            TreeViewItem selectedItem = NotesTree.SelectedContainer;
+            DeselectTree(NotesTree);
+            DeselectTree(SearchResultsTree);
+        }
+
+        private void DeselectTree(TreeView tree)
+        {
+            TreeViewItem selectedItem = tree.SelectedContainer;
             if (selectedItem != null)
             {
-                selectedItem.IsSelected = false; 
+                selectedItem.IsSelected = false;
             }
         }
     }

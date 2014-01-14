@@ -197,6 +197,10 @@ namespace Sheet.ModernGUI.ViewModel
 
         public void Disconnect()
         {
+            if (main.SearchResults.Contains(this))
+            {
+                main.SearchResults.Remove(this);
+            }
             if (Labels.Count == 0)
             {
                 main.NoLabel.Notes.Remove(this);

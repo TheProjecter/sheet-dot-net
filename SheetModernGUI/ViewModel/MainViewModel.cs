@@ -27,11 +27,13 @@ namespace Sheet.ModernGUI.ViewModel
         private ObservableCollection<NoteViewModel> searchResults;
 
         private Visibility searchResultsVisibility = Visibility.Collapsed;
+        private Visibility openNoteVisibility = Visibility.Collapsed;
         private string searchString;
 
         private NewNoteCommand newNote;
         private SimpleSearchCommand simpleSearch;
         private HideSearchViewCommand hideSearch;
+        private CloseNoteCommand closeNote;
 
         private LabelViewModel noLabel;
 
@@ -74,6 +76,7 @@ namespace Sheet.ModernGUI.ViewModel
             newNote = new NewNoteCommand(this);
             simpleSearch = new SimpleSearchCommand(this);
             hideSearch = new HideSearchViewCommand(this);
+            closeNote = new CloseNoteCommand(this);
         }
 
         public ObservableCollection<LabelViewModel> Labels
@@ -124,6 +127,10 @@ namespace Sheet.ModernGUI.ViewModel
         {
             get { return hideSearch; }
         }
+        public ICommand CloseNote
+        {
+            get { return closeNote; }
+        }
 
         public NoteViewModel SelectedNote
         {
@@ -134,7 +141,8 @@ namespace Sheet.ModernGUI.ViewModel
                     return;
 
                 this.selectedNote = value;
-
+                if (value != null)
+                    OpenNoteVisibility = Visibility.Visible;
                 base.RaisePropertyChanged("SelectedNote");
             }
         }
@@ -151,6 +159,19 @@ namespace Sheet.ModernGUI.ViewModel
                 searchResultsVisibility = value;
 
                 RaisePropertyChanged("SearchResultsVisibility");
+            }
+        }
+
+        public Visibility OpenNoteVisibility
+        {
+            get { return openNoteVisibility; }
+            set
+            {
+                if (openNoteVisibility == value)
+                    return;
+
+                openNoteVisibility = value;
+                RaisePropertyChanged("OpenNoteVisibility");
             }
         }
 
