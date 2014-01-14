@@ -141,8 +141,14 @@ namespace Sheet.ModernGUI.ViewModel
                     return;
 
                 this.selectedNote = value;
-                if (value != null)
+                if (value == null)
+                {
+                    OpenNoteVisibility = Visibility.Collapsed;
+                }
+                else
+                {
                     OpenNoteVisibility = Visibility.Visible;
+                }
                 base.RaisePropertyChanged("SelectedNote");
             }
         }

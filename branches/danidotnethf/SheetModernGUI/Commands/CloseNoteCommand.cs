@@ -24,7 +24,6 @@ namespace Sheet.ModernGUI.Commands
             if (noteVM == null)
                 return;
             vm.SelectedNote = null;
-            vm.OpenNoteVisibility = Visibility.Collapsed;
         }
     }
 }
