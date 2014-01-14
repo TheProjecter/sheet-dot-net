@@ -22,10 +22,7 @@ namespace Sheet.ModernGUI.Commands
             NoteViewModel noteVM = parameter as NoteViewModel;
             if (noteVM == null)
                 return;
-            //if (!vm.OpenNotes.Contains(noteVM))
-            //    vm.OpenNotes.Add(noteVM);
             vm.SelectedNote = noteVM;
-            //vm.SetComplexSearchVisible(false);
             noteVM.Load();
         }
     }

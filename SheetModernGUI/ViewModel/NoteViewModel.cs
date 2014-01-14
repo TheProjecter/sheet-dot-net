@@ -201,6 +201,10 @@ namespace Sheet.ModernGUI.ViewModel
             {
                 main.SearchResults.Remove(this);
             }
+            if (main.SelectedNote == this)
+            {
+                main.SelectedNote = null;
+            }
             if (Labels.Count == 0)
             {
                 main.NoLabel.Notes.Remove(this);
