@@ -36,15 +36,15 @@ namespace Sheet.BLLService
             return result;
         }
 
-        //public ICollection<Note> SearchNote(string expression)
-        //{
-        //    ICollection<Note> result = new List<Note>();
-        //    foreach (INote note in service.SearchNote(expression))
-        //    {
-        //        result.Add(new Note(note));
-        //    }
-        //    return result;
-        //}
+        public ICollection<Note> SearchNote(string expression)
+        {
+            ICollection<Note> result = new List<Note>();
+            foreach (INote note in service.SearchNote(expression))
+            {
+                result.Add(new Note(note));
+            }
+            return result;
+        }
 
         //public ICollection<Note> SearchNoteQuery(ComplexQuery query)
         //{

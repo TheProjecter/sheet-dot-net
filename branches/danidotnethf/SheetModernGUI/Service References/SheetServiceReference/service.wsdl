@@ -20,6 +20,12 @@
   <wsdl:message name="IBLLService_GetNotesByLabel_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetNotesByLabelResponse" />
   </wsdl:message>
+  <wsdl:message name="IBLLService_SearchNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchNote" />
+  </wsdl:message>
+  <wsdl:message name="IBLLService_SearchNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchNoteResponse" />
+  </wsdl:message>
   <wsdl:message name="IBLLService_LoadNote_InputMessage">
     <wsdl:part name="parameters" element="tns:LoadNote" />
   </wsdl:message>
@@ -59,6 +65,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/GetNotesByLabel" message="tns:IBLLService_GetNotesByLabel_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/GetNotesByLabelResponse" message="tns:IBLLService_GetNotesByLabel_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SearchNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/SearchNote" message="tns:IBLLService_SearchNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/SearchNoteResponse" message="tns:IBLLService_SearchNote_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LoadNote">
       <wsdl:input wsaw:Action="http://tempuri.org/IBLLService/LoadNote" message="tns:IBLLService_LoadNote_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IBLLService/LoadNoteResponse" message="tns:IBLLService_LoadNote_OutputMessage" />
@@ -93,6 +103,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetNotesByLabel">
       <soap:operation soapAction="http://tempuri.org/IBLLService/GetNotesByLabel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchNote">
+      <soap:operation soapAction="http://tempuri.org/IBLLService/SearchNote" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -34,11 +34,10 @@ namespace Sheet.ModernGUI
             return await service.LoadNoteAsync(note);
         }
 
-        //public async Task<ICollection<Facade.Notes.INote>> SearchNote(string expression)
-        //{
-        //    throw new NotImplementedException();
-        //    //return await Task<ICollection<Sheet.Facade.Notes.INote>>.Run(() => service.SearchNote(expression) as ICollection<INote>);
-        //}
+        public async Task<ICollection<Note>> SearchNote(string expression)
+        {
+            return await service.SearchNoteAsync(expression);
+        }
 
         public async Task<Note> UpdateLabels(Note note, IEnumerable<string> labels)
         {

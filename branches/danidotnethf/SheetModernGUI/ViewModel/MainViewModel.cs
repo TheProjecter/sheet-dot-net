@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml;
 
 namespace Sheet.ModernGUI.ViewModel
 {
@@ -23,9 +24,14 @@ namespace Sheet.ModernGUI.ViewModel
 
         private ObservableCollection<LabelViewModel> labels;
         private ObservableCollection<NoteViewModel> notes;
+        private ObservableCollection<NoteViewModel> searchResults;
 
-        private SaveNoteCommand saveNote;
+        private Visibility searchResultsVisibility = Visibility.Collapsed;
+        private string searchString;
+
         private NewNoteCommand newNote;
+        private SimpleSearchCommand simpleSearch;
+        private HideSearchViewCommand hideSearch;
 
         private LabelViewModel noLabel;
 
@@ -66,6 +72,8 @@ namespace Sheet.ModernGUI.ViewModel
                                                          Notes = new ObservableCollection<Note>()
                                                      }, this);
             newNote = new NewNoteCommand(this);
+            simpleSearch = new SimpleSearchCommand(this);
+            hideSearch = new HideSearchViewCommand(this);
         }
 
         public ObservableCollection<LabelViewModel> Labels
@@ -91,13 +99,30 @@ namespace Sheet.ModernGUI.ViewModel
                 return notes;
             }
         }
-        public ICommand SaveNote
+
+        public ObservableCollection<NoteViewModel> SearchResults
         {
-            get { return saveNote; }
+            get
+            {
+                if (searchResults == null)
+                {
+                    searchResults = new ObservableCollection<NoteViewModel>();
+                }
+                return searchResults;
+            }
         }
+
         public ICommand NewNote
         {
             get { return newNote; }
+        }
+        public ICommand SimpleSearch
+        {
+            get { return simpleSearch; }
+        }
+        public ICommand HideSearch
+        {
+            get { return hideSearch; }
         }
 
         public NoteViewModel SelectedNote
@@ -111,6 +136,35 @@ namespace Sheet.ModernGUI.ViewModel
                 this.selectedNote = value;
 
                 base.RaisePropertyChanged("SelectedNote");
+            }
+        }
+
+        
+        public Visibility SearchResultsVisibility
+        {
+            get { return searchResultsVisibility; }
+            set
+            {
+                if (searchResultsVisibility == value)
+                    return;
+
+                searchResultsVisibility = value;
+
+                RaisePropertyChanged("SearchResultsVisibility");
+            }
+        }
+
+        public string SearchString
+        {
+            get { return searchString; }
+            set
+            {
+                if (searchString == value)
+                {
+                    return;
+                }
+                searchString = value;
+                RaisePropertyChanged("SearchString");
             }
         }
 

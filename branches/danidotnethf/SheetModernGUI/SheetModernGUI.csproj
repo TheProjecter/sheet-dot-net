@@ -115,9 +115,11 @@
     </Compile>
     <Compile Include="BusinessLogicDispatcher.cs" />
     <Compile Include="Commands\DeleteNoteCommand.cs" />
+    <Compile Include="Commands\HideSearchViewCommand.cs" />
     <Compile Include="Commands\NewNoteCommand.cs" />
     <Compile Include="Commands\OpenNoteCommand.cs" />
     <Compile Include="Commands\SaveNoteCommand.cs" />
+    <Compile Include="Commands\SimpleSearchCommand.cs" />
     <Compile Include="Commands\ViewModelCommand.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
@@ -225,6 +227,9 @@
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\netcore45\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Windows.UI.Interactivity">
+      <HintPath>..\packages\Windows.UI.Interactivity.1.3.0.0\lib\win8\Windows.UI.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="WinRTXamlToolkit">
       <HintPath>..\packages\winrtxamltoolkit.1.5.4.3\lib\netcore45\WinRTXamlToolkit.dll</HintPath>

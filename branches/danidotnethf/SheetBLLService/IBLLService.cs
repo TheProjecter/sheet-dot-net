@@ -25,8 +25,8 @@ namespace Sheet.BLLService
         ICollection<Note> GetNotes();
         [OperationContract]
         ICollection<Note> GetNotesByLabel(Label label);
-        //[OperationContract]
-        //ICollection<Note> SearchNote(string expression);
+        [OperationContract]
+        ICollection<Note> SearchNote(string expression);
         //[OperationContract]
         //ICollection<Note> SearchNoteQuery(ComplexQuery query);
         [OperationContract]
