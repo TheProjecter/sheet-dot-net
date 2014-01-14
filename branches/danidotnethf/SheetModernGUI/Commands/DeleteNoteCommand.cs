@@ -37,7 +37,6 @@ namespace Sheet.ModernGUI.Commands
 
             //if (MessageBox.Show("Are you sure you want to delete this note? All saved data will be lost.", "Warning", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Warning) == System.Windows.MessageBoxResult.No)
             //    return;
-
             noteVM.Delete();
         }
     }

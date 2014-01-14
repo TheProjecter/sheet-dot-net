@@ -114,6 +114,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BusinessLogicDispatcher.cs" />
+    <Compile Include="Commands\CloseNoteCommand.cs" />
     <Compile Include="Commands\DeleteNoteCommand.cs" />
     <Compile Include="Commands\HideSearchViewCommand.cs" />
     <Compile Include="Commands\NewNoteCommand.cs" />

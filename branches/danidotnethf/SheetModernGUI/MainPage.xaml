@@ -25,10 +25,10 @@
     <Grid Background="{StaticResource SheetLightBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="65" />
-            <RowDefinition />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -80,7 +80,7 @@
                                 CommandParameter="{Binding Text, ElementName=searchTextBox}"/>
             </StackPanel>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="688" VerticalAlignment="Top" Width="1346" Margin="10,5,0,0" Grid.Row="1"  Background="{StaticResource SheetDarkBackgroundBrush}">
+        <Grid Margin="10,5,10,10" Grid.Row="1"  Background="{StaticResource SheetDarkBackgroundBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="333"/>
                 <ColumnDefinition Width="*"/>
@@ -104,15 +104,15 @@
                         </Canvas>
                     </Button>-->
                 </Grid>
-                <xc:TreeView
-                        Name="NotesTree"
-                        Grid.Row="1"
-                        Margin="0" 
-                        BorderBrush="Transparent"
-                        Background="{StaticResource SheetWhiteBackgroundBrush}" 
-                        HorizontalAlignment="Left" Width="333" 
-                        ItemsSource="{Binding Labels}"
-                        SelectedItemChanged="NotesTree_SelectedItemChanged">
+                <xc:TreeView Name="NotesTree"
+                             Grid.Row="1"
+                             Margin="0" 
+                             BorderBrush="Transparent"
+                             Background="{StaticResource SheetWhiteBackgroundBrush}" 
+                             HorizontalAlignment="Left" Width="333" 
+                             ItemsSource="{Binding Labels}"
+                             SelectedItemChanged="NotesTree_SelectedItemChanged">
+                        
                     <xc:TreeView.ItemTemplate>
                         <DataTemplate>
                             <data:DataTemplateExtensions.Hierarchy>
@@ -149,15 +149,14 @@
                         </Canvas>
                     </Button>
                 </Grid>
-                <xc:TreeView
-                         Name="SearchResultsTree"
-                         Grid.Row="1"
-                         Margin="0" 
-                         BorderBrush="Transparent"
-                         Background="{StaticResource SheetWhiteBackgroundBrush}" 
-                         HorizontalAlignment="Left" Width="333" 
-                         ItemsSource="{Binding SearchResults}"
-                         SelectedItemChanged="NotesTree_SelectedItemChanged">
+                <xc:TreeView Name="SearchResultsTree"
+                             Grid.Row="1"
+                             Margin="0" 
+                             BorderBrush="Transparent"
+                             Background="{StaticResource SheetWhiteBackgroundBrush}" 
+                             HorizontalAlignment="Left" Width="333" 
+                             ItemsSource="{Binding SearchResults}"
+                             SelectedItemChanged="SearchResultTree_SelectedItemChanged">
                     <xc:TreeView.ItemTemplate>
                         <DataTemplate>
                             <!--<data:DataTemplateExtensions.Hierarchy>
@@ -172,15 +171,15 @@
                 </xc:TreeView>
             </Grid>
             <Grid Name="OpenedNotePanel"
-                        Visibility="Visible"
-                        Margin="0,0,0,2" Background="{StaticResource SheetWhiteBackgroundBrush}" 
-                        DataContext="{Binding SelectedNote}"
-                        Grid.Column="1">
+                  Visibility="{Binding OpenNoteVisibility, Mode=TwoWay}"
+                  Margin="0,0,2,2" Background="{StaticResource SheetWhiteBackgroundBrush}" 
+                  Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="33"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Name="OpenNoteControls" Orientation="Horizontal" Grid.Row="0">
+                <StackPanel Name="OpenNoteControls" Orientation="Horizontal" Grid.Row="0"
+                        DataContext="{Binding SelectedNote}">
                     <xc:WatermarkTextBox WatermarkText="Set title..." Text="{Binding Title, Mode=TwoWay}"/>
                     <Button Name="SaveNoteButton" 
                             Content="Save" 
@@ -202,7 +201,9 @@
                     <Button Name="CloseNote"
                             BorderThickness="0" Padding="0" Margin="3,2,0,3" HorizontalAlignment="Stretch"
         			        VerticalAlignment="Stretch" Background="#00000000" BorderBrush="#00000000" 
-        			        Click="CloseNote_Click">
+        			        Click="CloseNote_Click"
+                            Command="{Binding Path=DataContext.CloseNote, ElementName=mainPage}"
+                            CommandParameter="{Binding}">
                         <Canvas HorizontalAlignment="Right" VerticalAlignment="Center" Height="15" Width="15" RenderTransformOrigin="0.667,1.267">
                             <Line X1="2" Y1="2" X2="13" Y2="13" StrokeThickness="3" Stroke="#FF000000"/>
                             <Line X1="13" Y1="2" X2="2" Y2="13" StrokeThickness="3" Stroke="#FF000000"/>
@@ -210,7 +211,7 @@
                     </Button>
 
                 </StackPanel>
-                <Grid Name="OpenNoteContent" Grid.Row="1">
+                <Grid Name="OpenNoteContent" Grid.Row="1" DataContext="{Binding SelectedNote}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="30"/>
