@@ -31,18 +31,18 @@ namespace Sheet.BLLService
         //ICollection<Note> SearchNoteQuery(ComplexQuery query);
         [OperationContract]
         Note LoadNote(Note note);
-        //[OperationContract]
-        //Note UpdateLabels(Note note, IEnumerable<string> labels);
+        [OperationContract]
+        Note UpdateLabels(Note note, IEnumerable<string> labels);
         //[OperationContract]
         //void AddAttachment(AttachmentInfo attachmentInfo);
         //[OperationContract]
         //Stream DownloadAttachment(Attachment attachment);
-        //[OperationContract]
-        //Note NewNote();
+        [OperationContract]
+        Note NewNote();
         [OperationContract]
         void SaveNote(Note note);
-        //[OperationContract]
-        //void DeleteNote(Note note);
+        [OperationContract]
+        void DeleteNote(Note note);
         //[OperationContract]
         //void DeleteAttachment(Attachment attachment);
 

@@ -358,8 +358,17 @@ namespace Sheet.ModernGUI.SheetServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/LoadNote", ReplyAction="http://tempuri.org/IBLLService/LoadNoteResponse")]
         System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> LoadNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/UpdateLabels", ReplyAction="http://tempuri.org/IBLLService/UpdateLabelsResponse")]
+        System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> UpdateLabelsAsync(Sheet.ModernGUI.SheetServiceReference.Note note, System.Collections.ObjectModel.ObservableCollection<string> labels);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/NewNote", ReplyAction="http://tempuri.org/IBLLService/NewNoteResponse")]
+        System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> NewNoteAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/SaveNote", ReplyAction="http://tempuri.org/IBLLService/SaveNoteResponse")]
         System.Threading.Tasks.Task SaveNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBLLService/DeleteNote", ReplyAction="http://tempuri.org/IBLLService/DeleteNoteResponse")]
+        System.Threading.Tasks.Task DeleteNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -417,8 +426,20 @@ namespace Sheet.ModernGUI.SheetServiceReference {
             return base.Channel.LoadNoteAsync(note);
         }
         
+        public System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> UpdateLabelsAsync(Sheet.ModernGUI.SheetServiceReference.Note note, System.Collections.ObjectModel.ObservableCollection<string> labels) {
+            return base.Channel.UpdateLabelsAsync(note, labels);
+        }
+        
+        public System.Threading.Tasks.Task<Sheet.ModernGUI.SheetServiceReference.Note> NewNoteAsync() {
+            return base.Channel.NewNoteAsync();
+        }
+        
         public System.Threading.Tasks.Task SaveNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note) {
             return base.Channel.SaveNoteAsync(note);
+        }
+        
+        public System.Threading.Tasks.Task DeleteNoteAsync(Sheet.ModernGUI.SheetServiceReference.Note note) {
+            return base.Channel.DeleteNoteAsync(note);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {

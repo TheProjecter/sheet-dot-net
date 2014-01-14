@@ -1,4 +1,4 @@
-﻿<common:LayoutAwarePage x:Class="Sheet.ModernGUI.MainPage"
+﻿<common:LayoutAwarePage x:Class="Sheet.ModernGUI.MainPage" x:Name="mainPage"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -41,9 +41,22 @@
             <TextBlock x:Name="pageTitle"
                        Grid.Column="1"
                        Text="Sheet"
-                       Style="{StaticResource PageHeaderTextStyle}" Margin="0,15,30,0" VerticalAlignment="Top" />
+                       Style="{StaticResource PageHeaderTextStyle}" 
+                       Margin="0,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="871" />
+            <Button Name="NewNoteButton" 
+                            Content="New Note" 
+                            Height="33"
+                            Margin="232,22,0,10"
+                            VerticalAlignment="Stretch"
+                            VerticalContentAlignment="Center"
+                            Width="97" 
+                            Command="{Binding NewNote}"
+                            Grid.Column="1"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="688" VerticalAlignment="Top" Width="1346" Margin="10,5,0,0" Grid.Row="1" Background="{StaticResource SheetDarkBackgroundBrush}">
+        <Grid HorizontalAlignment="Left" Height="688" VerticalAlignment="Top" Width="1346" Margin="10,5,0,0" Grid.Row="1" >
+            <Grid Background="{StaticResource SheetDarkBackgroundBrush}">
+                <Image Source="Resources/Images/logo_background.png" Width="466" Height="220" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="620,0,260,0"/>
+            </Grid>
             <Grid HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="333">
                 <TextBlock x:Name="SearchResultsTB" TextWrapping="Wrap" VerticalAlignment="Center" Text="Notes by labels" FontSize="16" Margin="3,3,0,3" HorizontalAlignment="Left" Width="110"/>
                 <Button BorderThickness="0" Padding="0" Margin="313,2,0,3" HorizontalAlignment="Stretch"
@@ -134,12 +147,21 @@
                     <xc:WatermarkTextBox WatermarkText="Set title..." Text="{Binding Title, Mode=TwoWay}"/>
                     <Button Name="SaveNoteButton" 
                             Content="Save" 
-                            Height="30" 
-                            VerticalAlignment="Stretch" 
+                            Height="33" 
+                            VerticalAlignment="Stretch"
+                            VerticalContentAlignment="Center"
                             Width="65" 
-                            Click="SaveNoteButton_Click"
                             Command="{Binding SaveNote}" 
                             CommandParameter="{Binding}"/>
+                    <Button x:Name="DeleteNoteButton" 
+                    	Content="Delete" 
+                    	Height="33"
+                    	VerticalAlignment="Stretch"
+                    	VerticalContentAlignment="Center"
+                    	Width="75"
+                    	Command="{Binding DeleteNote}" 
+                    	CommandParameter="{Binding}"
+                        Click="CloseNote_Click"/>
                     <Button Name="CloseNote"
                             BorderThickness="0" Padding="0" Margin="3,2,0,3" HorizontalAlignment="Stretch"
         			        VerticalAlignment="Stretch" Background="#00000000" BorderBrush="#00000000" 
@@ -149,14 +171,15 @@
                             <Line X1="13" Y1="2" X2="2" Y2="13" StrokeThickness="3" Stroke="#FF000000"/>
                         </Canvas>
                     </Button>
+                    
                 </StackPanel>
-                <Grid>
+                <Grid Height="500">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition Height="120"/>
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0" BorderThickness="1" CornerRadius="5" Padding="2,4" Margin="0,0,2,2">
+                    <Border Grid.Row="0" BorderThickness="1" CornerRadius="5" Padding="2,4" Margin="2" BorderBrush="{StaticResource ResourceKey=SheetDarkBackgroundBrush}">
                         <ScrollViewer>
                             <TextBox Text="{Binding Text, Mode=TwoWay}" BorderThickness="0" AcceptsReturn="True">
                                 <!--<i:Interaction.Triggers>
@@ -170,7 +193,11 @@
                             </TextBox>
                         </ScrollViewer>
                     </Border>
-                    
+                    <Border Grid.Row="1" BorderThickness="1" CornerRadius="5" Padding="2" Margin="2" BorderBrush="{StaticResource ResourceKey=SheetDarkBackgroundBrush}">
+                        <!--Label Style="{StaticResource EditableLabelStyle}" Background="#FFB0F4A9" HorizontalAlignment="Center" VerticalAlignment="Center" Content="MyLabel"/-->
+                        <xc:WatermarkTextBox Text="{Binding LabelString, Mode=TwoWay}" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="2" BorderThickness="0" Watermark="Add labels..." HorizontalContentAlignment="Left"/>
+                        <!--<l:LabelsControl VerticalAlignment="Center" HorizontalAlignment="Stretch" Source="{Binding LabelString}" Update="{Binding Update}"/>-->
+                    </Border>
                     <!--<Border Grid.Row="2" BorderThickness="1" CornerRadius="5" Padding="2" Margin="0,0,2,2">
                         <Border.BorderBrush>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveBorderColorKey}}"/>

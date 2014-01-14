@@ -114,6 +114,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BusinessLogicDispatcher.cs" />
+    <Compile Include="Commands\DeleteNoteCommand.cs" />
+    <Compile Include="Commands\NewNoteCommand.cs" />
     <Compile Include="Commands\OpenNoteCommand.cs" />
     <Compile Include="Commands\SaveNoteCommand.cs" />
     <Compile Include="Commands\ViewModelCommand.cs" />
@@ -147,6 +149,9 @@
     <None Include="MvvmLight.Win8_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
+    <None Include="Service References\SheetServiceReference\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\SheetServiceReference\service.wsdl" />
     <None Include="Service References\SheetServiceReference\service.xsd">
       <SubType>Designer</SubType>

@@ -16,8 +16,9 @@
                                  d:IsDataSource="True" />-->
             <bl:BusinessLogicDispatcher x:Key="Bll" />
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
-            
-            <SolidColorBrush x:Key="SheetDarkBackgroundBrush" Color="#FF60A917"/>
+
+            <Color x:Key="SheetDarkColor">#FF60A917</Color>
+            <SolidColorBrush x:Key="SheetDarkBackgroundBrush" Color="{StaticResource ResourceKey=SheetDarkColor}"/>
             <SolidColorBrush x:Key="SheetLightBackgroundBrush" Color="#FF80BA45"/>
             <SolidColorBrush x:Key="SheetWhiteBackgroundBrush" Color="White"/>
             <SolidColorBrush x:Key="Foreground" Color="#DEFFFFFF"/>

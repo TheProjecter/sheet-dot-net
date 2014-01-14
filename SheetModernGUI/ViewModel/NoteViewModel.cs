@@ -28,6 +28,7 @@ namespace Sheet.ModernGUI.ViewModel
         //private NewAttachmentCommand newAttachment;
         //private DeleteAttachmentCommand deleteAttachment;
         private SaveNoteCommand saveNote;
+        private DeleteNoteCommand deleteNote;
         
 
         public NoteViewModel(MainViewModel main) : base(main)
@@ -44,6 +45,7 @@ namespace Sheet.ModernGUI.ViewModel
             //newAttachment = new NewAttachmentCommand(this);
             //deleteAttachment = new DeleteAttachmentCommand(this);
             saveNote = new SaveNoteCommand(this);
+            deleteNote = new DeleteNoteCommand(this);
 
             main.RegisterViewModel(model, this);
             LoadViewModels();
@@ -83,6 +85,11 @@ namespace Sheet.ModernGUI.ViewModel
         public ICommand SaveNote
         {
             get { return saveNote; }
+        }
+
+        public ICommand DeleteNote
+        {
+            get { return deleteNote; }
         }
 
 
@@ -216,24 +223,18 @@ namespace Sheet.ModernGUI.ViewModel
             {
                 if (this.model == value)
                     return;
-
-                //if (model is ModelMock)
-                //{
-                //    value.Title = model.Title;
-                //    value.Text = model.Text;
-                //}
                 this.model = value;
                 base.RaisePropertyChanged("");
                 LoadViewModels();
             }
         }
 
-        //public void Delete()
-        //{
-        //    Disconnect();
-        //    main.UnregisterViewModel(model);
-        //    App.Bll.DeleteNote(model);
-        //}
+        public void Delete()
+        {
+            Disconnect();
+            main.UnregisterViewModel(model);
+            App.Bll.DeleteNote(model);
+        }
 
         public async void Load()
         {
@@ -242,20 +243,20 @@ namespace Sheet.ModernGUI.ViewModel
 
         public async void Save()
         {
-            //if (!upToDate)
-            //{
-            //    upToDate = true;
             await App.Bll.SaveNote(model);
-            //}
         }
 
-        //internal async void UpdateLabels(string[] labels)
-        //{
-        //    INote updated = await App.Bll.UpdateLabels(model, labels);
-        //    Disconnect();
-        //    Model = updated;
-        //    Connect();
-        //}
+        internal async void UpdateLabels()
+        {
+            string[] split = {" ", ",", ";"};
+            var labels = LabelString.Split(split, StringSplitOptions.RemoveEmptyEntries);
+            Note updated = await App.Bll.UpdateLabels(model, labels);
+            ICollection<Note> allnotes = await App.Bll.GetNotes();
+            updated = allnotes.Single(n => n.ID == model.ID);
+            Disconnect();
+            Model = updated;
+            Connect();
+        }
 
         //internal async void AddNewAttachment(System.IO.Stream stream, string fileName)
         //{

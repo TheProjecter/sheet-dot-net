@@ -22,55 +22,17 @@ namespace Sheet.BLLService
 
         public ICollection<Note> GetNotes()
         {
-            Dictionary<int, ILabel> dalLables = new Dictionary<int, ILabel>();
-
-            ICollection<Note> result = new List<Note>();
             ICollection<INote> dalNotes = service.GetNotes();
-
-            foreach (INote note in dalNotes)
-            {
-                foreach (ILabel label in note.Labels)
-                {
-                    if (!dalLables.ContainsKey(label.ID))
-                    {
-                        dalLables.Add(label.ID, label);
-                    }
-                }
-            }
-
-            foreach (INote note in dalNotes)
-            {
-                result.Add(new Note(note));
-            }
-            foreach (ILabel dalLabel in dalLables.Values)
-            {
-                Label label = new Label(dalLabel);
-                foreach (Note note in result)
-                {
-                    if (dalLabel.Notes.Select(n => n.ID).Contains(note.ID))
-                    {
-                        if (!label.Notes.Contains(note))
-                        {
-                            label.Notes.Add(note); 
-                        }
-                        if (!note.Labels.Contains(label))
-                        {
-                            note.Labels.Add(label);
-                        }
-                    }
-                }
-            }
+            ICollection<Note> result = TransformNotes(dalNotes);
 
             return result;
         }
 
+
         public ICollection<Note> GetNotesByLabel(Label label)
         {
-            ICollection<Note> result = new List<Note>();
-            foreach (INote note in service.GetNotesByLabel(label))
-            {
-                result.Add(new Note(note));
-            }
+            ICollection<INote> dalNotes = service.GetNotesByLabel(label);
+            ICollection<Note> result = TransformNotes(dalNotes);
             return result;
         }
 
@@ -96,13 +58,13 @@ namespace Sheet.BLLService
 
         public Note LoadNote(Note note)
         {
-            return new Note(service.LoadNote(note));
+            return TransformNote(service.LoadNote(note));
         }
 
-        //public Note UpdateLabels(INote note, IEnumerable<string> labels)
-        //{
-        //    return new Note(service.UpdateLabels(note, labels));
-        //}
+        public Note UpdateLabels(Note note, IEnumerable<string> labels)
+        {
+            return TransformNote(service.UpdateLabels(note, labels));
+        }
 
         //public void AddAttachment(AttachmentInfo attachmentInfo)
         //{
@@ -114,20 +76,20 @@ namespace Sheet.BLLService
         //    return service.DownloadAttachment(attachment);
         //}
 
-        //public Note NewNote()
-        //{
-        //    return new Note(service.NewNote());
-        //}
+        public Note NewNote()
+        {
+            return TransformNote(service.NewNote());
+        }
 
         public void SaveNote(Note note)
         {
             service.SaveNote(note);
         }
 
-        //public void DeleteNote(INote note)
-        //{
-        //    service.DeleteNote(note);
-        //}
+        public void DeleteNote(Note note)
+        {
+            service.DeleteNote(note);
+        }
 
         //public void DeleteAttachment(IAttachment attachment)
         //{
