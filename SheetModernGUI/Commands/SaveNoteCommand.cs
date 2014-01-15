@@ -23,6 +23,7 @@ namespace Sheet.ModernGUI.Commands
                 return;
             noteVM.UpdateLabels();
             noteVM.Save();
+            noteVM.SelectNote();
         }
     }
 }

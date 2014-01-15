@@ -201,10 +201,7 @@ namespace Sheet.ModernGUI.ViewModel
             {
                 main.SearchResults.Remove(this);
             }
-            if (main.SelectedNote == this)
-            {
-                main.SelectedNote = null;
-            }
+            
             if (Labels.Count == 0)
             {
                 main.NoLabel.Notes.Remove(this);
@@ -225,6 +222,11 @@ namespace Sheet.ModernGUI.ViewModel
             }
         }
 
+        public void SelectNote()
+        {
+            main.SelectedNote = this;
+        }
+
         public Note Model
         {
             set
@@ -239,6 +241,10 @@ namespace Sheet.ModernGUI.ViewModel
 
         public void Delete()
         {
+            if (main.SelectedNote == this)
+            {
+                main.SelectedNote = null;
+            }
             Disconnect();
             main.UnregisterViewModel(model);
             App.Bll.DeleteNote(model);
