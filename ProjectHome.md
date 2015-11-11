@@ -1,0 +1,2 @@
+Sheet is an assignment project created by students of the Budapest University of Technology and Economics. Its goal is to demonstrate the knowledge of the creators in the field of software architecture and software development.
+Sheet is a desktop application capable of handling textual and/or binary (audio/video/any file) notes, providing convenient capability to search based on title, text, labels or metadata.
